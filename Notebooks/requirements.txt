@@ -17,7 +17,7 @@ autograd==1.3
 Babel==2.9.0
 backcall==0.2.0
 beautifulsoup4==4.6.3
-bleach==3.2.3
+bleach==3.3.0
 blis==0.4.1
 bokeh==2.1.1
 Bottleneck==1.3.2
@@ -57,7 +57,7 @@ defusedxml==0.6.0
 descartes==1.1.0
 dill==0.3.3
 distributed==1.25.3
-Django==3.1.5
+Django==3.1.6
 dlib==19.18.0
 dm-tree==0.1.5
 docopt==0.6.2
@@ -154,14 +154,14 @@ jaxlib==0.1.59+cuda101
 jdcal==1.4.1
 jedi==0.18.0
 jieba==0.42.1
-Jinja2==2.11.2
+Jinja2==2.11.3
 joblib==1.0.0
 jpeg4py==0.1.4
 jsonschema==2.6.0
 jupyter==1.0.0
 jupyter-client==5.3.5
 jupyter-console==5.2.0
-jupyter-core==4.7.0
+jupyter-core==4.7.1
 jupyterlab-pygments==0.1.2
 jupyterlab-widgets==1.0.0
 kaggle==1.5.10
@@ -218,7 +218,7 @@ opencv-python==4.1.2.30
 openpyxl==2.5.9
 opt-einsum==3.3.0
 osqp==0.6.2.post0
-packaging==20.8
+packaging==20.9
 palettable==3.3.0
 pandas==1.1.5
 pandas-datareader==0.9.0
@@ -228,6 +228,7 @@ pandocfilters==1.4.3
 panel==0.9.7
 param==1.10.1
 parso==0.8.1
+path==15.1.0
 pathlib==1.0.1
 patsy==0.5.1
 pexpect==4.8.0
@@ -321,7 +322,7 @@ spacy==2.2.4
 Sphinx==1.8.5
 sphinxcontrib-serializinghtml==1.1.4
 sphinxcontrib-websupport==1.2.4
-SQLAlchemy==1.3.22
+SQLAlchemy==1.3.23
 sqlparse==0.4.1
 srsly==1.0.5
 statsmodels==0.10.2
@@ -367,7 +368,7 @@ umap-learn==0.5.0
 uritemplate==3.0.1
 urllib3==1.24.3
 vega-datasets==0.9.0
-wasabi==0.8.1
+wasabi==0.8.2
 wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==1.0.1
