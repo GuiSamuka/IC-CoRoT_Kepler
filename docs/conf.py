@@ -37,13 +37,25 @@ extensions = [
   'sphinx_copybutton',
   'sphinx.ext.githubpages',
   'sphinx.ext.imgconverter',
-  'bokeh.sphinxext.bokeh_autodoc'
+  'bokeh.sphinxext.bokeh_autodoc',
+  'sphinx.ext.doctest',
+  'sphinx.ext.doctest',
+  'sphinx.ext.intersphinx',
+  'sphinx.ext.todo',
+  'sphinx.ext.coverage',
+  'sphinx.ext.ifconfig',
+  'sphinx.ext.viewcode'
 ]
+
+
 
 highlight_language = 'python3'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# The master toctree document.
+master_doc = 'index'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
