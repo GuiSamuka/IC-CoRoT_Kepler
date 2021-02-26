@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Filtering Techniques and Data Analysis of data from CoRoT and Kepler satellites's documentation!
+Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites's documentation!
 ===========================================================================================================
 
 Curvas de luz são dados astronômicos frequentemente utilizados no estudo da variabilidade do brilho das estrelas e 
