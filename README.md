@@ -1,3 +1,6 @@
-# IC-CoRoT_Kepler
+# Welcome to IC-CoRoT_Kepler repository
  
-This repository contains studies on Filtering Techniques and Data Analysis of data from CoRoT and Kepler satellites 
+This repository contains studies on Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites.
+
+
+[Readthedocs - Filtering Tecnhiques](https://filtering-techniques.readthedocs.io/en/latest/)
