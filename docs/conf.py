@@ -70,7 +70,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 #
 html_theme = 'sphinx_rtd_theme'
 
-html_logo = 'images/Logos.png'
+html_logo = 'images/Logos_white_bg.png'
 html_favicon = 'images/favicon.ico'
 
 html_title = 'Filtering Techniques'
