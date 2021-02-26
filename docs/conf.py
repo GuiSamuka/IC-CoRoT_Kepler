@@ -31,6 +31,14 @@ release = '1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+  'nbsphinx',
+  'sphinx_rtd_theme',
+  'sphinx.ext.autodoc',
+  'sphinx.ext.mathjax',
+  'sphinx_copybutton',
+  'sphinx.ext.githubpages',
+  'sphinx.ext.imgconverter',
+  'bokeh.sphinxext.bokeh_autodoc'
 ]
 
 highlight_language = 'python3'
@@ -51,8 +59,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 #
 html_theme = 'sphinx_rtd_theme'
 
-#html_logo = 'images/corot_logo.png'
-#html_favicon = 'images/favicon.ico'
+html_logo = 'images/Logos.png'
+html_favicon = 'images/favicon.ico'
 
 html_title = 'Filtering Techniques'
 html_short_title = 'IC'
