@@ -48,7 +48,7 @@ extensions = [
   'sphinx.ext.coverage',
   'sphinx.ext.ifconfig',
   'sphinx.ext.viewcode',
-  'imgmath_latex'
+  'sphinx.ext.imgmath'
 ]
 
 

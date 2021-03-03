@@ -38,8 +38,6 @@
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -686,15 +684,15 @@ The original length was: 19346 , and now we have: 19486
 The difference is: 140
 </pre></div></div>
 </div>
-<p>One good practice before filtering data with Butterworth is to apply a procedure called Zero Padding. It consists of extending a signal with zeros, that is, it return a lenght <span class="math notranslate nohighlight">\(N\)</span> signal to a lenght <span class="math notranslate nohighlight">\(M &gt; N\)</span> signal, but <span class="math notranslate nohighlight">\(N\)</span> can not be divisible by <span class="math notranslate nohighlight">\(M\)</span>.</p>
-<p>Zero Padding, <span class="math notranslate nohighlight">\(f_{zp}\)</span>, has the following definition:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} f_{zp}(x) \triangleq \begin{cases}
+<p>One good practice before filtering data with Butterworth is to apply a procedure called Zero Padding. It consists of extending a signal with zeros, that is, it return a lenght <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> signal to a lenght <img class="math" src="_images/math/4e9f16fb98ecb2474673958cbeec6d710560a3a8.png" alt="M &gt; N"/> signal, but <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> can not be divisible by <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>.</p>
+<p>Zero Padding, <img class="math" src="_images/math/e888aa49a4e3bbbd22454da85399e23a045f3357.png" alt="f_{zp}"/>, has the following definition:</p>
+<div class="math">
+<p><img src="_images/math/c27b3f75660154849ca4b2c7f157d3b1168e1c57.png" alt="f_{zp}(x) \triangleq \begin{cases}
    f(x), &amp;\text{if } |m| &lt; N/2 \\
    0, &amp;\text{otherwise }
-\end{cases}\end{split}\]</div>
-<p>where:</p>
-<p><span class="math notranslate nohighlight">\(m = 0, \pm1, \pm2, \pm3, ...\pm M_{h}\)</span>, with $M_h <span class="math">\triangleq `(M-1)/2 $ for :math:`M</span> odd, and <span class="math notranslate nohighlight">\(M/2-1\)</span> for <span class="math notranslate nohighlight">\(M\)</span> even.</p>
+\end{cases}"/></p>
+</div><p>where:</p>
+<p><img class="math" src="_images/math/fd92145aa6be8d08bc173f75e325a745f2e554b1.png" alt="m = 0, \pm1, \pm2, \pm3, ...\pm M_{h}"/>, with $M_h <span class="math">\triangleq `(M-1)/2 $ for :math:`M</span> odd, and <img class="math" src="_images/math/33f922951f1324c30f8435340894ad08022550ce.png" alt="M/2-1"/> for <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/> even.</p>
 <p>Padding remove the implicit periodicity of the funcion that can appeared on the filtered data. In other terms, the padding prevents the convolution of two functions from generating unexpected (periodic) results.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -805,17 +803,17 @@ if (outputEl) {{
 </div>
 <div class="section" id="Butterworth-Filter">
 <h1>Butterworth Filter<a class="headerlink" href="#Butterworth-Filter" title="Permalink to this headline">¶</a></h1>
-<p>Finally, we must multiply the results of Fourier transform by the filter’s function, in this case, by the Butterworth Transfer function <span class="math notranslate nohighlight">\(H_{n} (j\space\omega)\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[G_{n}(\omega)  = |H_{n}(j\space\omega)| = \frac{1}{ \sqrt{ 1 + \big(\frac{\omega}{\omega_c}\big)^{2n} } }\]</div>
-<p>where:</p>
+<p>Finally, we must multiply the results of Fourier transform by the filter’s function, in this case, by the Butterworth Transfer function <img class="math" src="_images/math/8fca0ea4cbb418e425d4bc16c43e366f632b3832.png" alt="H_{n} (j\space\omega)"/>.</p>
+<div class="math">
+<p><img src="_images/math/51d8c6ddcf6a903ef09744c9d90118847acd7c50.png" alt="G_{n}(\omega)  = |H_{n}(j\space\omega)| = \frac{1}{ \sqrt{ 1 + \big(\frac{\omega}{\omega_c}\big)^{2n} } }"/></p>
+</div><p>where:</p>
 <ul class="simple">
 <li><p>G is the gain of an n-order Butterworth low-pass filter</p></li>
 <li><p>H is transfer funcion</p></li>
 <li><p>j is imaginary number</p></li>
 <li><p>n is the order of the filter</p></li>
 <li><p>ω is the angular frequency [rad/s],</p></li>
-<li><p><span class="math notranslate nohighlight">\(\omega_c\)</span> is the cutoff frequency [rad/s].</p></li>
+<li><p><img class="math" src="_images/math/774c2461985b7f0012829a3c98505e86ab8167a6.png" alt="\omega_c"/> is the cutoff frequency [rad/s].</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
