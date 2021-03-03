@@ -7,4 +7,4 @@ matplotlib>=3.2
 ruamel.yaml
 ipywidgets
 ipython
-bokeh
+numpy==1.19.5
