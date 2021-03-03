@@ -41,7 +41,6 @@ extensions = [
   'sphinx_copybutton',
   'sphinx.ext.githubpages',
   'sphinx.ext.imgconverter',
-  'bokeh.sphinxext.bokeh_autodoc',
   'sphinx.ext.doctest',
   'sphinx.ext.doctest',
   'sphinx.ext.intersphinx',
