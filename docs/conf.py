@@ -14,6 +14,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 
+import sphinx_rtd_theme
+
 # -- Project information -----------------------------------------------------
 
 project = 'Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites'
@@ -25,6 +27,8 @@ release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
+
+master_doc = 'index'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -38,6 +42,7 @@ extensions = [
   'sphinx.ext.githubpages',
   'sphinx.ext.imgconverter',
   'bokeh.sphinxext.bokeh_autodoc',
+
   'sphinx.ext.doctest',
   'sphinx.ext.doctest',
   'sphinx.ext.intersphinx',
