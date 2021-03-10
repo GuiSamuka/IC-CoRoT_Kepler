@@ -36,15 +36,15 @@ análises de tais curvas de luz.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Data Analysis:
+   :caption: Butterworth Filter:
 
-   02 - Quick Data Analysis
+   02 - Butterworth Filter
 
 .. toctree::
    :maxdepth: 2
-   :caption: Butterworth Filter:
+   :caption: Butterworth Math Filtering:
 
-   03 - Butterworth Filter
+   03 - Butterworth filtering without Scipy
 
 
 

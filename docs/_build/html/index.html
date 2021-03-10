@@ -44,7 +44,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Read .fits data" href="01%20-%20Manipulating%20fits%20files.html" /> 
+    <link rel="next" title="# Read .fits data" href="01%20-%20Manipulating%20fits%20files.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,24 +94,26 @@
             
               <p class="caption"><span class="caption-text">Manipulating fits files:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html">Read <em>.fits</em> data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Transforming-data-as-DataFrame">Transforming data as DataFrame</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Plotting-the-Light-Curve">Plotting the Light Curve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Saving-data-as-.csv-or-.txt">Saving data as .csv or .txt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Algorithm-that-transform-.fits-files-into-.csv">Algorithm that transform <em>.fits</em> files into <em>.csv</em></a></li>
-</ul>
-<p class="caption"><span class="caption-text">Data Analysis:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="02%20-%20Quick%20Data%20Analysis.html">Quick data analysis using Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02%20-%20Quick%20Data%20Analysis.html#Transforming-into-an-numpy-array">Transforming into an numpy array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html"># Read <em>.fits</em> data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html##-Knowing-and-fixing-the-header"># Knowing and fixing the header</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Quick-data-analysis">Quick data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#STATUSSYS">STATUSSYS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#​​WHITEFLUXSYS">​​WHITEFLUXSYS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#DATEBARTT">DATEBARTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html##-Algorithms"># Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Updating-folder-structure">Updating folder structure</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Butterworth Filter:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Data-normalization">Data normalization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Butterworth-Filter">Butterworth Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Undoing-normalization-procedures">Undoing normalization procedures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Filtering-results">Filtering results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html">Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Data-normalization">Data normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Undoing-normalization-procedures">Undoing normalization procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Filtering-results">Filtering results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Butterworth Math Filtering:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html">Read data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#Filtering">Filtering</a></li>
 </ul>
 
             
@@ -229,34 +231,45 @@ análises de tais curvas de luz.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Manipulating fits files:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html">Read <em>.fits</em> data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Transforming-data-as-DataFrame">Transforming data as DataFrame</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Plotting-the-Light-Curve">Plotting the Light Curve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Saving-data-as-.csv-or-.txt">Saving data as .csv or .txt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Algorithm-that-transform-.fits-files-into-.csv">Algorithm that transform <em>.fits</em> files into <em>.csv</em></a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Data Analysis:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="02%20-%20Quick%20Data%20Analysis.html">Quick data analysis using Pandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02%20-%20Quick%20Data%20Analysis.html#Plotting">Plotting</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="02%20-%20Quick%20Data%20Analysis.html#Transforming-into-an-numpy-array">Transforming into an numpy array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html"># Read <em>.fits</em> data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html##-Knowing-and-fixing-the-header"># Knowing and fixing the header</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Quick-data-analysis">Quick data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#STATUSSYS">STATUSSYS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#​​WHITEFLUXSYS">​​WHITEFLUXSYS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#DATEBARTT">DATEBARTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html##-Algorithms"># Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Updating-folder-structure">Updating folder structure</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Butterworth Filter:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html">Importing Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Before-results">Before results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html">Importing Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Before-results">Before results</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Data-normalization">Data normalization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Butterworth-Filter">Butterworth Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Undoing-normalization-procedures">Undoing normalization procedures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20Filter.html#Filtering-results">Filtering results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Data-normalization">Data normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Undoing-normalization-procedures">Undoing normalization procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Filtering-results">Filtering results</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Butterworth Math Filtering:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html">Read data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#Filtering">Filtering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#1.-Artificial-borders">1. Artificial borders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#2.-Zero-Padding">2. Zero Padding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#3.-Multiply-by-(-1)^i">3. Multiply by <img class="math" src="_images/math/43a550a059d3749b82aa784b01abdb93c108df62.png" alt="(-1)^i"/></a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#4.-Fourier-Transform">4. Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#5.-Butterworth-transfer-function">5. Butterworth transfer function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#6.-Inverse-Fourier-Transform">6. Inverse Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#7.-Removing-Zero-Padding">7. Removing Zero Padding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#8.-Cuting-artificial-borders">8. Cuting artificial borders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#9.-Re-multiplying-data-by-(-1)^{i}">9. Re-multiplying data by <img class="math" src="_images/math/26d725cb4b8e891c612c673327a7c7651789ac42.png" alt="(-1)^{i}"/></a></li>
+<li class="toctree-l2"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#10.-Plotting-results">10. Plotting results</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -275,7 +288,7 @@ análises de tais curvas de luz.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="01%20-%20Manipulating%20fits%20files.html" class="btn btn-neutral float-right" title="Read .fits data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01%20-%20Manipulating%20fits%20files.html" class="btn btn-neutral float-right" title="# Read .fits data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
