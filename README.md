@@ -3,4 +3,4 @@
 This repository contains studies on Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites.
 
 
-[Readthedocs - Filtering Tecnhiques](https://filtering-techniques.readthedocs.io/en/latest/)
+[Filtering Tecnhiques](https://guilherme-ssb.github.io/)
