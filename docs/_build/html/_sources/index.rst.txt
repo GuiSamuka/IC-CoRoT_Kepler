@@ -6,7 +6,6 @@
 Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites's documentation!
 ===========================================================================================================
 
-|join discord|
 
 This work
 ---------------------
@@ -39,7 +38,7 @@ Some results
    :maxdepth: 2
    :caption: Butterworth Math Filtering:
 
-   03 - Butterworth filtering without Scipy
+   02 - Butterworth filtering without Scipy
 
 
 
@@ -49,9 +48,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-
-
-.. |join discord| image:: https://img.shields.io/discord/713442259210600448?label=join%20discord
-   :alt: Join discussion Discord
-   :target: https://discord.gg/Y6jcyEGt

@@ -38,7 +38,7 @@ Some results
    :maxdepth: 2
    :caption: Butterworth Math Filtering:
 
-   03 - Butterworth filtering without Scipy
+   02 - Butterworth filtering without Scipy
 
 
 

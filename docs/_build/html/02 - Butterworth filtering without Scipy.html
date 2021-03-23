@@ -43,7 +43,8 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Importing Data" href="02%20-%20Butterworth%20Filter.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -104,11 +105,34 @@
 <li class="toctree-l1"><a class="reference internal" href="02%20-%20Butterworth%20Filter.html#Filtering-results">Filtering results</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Butterworth Math Filtering:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html">Read data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#Filtering">Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#Teste-com-classe">Teste com classe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Butterworth%20filtering%20without%20Scipy.html#Teste-com-bokeh">Teste com bokeh</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Mathematical-Requirements">Mathematical Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Array-product">Array product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Fourier-transform-(FT)">Fourier transform (FT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Discrete-time-Fourier-transform-(DTFT)">Discrete-time Fourier transform (DTFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Convolution">Convolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Convolution-theorem">Convolution theorem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="##-Frequency-Domain-Filtering-Fundamentals"># Frequency Domain Filtering Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Expand-lightcurves-borders">Expand lightcurves borders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Avoiding-wraparound-error">Avoiding <em>wraparound</em> error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Centering-the-transform">Centering the transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Fourier-Transform">Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Butterworth-transfer-function">Butterworth transfer function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Creating-a-filter-array">Creating a filter array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Applying-the-filter--&gt;-Array-product">Applying the filter -&gt; Array product</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Inverse-Fourier-Transform">Inverse Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Removing-Zero-Padding">Removing Zero Padding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Cuting-artificial-borders">Cuting artificial borders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Re-multiplying-data-by-(-1)^{i}">Re-multiplying data by <img class="math" src="_images/math/26d725cb4b8e891c612c673327a7c7651789ac42.png" alt="(-1)^{i}"/></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Results">Results</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -449,7 +473,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Reading-the-data">
 <h1>Reading the data<a class="headerlink" href="#Reading-the-data" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -461,7 +485,7 @@ import plotly.graph_objs as go
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -470,7 +494,7 @@ import plotly.graph_objs as go
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -480,8 +504,7 @@ df.head()
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
@@ -537,7 +560,7 @@ df.head()
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -575,53 +598,9 @@ y = df.WHITEFLUX.to_numpy()
 </div></div>
 <div class="section" id="Fourier-transform-(FT)">
 <h2>Fourier transform (FT)<a class="headerlink" href="#Fourier-transform-(FT)" title="Permalink to this headline">¶</a></h2>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\mathscr{F}\{f(t)\} \triangleq \int_{-\infty}^{\infty} f(t)e^{-j2\pi\mu t}dt
-
-</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2)
-entering extended mode
-(math.tex
-LaTeX2e &lt;2020-10-01&gt; patch level 4
-L3 programming layer &lt;2021-02-18&gt; xparse &lt;2020-03-03&gt;
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\size12.clo))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\inputenc.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsmath.sty
-For additional information on amsmath, use the `?' option.
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amstext.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsgen.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsbsy.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsopn.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amscls\amsthm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amssymb.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amsfonts.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/anyfontsize\anyfontsize.sty)
- (D:\02 - Softwares\07 - Compilador Latex\tex/latex/latex-tools\bm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/l3backend\l3backend-dvips.de
-f) (math.aux)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsa.fd)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsb.fd)
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{f(t)\} \triangleq \int _{-...
-l.14 ...^{\infty} f(t)e^{-j2\pi\mu t}dt\end{split}
-                                                  
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{f(t)\} \triangleq \int _{-...
-l.14 ...^{\infty} f(t)e^{-j2\pi\mu t}dt\end{split}
-                                                  
-[1] (math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 672 bytes).
-Transcript written on math.log.
-</p>
-</div>
-</div>
+<div class="math">
+<p><img src="_images/math/c4dbe210b7abbe6f82c394c344ca48394b6ac680.png" alt="\mathcal{F}\{f(t)\} \triangleq \int_{-\infty}^{\infty} f(t)e^{-j2\pi\mu t}dt"/></p>
+</div></div>
 <div class="section" id="Discrete-time-Fourier-transform-(DTFT)">
 <h2>Discrete-time Fourier transform (DTFT)<a class="headerlink" href="#Discrete-time-Fourier-transform-(DTFT)" title="Permalink to this headline">¶</a></h2>
 <div class="math">
@@ -637,99 +616,11 @@ Transcript written on math.log.
 </div><div class="section" id="Convolution-theorem">
 <h3>Convolution theorem<a class="headerlink" href="#Convolution-theorem" title="Permalink to this headline">¶</a></h3>
 <p>Taking the Fourier transform of <img class="math" src="_images/math/bcf3727964fd88abd3949c0cdb891b2bcf16daa0.png" alt="f(t) * g(t)"/>, we have:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\mathscr{F}\{ f(t) * g(t) \} = \int_{-\infty}^{\infty} \Bigg[ \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau \Bigg]e^{-j2\pi\mu t}dt \\
-
-</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2)
-entering extended mode
-(math.tex
-LaTeX2e &lt;2020-10-01&gt; patch level 4
-L3 programming layer &lt;2021-02-18&gt; xparse &lt;2020-03-03&gt;
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\size12.clo))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\inputenc.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsmath.sty
-For additional information on amsmath, use the `?' option.
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amstext.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsgen.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsbsy.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsopn.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amscls\amsthm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amssymb.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amsfonts.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/anyfontsize\anyfontsize.sty)
- (D:\02 - Softwares\07 - Compilador Latex\tex/latex/latex-tools\bm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/l3backend\l3backend-dvips.de
-f) (math.aux)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsa.fd)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsb.fd)
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{ f(t) * g(t) \} = \int _{-...
-l.14 ...\tau \Bigg]e^{-j2\pi\mu t}dt \\\end{split}
-                                                  
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{ f(t) * g(t) \} = \int _{-...
-l.14 ...\tau \Bigg]e^{-j2\pi\mu t}dt \\\end{split}
-                                                  
-[1] (math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 744 bytes).
-Transcript written on math.log.
-</p>
-</div>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\mathscr{F}\{ f(t) * g(t) \} = \int_{-\infty}^{\infty} f(\tau) \Bigg[ \int_{-\infty}^{\infty} g(t - \tau)e^{-j2\pi\mu t}dt \Bigg]d\tau \\
-
-</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2)
-entering extended mode
-(math.tex
-LaTeX2e &lt;2020-10-01&gt; patch level 4
-L3 programming layer &lt;2021-02-18&gt; xparse &lt;2020-03-03&gt;
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\size12.clo))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\inputenc.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsmath.sty
-For additional information on amsmath, use the `?' option.
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amstext.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsgen.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsbsy.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsopn.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amscls\amsthm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amssymb.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amsfonts.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/anyfontsize\anyfontsize.sty)
- (D:\02 - Softwares\07 - Compilador Latex\tex/latex/latex-tools\bm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/l3backend\l3backend-dvips.de
-f) (math.aux)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsa.fd)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsb.fd)
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{ f(t) * g(t) \} = \int _{-...
-l.14 ...^{-j2\pi\mu t}dt \Bigg]d\tau \\\end{split}
-                                                  
-! Undefined control sequence.
-&lt;argument&gt; \split&#64;tag \begin {split}\mathscr 
-                                             {F}\{ f(t) * g(t) \} = \int _{-...
-l.14 ...^{-j2\pi\mu t}dt \Bigg]d\tau \\\end{split}
-                                                  
-[1] (math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 744 bytes).
-Transcript written on math.log.
-</p>
-</div>
 <div class="math">
+<p><img src="_images/math/51de25d4d7c8c154522c051a7cdedf52a9755dbf.png" alt="\mathcal{F}\{ f(t) * g(t) \} = \int_{-\infty}^{\infty} \Bigg[ \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau \Bigg]e^{-j2\pi\mu t}dt \\"/></p>
+</div><div class="math">
+<p><img src="_images/math/f86f3ad8f2ae7ae8245dee6ef892c5eedeb993c8.png" alt="\mathcal{F}\{ f(t) * g(t) \} = \int_{-\infty}^{\infty} f(\tau) \Bigg[ \int_{-\infty}^{\infty} g(t - \tau)e^{-j2\pi\mu t}dt \Bigg]d\tau \\"/></p>
+</div><div class="math">
 <p><img src="_images/math/806a5123bb60f742506fe6de24076312d9f27388.png" alt="... demonstration \\"/></p>
 </div><div class="math">
 <p><img src="_images/math/7c14cadde08c26afd3fa7c09b5e0dc8c9d4a96aa.png" alt="f(t) * g(t) \iff G(\mu)F(\mu) \\"/></p>
@@ -742,90 +633,9 @@ Transcript written on math.log.
 <div class="section" id="Introduction">
 <h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
 <p>Filtering in the frequency domain consists of modifying the Fourier transform of an signal (can be a image, a media file, a light curve…) and then computing the inverse tranform to obtained the processed result. Thus, given a digital signal, <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/>, of size <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>, the basic filtering equation is:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">g(x) = \mathscr{F}^{-1}[H(u)F(u)] \\</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2)
-entering extended mode
-(math.tex
-LaTeX2e &lt;2020-10-01&gt; patch level 4
-L3 programming layer &lt;2021-02-18&gt; xparse &lt;2020-03-03&gt;
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\size12.clo))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\inputenc.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsmath.sty
-For additional information on amsmath, use the `?' option.
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amstext.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsgen.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsbsy.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsopn.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amscls\amsthm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amssymb.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amsfonts.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/anyfontsize\anyfontsize.sty)
- (D:\02 - Softwares\07 - Compilador Latex\tex/latex/latex-tools\bm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/l3backend\l3backend-dvips.de
-f) (math.aux)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsa.fd)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsb.fd)
-! Undefined control sequence.
-&lt;argument&gt; ...t&#64;tag \begin {split}g(x) = \mathscr 
-                                                  {F}^{-1}[H(u)F(u)] \\\end ...
-l.14 ...= \mathscr{F}^{-1}[H(u)F(u)] \\\end{split}
-                                                  
-! Undefined control sequence.
-&lt;argument&gt; ...t&#64;tag \begin {split}g(x) = \mathscr 
-                                                  {F}^{-1}[H(u)F(u)] \\\end ...
-l.14 ...= \mathscr{F}^{-1}[H(u)F(u)] \\\end{split}
-                                                  
-[1] (math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 456 bytes).
-Transcript written on math.log.
-</p>
-</div>
-<p>where <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\mathscr{F}^{-1}</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2)
-entering extended mode
-(math.tex
-LaTeX2e &lt;2020-10-01&gt; patch level 4
-L3 programming layer &lt;2021-02-18&gt; xparse &lt;2020-03-03&gt;
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\size12.clo))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/base\inputenc.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsmath.sty
-For additional information on amsmath, use the `?' option.
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amstext.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsgen.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsbsy.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsmath\amsopn.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amscls\amsthm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amssymb.sty
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\amsfonts.sty))
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/anyfontsize\anyfontsize.sty)
- (D:\02 - Softwares\07 - Compilador Latex\tex/latex/latex-tools\bm.sty)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/l3backend\l3backend-dvips.de
-f) (math.aux)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsa.fd)
-(D:\02 - Softwares\07 - Compilador Latex\tex/latex/amsfonts\umsb.fd)
-! Undefined control sequence.
-&lt;recently read&gt; \mathscr 
-                         
-l.13 \fontsize{12}{14}\selectfont $\mathscr
-                                           {F}^{-1}$
-[1] (math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 332 bytes).
-Transcript written on math.log.
-</p>
-</div>
- is the Inverse discrete Fourier transform, <img class="math" src="_images/math/8099caf8d776fe64c3a4a905bff000d8ab13e1a3.png" alt="F(u)"/> is the Fourier transform of the given function <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> (input), <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/> is the <em>filter transfer function</em>, and <img class="math" src="_images/math/91451bcd556b3fb4efe455c92153f24ed21af9b5.png" alt="g(x)"/> is the filtered signal (output). Both <img class="math" src="_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>, <img class="math" src="_images/math/cb5de54f699cf4b3c7c1a3e87313d11d536c0d88.png" alt="H"/> and <img class="math" src="_images/math/89878909dbb648acdc4a44ded1bd982d7bddef5d.png" alt="G"/> are arrays of size <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>, the same as the input signal. The product <img class="math" src="_images/math/1a80ab954839c0d2dea60c59de880cb965b12869.png" alt="H(u)F(u)"/> is formed using array multiplication; that is, <img class="math" src="_images/math/05d743635d16d89c60c328457459dca06b548f78.png" alt="G(i, k)=H(i, k)F(i, k)"/>.</p>
+<div class="math">
+<p><img src="_images/math/2e2aff7d49c74481ed7122d2a3ecc60e95aabacd.png" alt="g(x) = \mathcal{F}^{-1}[H(u)F(u)] \\"/></p>
+</div><p>where <img class="math" src="_images/math/5ff95e24b5c398a78a98d72248b9ebe6a7c25cb8.png" alt="\mathcal{F}^{-1}"/> is the Inverse discrete Fourier transform, <img class="math" src="_images/math/8099caf8d776fe64c3a4a905bff000d8ab13e1a3.png" alt="F(u)"/> is the Fourier transform of the given function <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> (input), <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/> is the <em>filter transfer function</em>, and <img class="math" src="_images/math/91451bcd556b3fb4efe455c92153f24ed21af9b5.png" alt="g(x)"/> is the filtered signal (output). Both <img class="math" src="_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>, <img class="math" src="_images/math/cb5de54f699cf4b3c7c1a3e87313d11d536c0d88.png" alt="H"/> and <img class="math" src="_images/math/89878909dbb648acdc4a44ded1bd982d7bddef5d.png" alt="G"/> are arrays of size <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>, the same as the input signal. The product <img class="math" src="_images/math/1a80ab954839c0d2dea60c59de880cb965b12869.png" alt="H(u)F(u)"/> is formed using array multiplication; that is, <img class="math" src="_images/math/05d743635d16d89c60c328457459dca06b548f78.png" alt="G(i, k)=H(i, k)F(i, k)"/>.</p>
 </div>
 <div class="section" id="Expand-lightcurves-borders">
 <h2>Expand lightcurves borders<a class="headerlink" href="#Expand-lightcurves-borders" title="Permalink to this headline">¶</a></h2>
@@ -839,7 +649,7 @@ Transcript written on math.log.
 <p><img class="math" src="_images/math/fd92145aa6be8d08bc173f75e325a745f2e554b1.png" alt="m = 0, \pm1, \pm2, \pm3, ...\pm M_{h}"/>, with $M_h <span class="math">\triangleq `(M-1)/2 $ for :math:`M</span> odd, and <img class="math" src="_images/math/33f922951f1324c30f8435340894ad08022550ce.png" alt="M/2-1"/> for <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/> even.</p>
 <p>Padding remove the implicit periodicity of the funcion that can appeared on the filtered data. In other terms, the padding prevents the convolution of two functions from generating unexpected (periodic) results.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -856,7 +666,7 @@ Transcript written on math.log.
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -867,7 +677,7 @@ param = 70
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -890,7 +700,7 @@ The difference is: 140
 <div class="section" id="Avoiding-wraparound-error">
 <h2>Avoiding <em>wraparound</em> error<a class="headerlink" href="#Avoiding-wraparound-error" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -900,7 +710,7 @@ The difference is: 140
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -924,7 +734,7 @@ The difference is: 24092
 <h2>Centering the transform<a class="headerlink" href="#Centering-the-transform" title="Permalink to this headline">¶</a></h2>
 <p>Specification of <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/> is simplified considerably by using functions that are symmetric about their center, which requires that <img class="math" src="_images/math/8099caf8d776fe64c3a4a905bff000d8ab13e1a3.png" alt="F(u)"/> be centered also. This is accomplished by multipying the input signal, <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/>, by <img class="math" src="_images/math/9ec9d8503ebeca93f76392ff08cd9cddb66fc223.png" alt="(-1)^{x}"/>, where <img class="math" src="_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/> is the array index, prior to computing its Fourier transform.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -940,7 +750,7 @@ The difference is: 24092
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -955,7 +765,7 @@ The difference is: 24092
 <p><img src="_images/math/19c28443c37c844c459b4a4277e4f8114b946572.png" alt="\mathcal{F}\{f(\xi)\} = \hat{f}(\xi) \triangleq \int_{-\infty}^{\infty} f(\xi)\space e^{-j2\pi\mu \xi}d\xi \\"/></p>
 </div><p>where <img class="math" src="_images/math/4b0fcdf5bbee5b94367e76452870b31d7c74f348.png" alt="\xi"/> is any real number,</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -967,7 +777,7 @@ The difference is: 24092
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -976,7 +786,7 @@ The difference is: 24092
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -985,8 +795,7 @@ The difference is: 24092
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1007,7 +816,7 @@ array([-16673.57200001+8.36371328e-09j,  47796.28989974+1.23804272e+04j,
 </div>
 <p>ordem = 3 e 4 podem alterar o resultado, deve ser menor (talvez)</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1017,7 +826,7 @@ order = 2
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1027,8 +836,7 @@ n_time
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1036,7 +844,7 @@ n_time
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1046,7 +854,7 @@ xc = n_time
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1056,8 +864,7 @@ len(filter)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1067,7 +874,7 @@ len(filter)
 <div class="section" id="Creating-a-filter-array">
 <h3>Creating a filter array<a class="headerlink" href="#Creating-a-filter-array" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1077,7 +884,7 @@ len(filter)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1086,8 +893,7 @@ len(filter)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1118,7 +924,7 @@ array([0.00159771, 0.00159798, 0.00159824, ..., 0.        , 0.        ,
   a_{11}b_{11} &amp; a_{12}b_{12} \\ a_{21}b_{21} &amp; a_{22}b_{22}
 \end{bmatrix}"/></p>
 </div><div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1128,8 +934,7 @@ y_butter
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1146,7 +951,7 @@ array([-26.63954048+1.33627922e-11j,  76.377367  +1.97836366e+01j,
 <p><img src="_images/math/abb2cc4844e663d068d25bd78c951b3c27f2aa84.png" alt="f(x) = \int_{-\infty}^{\infty}\mathcal{F}(\xi)\space e^{j2\pi x\xi} d\xi \\"/></p>
 </div><p>where <img class="math" src="_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/> is any real number,</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1158,7 +963,7 @@ array([-26.63954048+1.33627922e-11j,  76.377367  +1.97836366e+01j,
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1168,8 +973,7 @@ y_ifft
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1181,7 +985,7 @@ array([ 46106.38618151, -60407.84594294,  70102.40591138, ...,
 <div class="section" id="Removing-Zero-Padding">
 <h2>Removing Zero Padding<a class="headerlink" href="#Removing-Zero-Padding" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1200,7 +1004,7 @@ The before length was: 48184 , and now we have: 24092
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1209,8 +1013,7 @@ The before length was: 48184 , and now we have: 24092
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1222,7 +1025,7 @@ array([ 46106.38618151, -60407.84594294,  70102.40591138, ...,
 <div class="section" id="Cuting-artificial-borders">
 <h2>Cuting artificial borders<a class="headerlink" href="#Cuting-artificial-borders" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1231,7 +1034,7 @@ array([ 46106.38618151, -60407.84594294,  70102.40591138, ...,
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1243,8 +1046,7 @@ y3
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1256,7 +1058,7 @@ array([ 75576.34518548, -75593.06708911,  75615.50871701, ...,
 <div class="section" id="Re-multiplying-data-by-(-1)^{i}">
 <h2>Re-multiplying data by <img class="math" src="_images/math/26d725cb4b8e891c612c673327a7c7651789ac42.png" alt="(-1)^{i}"/><a class="headerlink" href="#Re-multiplying-data-by-(-1)^{i}" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1266,8 +1068,7 @@ y_filtered
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1279,7 +1080,7 @@ array([75576.34518548, 75593.06708911, 75615.50871701, ...,
 <div class="section" id="Results">
 <h2>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1317,6 +1118,9 @@ Output hidden; open in https://colab.research.google.com to view.
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="02%20-%20Butterworth%20Filter.html" class="btn btn-neutral float-left" title="Importing Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
