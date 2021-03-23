@@ -454,7 +454,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Importing-Data">
 <h1>Importing Data<a class="headerlink" href="#Importing-Data" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -468,7 +468,7 @@ from scipy.interpolate import interp1d
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -477,7 +477,7 @@ from scipy.interpolate import interp1d
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -487,8 +487,7 @@ df.head()
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
@@ -544,7 +543,7 @@ df.head()
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -556,7 +555,7 @@ y = df.WHITEFLUX.to_numpy()
 <div class="section" id="Before-results">
 <h2>Before results<a class="headerlink" href="#Before-results" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -634,7 +633,7 @@ if (outputEl) {{
 <p>Intend to avoid this unexpected values, we add some points on the begining and at the end of the array, so the distorcion will occur on this artificial borders that we create. Then, we just have to cut them off to return to the original array.</p>
 <p>In order to not modify the array too much, the function <em>artificial_borders</em> will add 15 points on the begining that have the same value as the first element, y[0] and, just like at the begining, at the end, we will add 15 points that have the same value as the lastest element, y[-1].</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -651,7 +650,7 @@ if (outputEl) {{
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -661,8 +660,8 @@ param = 70
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-none notranslate"><div class="highlight"><pre>
@@ -672,29 +671,6 @@ y_artifical_borders = artifical_borders(y, param)
 print(&quot;The original length was:&quot;, len(x), &quot;, and now we have:&quot;, len(x_artifical_borders), &quot;\nThe difference is:&quot;, (len(x_artifical_borders) - len(x) ))
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-19-8f95de770dcb&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>x_artifical_borders <span class="ansi-blue-fg">=</span> artifical_borders<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">,</span> param<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> y_artifical_borders <span class="ansi-blue-fg">=</span> artifical_borders<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">,</span> param<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;The original length was:&#34;</span><span class="ansi-blue-fg">,</span> len<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;, and now we have:&#34;</span><span class="ansi-blue-fg">,</span> len<span class="ansi-blue-fg">(</span>x_artifical_borders<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;\nThe difference is:&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>len<span class="ansi-blue-fg">(</span>x_artifical_borders<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-</span> len<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-17-d3cd273e256e&gt;</span> in <span class="ansi-cyan-fg">artifical_borders</span><span class="ansi-blue-fg">(array, num)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   i <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">0</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>   <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> range<span class="ansi-blue-fg">(</span>num<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">     </span>aux_pre<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> array<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      7</span>     aux_pos<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> array<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span>
-
-<span class="ansi-red-fg">ValueError</span>: could not convert string to float: &#39;2008-11-17 07:11:31.870142&#39;
-</pre></div></div>
 </div>
 <p>One good practice before filtering data with Butterworth is to apply a procedure called Zero Padding. It consists of extending a signal with zeros, that is, it return a lenght <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> signal to a lenght <img class="math" src="_images/math/4e9f16fb98ecb2474673958cbeec6d710560a3a8.png" alt="M &gt; N"/> signal, but <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> can not be divisible by <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>.</p>
 <p>Zero Padding, <img class="math" src="_images/math/e888aa49a4e3bbbd22454da85399e23a045f3357.png" alt="f_{zp}"/>, has the following definition:</p>
