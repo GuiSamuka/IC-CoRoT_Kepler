@@ -10,8 +10,8 @@ Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler s
 This work
 ---------------------
 
-Introduction to CoRoT
----------------------
+Introduction to CoRoT and Kepler
+----------------------------------
 
 Problem proposed
 ----------------
