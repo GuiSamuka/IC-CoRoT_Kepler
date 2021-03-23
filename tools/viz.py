@@ -1,14 +1,21 @@
 import plotly.graph_objs as go
 
-def view_lightcurve(x, y, name='title'):
-    fig = go.Figure()
+def view_lightcurve(
+  x_data=None, 
+  y_data=None,
+  title='Title example',
+  x_axis='x axis',
+  y_axis='y axis',
+  label='label'):
 
-    fig.add_trace(go.Scatter(x=x, y=y,
-                            mode='lines',
-                            name=name))
 
-    fig.update_layout(title='Lightcurve',
-                    xaxis_title='Date',
-                    yaxis_title='Whiteflux')
+  fig = go.Figure()
 
-    fig.show()
+  fig.update_layout(title=title,
+                    xaxis_title=x_axis,
+                    yaxis_title=y_axis)
+
+  fig.add_trace(go.Scatter(x=x_data, y=y_data,
+                           mode='lines',
+                           name=label))
+  fig.show()
