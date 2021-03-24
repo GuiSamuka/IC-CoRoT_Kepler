@@ -1,7 +1,6 @@
 # My files
 .gitattributes
-02 - Butterworth Filter.ipynb
-02 - Butterworth filtering without Scipy
+Tests/
 #
 #
 # Default folders
