@@ -32,14 +32,7 @@ Some results
    :maxdepth: 2
    :caption: Butterworth Filter:
 
-   02 - Butterworth Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Butterworth Math Filtering:
-
-   02 - Butterworth filtering without Scipy
-
+   02 - Butterworth filtering_NEW
 
 
 Indices and tables
