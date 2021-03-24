@@ -1,6 +1,6 @@
 # My files
 .gitattributes
-Tests/
+tests/
 #
 #
 # Default folders
