@@ -3,7 +3,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=vscode,jupyternotebooks,python
 
 ### My files
-.gitattributes
 tests/
 
 ### JupyterNotebooks ###
