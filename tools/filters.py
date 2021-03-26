@@ -1,16 +1,7 @@
 import numpy as np
-from os import system
-system("cls")
-
 class FrequencyDomainFiltering(object):
   def __init__(self):
     pass
-
-  def get_algorithm(self):
-    return self._algorithm
-
-  def set_algorithm(self, x):
-    self._algorithm = x
 
   def expand_borders(self, array, numExpansion):
     i = 0
@@ -37,9 +28,23 @@ class FrequencyDomainFiltering(object):
   def fourier_transform(self, array):
     self.fft = np.fft.fft(array)
 
-  def filter_technique(self, array, algorithm):
+  def filter_technique(self, array, original_array, algorithm, cutoff_freq, order):
     if algorithm.upper() == 'BUTTERWORTH':
       print("Butterworth filtering")
+      # Extracting information of the signal
+      n_time = len(original_array)
+      D0 = cutoff_freq*n_time
+      xc = n_time
+
+      # Creating the filter array
+      len_filter = len(array)
+      filter = np.zeros(len_filter)
+
+      for i in range(len_filter):
+        filter[i] = 1.0 / (1.0+(abs(i-(xc-1.0))/D0)**(2.0*order))
+
+      self.butter = filter * array
+
 
   def inverse_fourier_transform(self, array):
     self.ifft = np.real(np.fft.ifft(array))
@@ -50,25 +55,29 @@ class FrequencyDomainFiltering(object):
   def remove_expanded_borders(self, array, numExpansion):
     aux = np.delete(array, np.s_[:numExpansion])
     self.no_expanded = np.delete(aux, np.s_[-numExpansion:])
-    self.filtered = self.no_expanded
-
    
-    
-
-  def filter(self, array, filter, numExpansion):
+  def filter(self, array, filter, numExpansion, cutoff_freq, order):
     self.expand_borders(array, numExpansion)
     self.padding(self.array_expanded)
     self.fourier_transform(self.padded)
 
-    self.filter_technique(self.fft, filter)
+    self.filter_technique(self.fft, array, filter, cutoff_freq, order)
 
     self.inverse_fourier_transform(self.fft)
     self.no_padding(self.ifft)
     self.remove_expanded_borders(self.no_padded, numExpansion)
 
-  
 
-y = [1, 2, 3, 4]
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from os import system
+system("cls")
+
+dataset = pd.read_csv('tools\EN2_STAR_CHR_0101086161_20070516T060226_20071005T074409.csv')
+y = dataset.WHITEFLUX.to_numpy()
+x = dataset.DATE.to_numpy()
+
 filter = FrequencyDomainFiltering()
-filter.filter(y, 'butterworth', 3)
-print(filter)
+filtered = filter.filter(y, 'butterworth', 70, 0.2, 2)
+print(filtered)
