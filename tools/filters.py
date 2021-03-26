@@ -70,26 +70,24 @@ class FrequencyDomainFiltering(object):
     self.multiplying_by_minus_one_to_index(self.no_expanded)
 
   
-  @property
+  @property #TODO Create getter for all attributes
   def filtered(self):
     return self.multiplied
      
 
 
-import pandas as pd
-import matplotlib.pyplot as plt
-from os import system
-system("cls")
+#import pandas as pd
+#from os import system
+#system("cls")
 
-dataset = pd.read_csv('tools\EN2_STAR_CHR_0101086161_20070516T060226_20071005T074409.csv')
-y = dataset.WHITEFLUX.to_numpy()
-x = dataset.DATE.to_numpy()
+#dataset = pd.read_csv('tools\sample_light_curve.csv')
+#y = dataset.WHITEFLUX.to_numpy()
+#x = dataset.DATE.to_numpy()
 
-filter = FrequencyDomainFiltering()
+#filter = FrequencyDomainFiltering()
 #filter.filter(y, 'butterworth', 70, 0.2, 2)
-filter.filter(array=y, filter='butterworth', numExpansion=70, cutoff_freq=0.2, order=2)
-filtered = filter.filtered
+#filter.filter(array=y, filter='butterworth', numExpansion=70, cutoff_freq=0.2, order=2)
+#filtered = filter.filtered
 
-print(filter)
-plt.plot(x, filtered)
-plt.show()
+#print(filter)
+
