@@ -45,7 +45,6 @@ class FrequencyDomainFiltering(object):
 
       self.butter = filter * array
 
-
   def inverse_fourier_transform(self, array):
     self.ifft = np.real(np.fft.ifft(array))
 
@@ -55,18 +54,26 @@ class FrequencyDomainFiltering(object):
   def remove_expanded_borders(self, array, numExpansion):
     aux = np.delete(array, np.s_[:numExpansion])
     self.no_expanded = np.delete(aux, np.s_[-numExpansion:])
-   
+    
+
   def filter(self, array, filter, numExpansion, cutoff_freq, order):
     self.expand_borders(array, numExpansion)
     self.padding(self.array_expanded)
-    self.fourier_transform(self.padded)
+    self.multiplying_by_minus_one_to_index(self.padded)
+    self.fourier_transform(self.multiplied)
 
     self.filter_technique(self.fft, array, filter, cutoff_freq, order)
 
-    self.inverse_fourier_transform(self.fft)
+    self.inverse_fourier_transform(self.butter)
     self.no_padding(self.ifft)
     self.remove_expanded_borders(self.no_padded, numExpansion)
+    self.multiplying_by_minus_one_to_index(self.no_expanded)
 
+  
+  @property
+  def filtered(self):
+    return self.multiplied
+     
 
 
 import pandas as pd
@@ -79,5 +86,10 @@ y = dataset.WHITEFLUX.to_numpy()
 x = dataset.DATE.to_numpy()
 
 filter = FrequencyDomainFiltering()
-filtered = filter.filter(y, 'butterworth', 70, 0.2, 2)
-print(filtered)
+#filter.filter(y, 'butterworth', 70, 0.2, 2)
+filter.filter(array=y, filter='butterworth', numExpansion=70, cutoff_freq=0.2, order=2)
+filtered = filter.filtered
+
+print(filter)
+plt.plot(x, filtered)
+plt.show()
