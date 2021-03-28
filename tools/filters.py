@@ -28,22 +28,22 @@ class FrequencyDomainFiltering(object):
   def fourier_transform(self, array):
     self.fft = np.fft.fft(array)
 
-  def filter_technique(self, array, original_array, algorithm, cutoff_freq, order):
+  def filter_technique(self, array, fourier_transform, algorithm, cutoff_freq, order):
     if algorithm.upper() == 'BUTTERWORTH':
       print("Butterworth filtering")
       # Extracting information of the signal
-      n_time = len(original_array)
-      D0 = cutoff_freq*n_time
+      n_time = len(array)
+      D0 = cutoff_freq * n_time
       xc = n_time
 
       # Creating the filter array
-      len_filter = len(array)
+      len_filter = len(fourier_transform)
       filter = np.zeros(len_filter)
 
       for i in range(len_filter):
         filter[i] = 1.0 / (1.0+(abs(i-(xc-1.0))/D0)**(2.0*order))
 
-      self.butter = filter * array
+      self.butter = filter * fourier_transform
 
   def inverse_fourier_transform(self, array):
     self.ifft = np.real(np.fft.ifft(array))
@@ -62,7 +62,8 @@ class FrequencyDomainFiltering(object):
     self.multiplying_by_minus_one_to_index(self.padded)
     self.fourier_transform(self.multiplied)
 
-    self.filter_technique(self.fft, array, filter, cutoff_freq, order)
+    #def filter_technique(self, array, fourier_transform, algorithm, cutoff_freq, order):
+    self.filter_technique(array, self.fft, filter, cutoff_freq, order)
 
     self.inverse_fourier_transform(self.butter)
     self.no_padding(self.ifft)
