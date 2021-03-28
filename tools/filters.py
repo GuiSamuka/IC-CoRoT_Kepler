@@ -28,7 +28,7 @@ class FrequencyDomainFiltering(object):
   def fourier_transform(self, array):
     self.fft = np.fft.fft(array)
 
-  def filter_technique(self, array, fourier_transform, algorithm, cutoff_freq, order):
+  def filter_array(self, array, fourier_transform, algorithm, cutoff_freq, order):
     if algorithm.upper() == 'BUTTERWORTH':
       print("Butterworth filtering")
       # Extracting information of the signal
@@ -43,7 +43,12 @@ class FrequencyDomainFiltering(object):
       for i in range(len_filter):
         filter[i] = 1.0 / (1.0+(abs(i-(xc-1.0))/D0)**(2.0*order))
 
-      self.butter = filter * fourier_transform
+      # self.butter = filter * fourier_transform
+      self.filter_array = filter
+
+  def apply_filter(self, array_filter, fourier_transform):
+    self.applied_filter = array_filter * fourier_transform
+
 
   def inverse_fourier_transform(self, array):
     self.ifft = np.real(np.fft.ifft(array))
@@ -63,9 +68,12 @@ class FrequencyDomainFiltering(object):
     self.fourier_transform(self.multiplied)
 
     #def filter_technique(self, array, fourier_transform, algorithm, cutoff_freq, order):
-    self.filter_technique(array, self.fft, filter, cutoff_freq, order)
+    self.filter_array(array, self.fft, filter, cutoff_freq, order)
 
-    self.inverse_fourier_transform(self.butter)
+    #def apply_filter(self, array_filter, fourier_transform):
+    self.apply_filter(self.filter_array, self.fft)
+
+    self.inverse_fourier_transform(self.applied_filter)
     self.no_padding(self.ifft)
     self.remove_expanded_borders(self.no_padded, numExpansion)
     self.multiplying_by_minus_one_to_index(self.no_expanded)
@@ -74,21 +82,8 @@ class FrequencyDomainFiltering(object):
   @property #TODO Create getter for all attributes
   def filtered(self):
     return self.multiplied
-     
 
-
-#import pandas as pd
-#from os import system
-#system("cls")
-
-#dataset = pd.read_csv('tools\sample_light_curve.csv')
-#y = dataset.WHITEFLUX.to_numpy()
-#x = dataset.DATE.to_numpy()
-
-#filter = FrequencyDomainFiltering()
-#filter.filter(y, 'butterworth', 70, 0.2, 2)
-#filter.filter(array=y, filter='butterworth', numExpansion=70, cutoff_freq=0.2, order=2)
-#filtered = filter.filtered
-
-#print(filter)
+  @property
+  def filter_response(self):
+    return self.filter_array
 
