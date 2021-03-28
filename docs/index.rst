@@ -32,7 +32,7 @@ Some results
    :maxdepth: 2
    :caption: Butterworth Filter:
 
-   02 - Butterworth filtering_NEW
+   02 - Butterworth filtering
 
 
 Indices and tables
