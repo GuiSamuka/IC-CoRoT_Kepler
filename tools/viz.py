@@ -1,5 +1,4 @@
 import plotly.graph_objs as go
-
 def view_lightcurve(
   x_data=None, 
   y_data=None,
@@ -7,13 +6,10 @@ def view_lightcurve(
   x_axis='Date',
   y_axis='Whiteflux',
   label='label'):
-
   fig = go.Figure()
-
   fig.update_layout(title=title,
                     xaxis_title=x_axis,
                     yaxis_title=y_axis)
-
   fig.add_trace(go.Scatter(x=x_data, y=y_data,
                            mode='lines',
                            name=label))
@@ -28,17 +24,13 @@ def view_filter_results(
   x_axis='Date',
   y_axis='Whiteflux'
   ):
-
   fig = go.Figure()
-
   fig.update_layout(title=title,
                     xaxis_title=x_axis,
                     yaxis_title=y_axis)
-
   fig.add_trace(go.Scatter(x=x_original, y=y_original,
                           mode='lines',
                           name='Original Light Curve'))
-
   fig.add_trace(go.Scatter(x=x_filtered, y=y_filtered,
                           mode='lines',
                           name='Light Curve Filtered'))
