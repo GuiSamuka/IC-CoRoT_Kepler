@@ -35,3 +35,5 @@ def view_filter_results(
                           mode='lines',
                           name='Light Curve Filtered'))
   fig.show()
+
+# def view_fourier()  #TODO
