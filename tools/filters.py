@@ -15,14 +15,17 @@ class FrequencyDomainFiltering(object):
     
   def padding(self, array):
     self.padded = np.append(array, np.zeros(len(array)))
+
   def multiplying_by_minus_one_to_index(self, array):
     i = 0
     aux = np.ones(len(array))
     for i in range(len(array)):
       aux[i] = array[i] * ((-1)**i)
     self.multiplied = aux
+
   def fourier_transform(self, array):
     self.fft = np.fft.fft(array)
+    
   def filter_array(self, array, fourier_transform, algorithm, cutoff_freq, order):
     if algorithm.upper() == 'BUTTERWORTH':
       print("Butterworth filtering")
