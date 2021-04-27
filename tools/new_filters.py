@@ -18,7 +18,6 @@ class FrequencyDomainFiltering:
     def __init__(self) -> None:
         pass
 
-
     def expand_borders(self, array, numExpansion):
         """
             This method ...
@@ -33,13 +32,11 @@ class FrequencyDomainFiltering:
 
         self.array_expanded = np.concatenate((aux_pre, array, aux_pos)).ravel()
 
-
     def padding(self, array):
         """
             This method ...
         """
         self.padded = np.append(array, np.zeros(len(array)))
-
 
     def multiplying_by_minus_one_to_index(self, array):
         """
@@ -53,13 +50,11 @@ class FrequencyDomainFiltering:
 
         self.multiplied = multiplied
 
-
     def fourier_transform(self, array):
         """
             This method ...
         """
         self.fft = np.fft.fft(array)
-
 
     def filter_array(self, array, fourier_transform, algorithm, cutoff_freq, order):
         """
@@ -124,13 +119,11 @@ class FrequencyDomainFiltering:
             print("Ideal filtering")
             sys.exit()
 
-
     def apply_filter(self, array_filter, fourier_transform):
         """
             This method ...
         """
         self.applied_filter = array_filter * fourier_transform
-
 
     def inverse_fourier_transform(self, array):
         """
@@ -138,14 +131,12 @@ class FrequencyDomainFiltering:
         """
         self.ifft = np.real(np.fft.ifft(array))
 
-
     def remove_padding(self, array):
         """
             This method ...
         """
         self.no_padded = array[:int(len(array)/2)]
     
-
     def remove_expanded_borders(self, array, numExpansion):
         """
             This method ...
@@ -154,7 +145,6 @@ class FrequencyDomainFiltering:
 
         self.no_expanded = np.delete(aux, np.s_[-numExpansion:])
 
-    
     def filter(self, array, filter, numExpansion, cutoff_freq, order):
         """
             This method ...
@@ -171,7 +161,6 @@ class FrequencyDomainFiltering:
         self.multiplying_by_minus_one_to_index(self.no_expanded)
         self.result = self.multiplied
     
-
     # Getters
     @property
     def getFiltered(self):
@@ -189,6 +178,7 @@ class FrequencyDomainFiltering:
     def getInverseFourier(self):
         return self.ifft
 
+
 class NonLinearFilter:
     """
         This object ...
@@ -200,3 +190,4 @@ class NonLinearFilter:
 
     def MedianFilter(self):
         pass
+    
