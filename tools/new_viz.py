@@ -1,6 +1,13 @@
+"""
+
+    This module ...
+
+"""
+
+# Imports
 from bokeh.plotting import figure, output_file, show
-from bokeh.models import MultiLine, Plot
 import pandas as pd
+
 
 def view_lightcurve(
   x_data=None, 
@@ -40,8 +47,19 @@ def view_filter_results(
 
   output_file('line.html')
 
-  pass
+  p = figure(x_axis_type="datetime", 
+            title=title,
+            plot_width=1200, plot_height=600)
 
+  p.xaxis[0].axis_label = x_axis
+  p.yaxis[0].axis_label = y_axis
+
+  xs = [x_original, x_filtered]
+  ys = [y_original, y_filtered]
+
+  p.multi_line(xs, ys, color=["blue", "red"], line_width=2)
+  
+  show(p)
    
 
 
