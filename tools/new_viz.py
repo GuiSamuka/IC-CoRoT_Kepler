@@ -6,8 +6,10 @@
 
 # Imports
 from bokeh.plotting import figure, output_file, show
+from bokeh.io import output_notebook
 import pandas as pd
 
+#output_notebook()
 
 def view_lightcurve(
   x_data=None, 
@@ -23,7 +25,7 @@ def view_lightcurve(
 
   p = figure(x_axis_type="datetime", 
             title=title,
-            plot_width=1200, plot_height=600)
+            plot_width=650, plot_height=400)
 
   p.xaxis[0].axis_label = x_axis
   p.yaxis[0].axis_label = y_axis
@@ -49,7 +51,7 @@ def view_filter_results(
 
   p = figure(x_axis_type="datetime", 
             title=title,
-            plot_width=1200, plot_height=600)
+            plot_width=650, plot_height=400)
 
   p.xaxis[0].axis_label = x_axis
   p.yaxis[0].axis_label = y_axis

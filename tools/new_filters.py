@@ -61,7 +61,7 @@ class FrequencyDomainFiltering:
             This method ...
         """
         if algorithm.upper() == 'BUTTERWORTH':
-            print("Butterworth filtering")
+            #print("Butterworth filtering")
 
             # Extracting features from signal
             n_time = len(array)
@@ -80,7 +80,7 @@ class FrequencyDomainFiltering:
        
 
         if algorithm.upper() == 'BESSEL':
-            print("Bessel filtering")
+            #print("Bessel filtering")
             sys.exit()
 
 
@@ -90,7 +90,7 @@ class FrequencyDomainFiltering:
             que é a frequência de corte da filtragem (que basicamente 
             dá a largura do filtro)
             """
-            print("Gaussian filtering")
+            #print("Gaussian filtering")
             order = None
             # Extracting features from signal
             n_time = len(array)
@@ -101,7 +101,7 @@ class FrequencyDomainFiltering:
             len_filter = len(fourier_transform)
             filter = np.zeros(len_filter)
             i=0
-
+        
             for i in range(len_filter):
                 filter[i] = exp( (-(i-(xc-1.0))**2)/(2*((cutoff_freq * n_time)**2)) )
 
@@ -145,7 +145,7 @@ class FrequencyDomainFiltering:
 
         self.no_expanded = np.delete(aux, np.s_[-numExpansion:])
 
-    def filter(self, array, filter, numExpansion, cutoff_freq, order):
+    def filter(self, array, filter_technique , numExpansion, cutoff_freq, order):
         """
             This method ...
         """
@@ -153,7 +153,7 @@ class FrequencyDomainFiltering:
         self.padding(self.array_expanded)
         self.multiplying_by_minus_one_to_index(self.padded)
         self.fourier_transform(self.multiplied)
-        self.filter_array(array, self.fft, filter, cutoff_freq, order)
+        self.filter_array(array, self.fft, filter_technique , cutoff_freq, order)
         self.apply_filter(self.array_filter, self.fft)
         self.inverse_fourier_transform(self.applied_filter)
         self.remove_padding(self.ifft)
