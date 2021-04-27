@@ -58,8 +58,9 @@ def view_filter_results(
   ys = [y_original, y_filtered]
 
   p.multi_line(xs, ys, color=["blue", "red"], line_width=2)
-  
+
   show(p)
    
-
+def line_plot():
+  pass
 
