@@ -30,9 +30,16 @@ Some results
 
 .. toctree::
    :maxdepth: 2
+   :caption: Filter:
+
+   02 - Filters
+
+.. toctree::
+   :maxdepth: 2
    :caption: Butterworth Filter:
 
-   02 - Butterworth filtering
+   04 - Butterworth Lowpass Filter
+
 
 
 Indices and tables
