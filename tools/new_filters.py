@@ -145,7 +145,7 @@ class FrequencyDomainFiltering:
 
         self.no_expanded = np.delete(aux, np.s_[-numExpansion:])
 
-    def filter(self, array, filter_technique , numExpansion, cutoff_freq, order):
+    def filter(self, array, filter_technique, numExpansion, cutoff_freq, order):
         """
             This method ...
         """
@@ -153,7 +153,7 @@ class FrequencyDomainFiltering:
         self.padding(self.array_expanded)
         self.multiplying_by_minus_one_to_index(self.padded)
         self.fourier_transform(self.multiplied)
-        self.filter_array(array, self.fft, filter_technique , cutoff_freq, order)
+        self.filter_array(array, self.fft, filter_technique, cutoff_freq, order)
         self.apply_filter(self.array_filter, self.fft)
         self.inverse_fourier_transform(self.applied_filter)
         self.remove_padding(self.ifft)

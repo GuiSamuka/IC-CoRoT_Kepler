@@ -9,7 +9,7 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.io import output_notebook
 import pandas as pd
 
-#output_notebook()
+output_notebook()
 
 def view_lightcurve(
   x_data=None, 
@@ -21,7 +21,7 @@ def view_lightcurve(
   
   x_data = pd.to_datetime(x_data)
 
-  output_file('line.html')
+  #output_file('line.html')
 
   p = figure(x_axis_type="datetime", 
             title=title,
@@ -47,7 +47,7 @@ def view_filter_results(
   x_original = pd.to_datetime(x_original)
   x_filtered = pd.to_datetime(x_filtered)
 
-  output_file('line.html')
+  #output_file('line.html')
 
   p = figure(x_axis_type="datetime", 
             title=title,
