@@ -24,22 +24,27 @@ Some results
 
 .. toctree::
    :maxdepth: 2
-   :caption: Manipulating fits files:
+   :caption: Manipulating fits files
 
    01 - Manipulating fits files
 
 .. toctree::
    :maxdepth: 2
-   :caption: Filter:
+   :caption: Filter
 
    02 - Filters
 
 .. toctree::
    :maxdepth: 2
-   :caption: Butterworth Filter:
+   :caption: Butterworth Filter
 
    04 - Butterworth Lowpass Filter
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Gaussian Filter
+
+   05 - Gaussian Lowpass Filter
 
 
 Indices and tables
