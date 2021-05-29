@@ -36,6 +36,12 @@ Some results
 
 .. toctree::
    :maxdepth: 2
+   :caption: Ideal Lowpass Filter
+
+   03 - Ideal Lowpass Filter
+
+.. toctree::
+   :maxdepth: 2
    :caption: Butterworth Filter
 
    04 - Butterworth Lowpass Filter
@@ -45,6 +51,12 @@ Some results
    :caption: Gaussian Filter
 
    05 - Gaussian Lowpass Filter
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Bessel Filter
+
+   06 - Bessel Lowpass Filter
 
 
 Indices and tables
