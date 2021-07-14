@@ -6,10 +6,14 @@
 
 # Imports
 import numpy as np
+from numpy import savetxt
 from math import exp
 import sys
 from math import factorial
 from control import *
+import time
+import os
+import pandas as pd
 
 class FrequencyDomainFiltering:
     """
@@ -209,20 +213,40 @@ class FrequencyDomainFiltering:
     
     # Getters
     @property
-    def getFiltered(self):
-        return self.result
-    
-    @property
-    def getFourier(self):
-        return self.fft
+    def getExpandedBorders(self):
+      return self.array_expanded
 
     @property
+    def getZeroPadded(self):
+      return self.padded
+
+    @property
+    def getFourier(self):
+      return self.fft
+    
+    @property
+    def getFiltered(self):
+      return self.result
+    
+    @property
     def getFilterArray(self):
-        return self.array_filter
+      return self.array_filter
+
+    @property
+    def getFilterApplied(self):
+      return self.applied_filter
 
     @property
     def getInverseFourier(self):
-        return self.ifft
+      return self.ifft
+
+    @property
+    def getNoPadded(self):
+      return self.no_padded
+
+    @property 
+    def getNoExpanded(self):
+      return self.no_expanded
 
 
 class NonLinearFilter:
@@ -237,3 +261,26 @@ class NonLinearFilter:
     def MedianFilter(self):
         pass
     
+def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
+    print(f"Saving filtered data for {filter_technique}, order = {order} and cutoff frequency = {cutoff_freq}")
+    
+    # Path to raw csv files
+    DATA_DIR = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/02 - Datasets/csv_files'
+    t_o = time.time()
+    count = 0
+    for root_dir_path, sub_dirs, files in os.walk(DATA_DIR):
+        for j in range(0, len(files)):
+            if files[j] != 'desktop.ini':
+                # print(files[j] + " => Save it!")
+                data = pd.read_csv(root_dir_path + "/" + files[j])
+                y = data.WHITEFLUX.to_numpy()
+                Filter = FrequencyDomainFiltering()
+                Filter.filter(array=y, filter_technique=filter_technique, numExpansion=70, cutoff_freq=cutoff_freq, order=order)
+                y_filtered = Filter.getFiltered
+                y_filtered += (y.mean() - y_filtered.mean())
+                savetxt(PATH_DIR + "/" + files[j], y_filtered, delimiter=',', header="WHITEFLUX")
+                count += 1
+    t_f = time.time()
+    print("It takes:", round(t_f-t_o, 2), "seconds to save all")
+    print("All files have been save sucessefuly\n") if count == 37 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
+
