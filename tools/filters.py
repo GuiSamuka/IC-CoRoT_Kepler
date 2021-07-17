@@ -199,17 +199,46 @@ class FrequencyDomainFiltering:
         """
             This method ...
         """
-        self.expand_borders(array, numExpansion)
-        self.padding(self.array_expanded)
-        self.multiplying_by_minus_one_to_index(self.padded)
-        self.fourier_transform(self.multiplied)
-        self.filter_array(array, self.fft, filter_technique, cutoff_freq, order)
-        self.apply_filter(self.array_filter, self.fft)
-        self.inverse_fourier_transform(self.applied_filter)
-        self.remove_padding(self.ifft)
-        self.remove_expanded_borders(self.no_padded, numExpansion)
-        self.multiplying_by_minus_one_to_index(self.no_expanded)
-        self.result = self.multiplied
+
+        if filter_technique.upper() == 'IDEAL':
+            n_time = len(array)
+            D0 = cutoff_freq * n_time
+
+            # Expand borders           
+
+            # Padding
+
+            # Fourier transform
+
+            # Filtering
+            for i in range(len(y_fourier)):
+                if y_fourier[i] > D0:
+                    y_fourier[i] = 0
+            
+            # Inverse Fourier Transform
+
+            # Remove Padding
+
+            # Remove expanded borders
+
+            # self.result = self.no_borders
+            
+
+
+
+        else: 
+            self.expand_borders(array, numExpansion)
+            self.padding(self.array_expanded)
+            self.multiplying_by_minus_one_to_index(self.padded)
+            self.fourier_transform(self.multiplied)
+            self.filter_array(array, self.fft, filter_technique, cutoff_freq, order)
+            self.apply_filter(self.array_filter, self.fft)
+            self.inverse_fourier_transform(self.applied_filter)
+            self.remove_padding(self.ifft)
+            self.remove_expanded_borders(self.no_padded, numExpansion)
+            self.multiplying_by_minus_one_to_index(self.no_expanded)
+            self.result = self.multiplied
+
     
     # Getters
     @property
