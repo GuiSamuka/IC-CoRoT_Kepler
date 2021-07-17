@@ -58,6 +58,17 @@ Some results
 
    06 - Bessel Lowpass Filter
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Median Filter
+
+   07 - Median Filter
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Phase Folded
+
+   08 - Phase Folded   
 
 Indices and tables
 ==================
