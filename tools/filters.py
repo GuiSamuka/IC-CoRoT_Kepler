@@ -11,7 +11,6 @@ from math import exp
 import sys
 from math import factorial
 from control import *
-import time
 import os
 import pandas as pd
 
@@ -211,9 +210,9 @@ class FrequencyDomainFiltering:
             # Fourier transform
 
             # Filtering
-            for i in range(len(y_fourier)):
-                if y_fourier[i] > D0:
-                    y_fourier[i] = 0
+            # for i in range(len(y_fourier)):
+            #     if y_fourier[i] > D0:
+            #         y_fourier[i] = 0
             
             # Inverse Fourier Transform
 
@@ -292,10 +291,9 @@ class NonLinearFilter:
     
 def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
     print(f"Saving filtered data for {filter_technique}, order = {order} and cutoff frequency = {cutoff_freq}")
-    
-    # Path to raw csv files
-    DATA_DIR = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/02 - Datasets/csv_files'
-    t_o = time.time()
+
+    # Path to resampled csv files
+    DATA_DIR = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/02 - Datasets/exoplanets_confirmed/resampled_files'
     count = 0
     for root_dir_path, sub_dirs, files in os.walk(DATA_DIR):
         for j in range(0, len(files)):
@@ -307,9 +305,17 @@ def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
                 Filter.filter(array=y, filter_technique=filter_technique, numExpansion=70, cutoff_freq=cutoff_freq, order=order)
                 y_filtered = Filter.getFiltered
                 y_filtered += (y.mean() - y_filtered.mean())
-                savetxt(PATH_DIR + "/" + files[j], y_filtered, delimiter=',', header="WHITEFLUX")
+
+                # Creating a new pd.DataFrame
+                concat_dict = {
+                  "DATE": pd.Series(data.DATE), 
+                  "WHITEFLUX": pd.Series(y_filtered)
+                }
+                data_filtered = pd.concat(concat_dict, axis=1)
+
+                # Salving data
+                data_filtered.to_csv(PATH_DIR + "/" + files[j], index=False)
                 count += 1
-    t_f = time.time()
-    print("It takes:", round(t_f-t_o, 2), "seconds to save all")
-    print("All files have been save sucessefuly\n") if count == 37 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
+
+    print("All files have been save sucessefuly\n") if count == 33 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
 
