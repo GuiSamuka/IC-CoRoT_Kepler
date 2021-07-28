@@ -38,7 +38,7 @@ Some results
    :maxdepth: 2
    :caption: Ideal Lowpass Filter
 
-   03 - Ideal Lowpass Filter
+   03 - Ideal Lowpass Filter - ALTERAÇÕES
 
 .. toctree::
    :maxdepth: 2
@@ -69,6 +69,12 @@ Some results
    :caption: Phase Folded
 
    08 - Phase Folded   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Machine Learning
+
+   09 - Machine Learning
 
 Indices and tables
 ==================
