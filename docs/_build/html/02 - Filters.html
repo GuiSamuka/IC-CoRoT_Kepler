@@ -38,13 +38,15 @@
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reading the data" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html" />
+    <link rel="next" title="Reading the data" href="03%20-%20Ideal%20Lowpass%20Filter.html" />
     <link rel="prev" title="Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites’s documentation!" href="index.html" /> 
 </head>
 
@@ -105,7 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Inverse-Fourier-transform">Inverse Fourier transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Removing-Zero-Padding">Removing Zero-Padding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Removing-borders-expanded">Removing borders expanded</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Re-multiplying-data-by-(-1)^{x}">Re-multiplying data by <img class="math" src="_images/math/9ec9d8503ebeca93f76392ff08cd9cddb66fc223.png" alt="(-1)^{x}"/></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Re-multiplying-data-by-(-1)^{x}">Re-multiplying data by <span class="math notranslate nohighlight">\((-1)^{x}\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#Nonlinear-filter">Nonlinear filter</a><ul>
@@ -115,9 +117,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Ideal Lowpass Filter</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html">Reading the data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Butterworth Filter</span></p>
 <ul>
@@ -491,19 +493,19 @@ div.rendered_html tbody tr:hover {
 <hr class="docutils" />
 <div class="section" id="Introduction">
 <h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
-<p>Filtering in the frequency domain consists of modifying the Fourier transform of an signal (can be a image, a media file, a light curve…) and then taking the inverse tranform to obtained the filtered result. Thus, given a digital signal, <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/>, of length <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>, the basic filtering equation is:</p>
-<div class="math">
-<p><img src="_images/math/2e2aff7d49c74481ed7122d2a3ecc60e95aabacd.png" alt="g(x) = \mathcal{F}^{-1}[H(u)F(u)] \\"/></p>
-</div><p>where <img class="math" src="_images/math/5ff95e24b5c398a78a98d72248b9ebe6a7c25cb8.png" alt="\mathcal{F}^{-1}"/> is the Inverse discrete Fourier transform, <img class="math" src="_images/math/8099caf8d776fe64c3a4a905bff000d8ab13e1a3.png" alt="F(u)"/> is the Fourier transform of the given function <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> (input), <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/> is the <em>filter transfer function</em>, and <img class="math" src="_images/math/91451bcd556b3fb4efe455c92153f24ed21af9b5.png" alt="g(x)"/> is the filtered signal (output). Both <img class="math" src="_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>, <img class="math" src="_images/math/cb5de54f699cf4b3c7c1a3e87313d11d536c0d88.png" alt="H"/> and <img class="math" src="_images/math/89878909dbb648acdc4a44ded1bd982d7bddef5d.png" alt="G"/> are arrays of size <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/>, the same as the input signal. The product <img class="math" src="_images/math/1a80ab954839c0d2dea60c59de880cb965b12869.png" alt="H(u)F(u)"/> is formed using array multiplication; that is, <img class="math" src="_images/math/05d743635d16d89c60c328457459dca06b548f78.png" alt="G(i, k)=H(i, k)F(i, k)"/>.</p>
+<p>Filtering in the frequency domain consists of modifying the Fourier transform of an signal (can be a image, a media file, a light curve…) and then taking the inverse tranform to obtained the filtered result. Thus, given a digital signal, <span class="math notranslate nohighlight">\(f(x)\)</span>, of length <span class="math notranslate nohighlight">\(M\)</span>, the basic filtering equation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g(x) = \mathcal{F}^{-1}[H(u)F(u)] \\\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{F}^{-1}\)</span> is the Inverse discrete Fourier transform, <span class="math notranslate nohighlight">\(F(u)\)</span> is the Fourier transform of the given function <span class="math notranslate nohighlight">\(f(x)\)</span> (input), <span class="math notranslate nohighlight">\(H(u)\)</span> is the <em>filter transfer function</em>, and <span class="math notranslate nohighlight">\(g(x)\)</span> is the filtered signal (output). Both <span class="math notranslate nohighlight">\(F\)</span>, <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are arrays of size <span class="math notranslate nohighlight">\(M\)</span>, the same as the input signal. The product <span class="math notranslate nohighlight">\(H(u)F(u)\)</span> is formed using array multiplication; that is, <span class="math notranslate nohighlight">\(G(i, k)=H(i, k)F(i, k)\)</span>.</p>
 </div>
 <div class="section" id="Expand-LightCurves-borders">
 <h2>Expand LightCurves borders<a class="headerlink" href="#Expand-LightCurves-borders" title="Permalink to this headline">¶</a></h2>
-<p>To perform the filtering of the light curves in this work, we will use the Fast Fourier Transform (FFT) algorithm in order to convert the signal in its original domain in the frequency domain. The choice of FFT is simple, this algorithm has complexity of <img class="math" src="_images/math/db1f0b24071fea01ffd0999d417250f68fe09573.png" alt="O(N log\ N)"/>, while the Discrete-time Fourier transform has complexity <img class="math" src="_images/math/40c2a7dc8dc6a308fe0705ceba2b73d876440c9c.png" alt="O(N^2)"/>, where <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> is the input data size, it means, FFT is much more computationally efficient.</p>
-<p>However, the FFT has some peculiarities that can lead to problemas and unexpected results. The algorithm is based on the sucessive folding method [Gonzales and Woods, 1992], in other words, it assumes that the input signal is periodic and that the number of samples is an integer and a power of 2, but the second premise is not a requirement general. The first conjecture is quite relevant to not having distortion in the algorithm outout although. Colleting <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/> samples of a signal, which
-CoRoT did for us, is equivalent to cutting a finite piece of the real signal, i.e., we take a window between <img class="math" src="_images/math/01d790b3e1ccb4c8215afd4a382f94744bd3efd7.png" alt="T_1"/> and <img class="math" src="_images/math/f29a7754ac02351e8da1712eb78f010e1af6a732.png" alt="T_2"/> of a defined signal of <img class="math" src="_images/math/36f4d61e084dc9046a67215fce2f40f5de46be1e.png" alt="{-\infty}"/> to <img class="math" src="_images/math/7a9bd3313f002da3071ad5a99449c05f437dea94.png" alt="{+\infty}"/>. There is a possibility that this window perfectly represents the oscillations of the original signal, that is contain complete periods of all frequencies, thus we will have a FFT without distortions, but it is statistically unlikely that this will happen. In this case, we will have incomplete
+<p>To perform the filtering of the light curves in this work, we will use the Fast Fourier Transform (FFT) algorithm in order to convert the signal in its original domain in the frequency domain. The choice of FFT is simple, this algorithm has complexity of <span class="math notranslate nohighlight">\(O(N log\ N)\)</span>, while the Discrete-time Fourier transform has complexity <span class="math notranslate nohighlight">\(O(N^2)\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the input data size, it means, FFT is much more computationally efficient.</p>
+<p>However, the FFT has some peculiarities that can lead to problemas and unexpected results. The algorithm is based on the sucessive folding method [Gonzales and Woods, 1992], in other words, it assumes that the input signal is periodic and that the number of samples is an integer and a power of 2, but the second premise is not a requirement general. The first conjecture is quite relevant to not having distortion in the algorithm outout although. Colleting <span class="math notranslate nohighlight">\(M\)</span> samples of a signal, which
+CoRoT did for us, is equivalent to cutting a finite piece of the real signal, i.e., we take a window between <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> of a defined signal of <span class="math notranslate nohighlight">\({-\infty}\)</span> to <span class="math notranslate nohighlight">\({+\infty}\)</span>. There is a possibility that this window perfectly represents the oscillations of the original signal, that is contain complete periods of all frequencies, thus we will have a FFT without distortions, but it is statistically unlikely that this will happen. In this case, we will have incomplete
 periods, which will introduce high frequency distorcions in the signal that, in general, will be found at the ends of the signal.</p>
-<p>The reason that distorcions are commonly introduced at the ends of the signal is justified by the way FFT works. Their recursive calculations imply append the end of the signal with it’s beginning (from the FFT’s premise, we would have a complete peridod), and it is at this conection that unexpected frequencies are introduced. So, to reduce this effect, we will apply the method of expanding the signal edges. Given a sequence <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a0acdd3dfb3.png" alt="A"/>, of size <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.png" alt="k"/>, the method consists of adding <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/>
-points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a0acdd3dfb3.png" alt="A"/>’s first point, <img class="math" src="_images/math/c79667979ae47ce77d3b85514c4334c425057063.png" alt="A[0]"/> and <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> points after its last point, <img class="math" src="_images/math/b4f6ef2781bc14e78f540317164705b547d045f9.png" alt="A[-1]"/>. Finnaly, we will have a sequence <img class="math" src="_images/math/4bc3e94a67870b41b7c20179693e889251e2c136.png" alt="B"/>, of size <img class="math" src="_images/math/6917fbbf2c2d96fecfb0626ca0d9c06cbf0d2a3a.png" alt="(k + 2N)"/>.</p>
+<p>The reason that distorcions are commonly introduced at the ends of the signal is justified by the way FFT works. Their recursive calculations imply append the end of the signal with it’s beginning (from the FFT’s premise, we would have a complete peridod), and it is at this conection that unexpected frequencies are introduced. So, to reduce this effect, we will apply the method of expanding the signal edges. Given a sequence <span class="math notranslate nohighlight">\(A\)</span>, of size <span class="math notranslate nohighlight">\(k\)</span>, the method consists of adding <span class="math notranslate nohighlight">\(N\)</span>
+points before <span class="math notranslate nohighlight">\(A\)</span>’s first point, <span class="math notranslate nohighlight">\(A[0]\)</span> and <span class="math notranslate nohighlight">\(N\)</span> points after its last point, <span class="math notranslate nohighlight">\(A[-1]\)</span>. Finnaly, we will have a sequence <span class="math notranslate nohighlight">\(B\)</span>, of size <span class="math notranslate nohighlight">\((k + 2N)\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -524,17 +526,17 @@ points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a
 </div>
 <div class="section" id="Avoiding-wraparound-error">
 <h2>Avoiding <em>wraparound</em> error<a class="headerlink" href="#Avoiding-wraparound-error" title="Permalink to this headline">¶</a></h2>
-<p>The product <img class="math" src="_images/math/3149db7e3ffdbd2df98d0cd721e1cca4b9ba08d8.png" alt="[H(u)F(u)]"/>, provided by the basis filtering equation, is obtained by the Array product. Consider the following 4x1 vectors:</p>
-<div class="math">
-<p><img src="_images/math/51d85172feaf9d40db5d2e6a722609c17de3f4ab.png" alt="\begin{bmatrix}
+<p>The product <span class="math notranslate nohighlight">\([H(u)F(u)]\)</span>, provided by the basis filtering equation, is obtained by the Array product. Consider the following 4x1 vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
   a_{1} &amp; a_{2} &amp; a_{3} &amp; a_{4}
 \end{bmatrix} \kern1em and \kern1em
 \begin{bmatrix}
   b_{1} &amp; b_{2} &amp; b_{3} &amp; b_{4}
-\end{bmatrix} \\"/></p>
-</div><p>The Array product is defined by:</p>
-<div class="math">
-<p><img src="_images/math/1b63a816ae7d4500c9c6fd6a7a48de38106368ed.png" alt="\begin{bmatrix}
+\end{bmatrix} \\\end{split}\]</div>
+<p>The Array product is defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
   a_{1} &amp; a_{2} &amp; a_{3} &amp; a_{4}
 \end{bmatrix}
 \begin{bmatrix}
@@ -542,19 +544,19 @@ points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a
 \end{bmatrix} =
 \begin{bmatrix}
   a_{1}b_{1} &amp; a_{2}b_{2} &amp; a_{3}b_{3} &amp; a_{4}b_{4}
-\end{bmatrix} \\"/></p>
-</div><p>In mathematics, convolution is a linear operator of two functions (<img class="math" src="_images/math/5b7752c757e0b691a80ab8227eadb8a8389dc58a.png" alt="f"/> and <img class="math" src="_images/math/157ba5711de84b4c715a0478fd8ae440e596d96e.png" alt="g"/>) that measures how the shape of one is modified by the other. The convolution of two functions involves rotating by 180° one about its origin and displacemening it past the other. In discrete functions, it is given by:</p>
-<div class="math">
-<p><img src="_images/math/dd96d9dba8b83dfe7fddfe3a574ff47e10d04ee9.png" alt="(f*g)(k) = h(k) \triangleq \sum_{j=0}^{k}f(j) \cdot g(k-j)"/></p>
-</div><p>where <img class="math" src="_images/math/5b7752c757e0b691a80ab8227eadb8a8389dc58a.png" alt="f"/> and <img class="math" src="_images/math/157ba5711de84b4c715a0478fd8ae440e596d96e.png" alt="g"/> are arrays of size <img class="math" src="_images/math/5a939c5280da7202ca4531f175a7780ad5e1f80a.png" alt="n"/>.</p>
+\end{bmatrix} \\\end{split}\]</div>
+<p>In mathematics, convolution is a linear operator of two functions (<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>) that measures how the shape of one is modified by the other. The convolution of two functions involves rotating by 180° one about its origin and displacemening it past the other. In discrete functions, it is given by:</p>
+<div class="math notranslate nohighlight">
+\[(f*g)(k) = h(k) \triangleq \sum_{j=0}^{k}f(j) \cdot g(k-j)\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are arrays of size <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>The 1-D Convolution theorem, in the case of discrete convolution, tells us that:</p>
-<div class="math">
-<p><img src="_images/math/031aa4e002b1894ebb8793d896151a4b9e3aa89a.png" alt="\mathcal{F}\{ f*g \} = k \cdot \mathcal{F}\{f\} \mathcal{F}\{g\}"/></p>
-</div><p>where <img class="math" src="_images/math/1c407cadee66a3a40c25f2119e3a8c44f681beb2.png" alt="\mathcal{F}"/> is the Fourier transform and <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.png" alt="k"/> is a constant.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}\{ f*g \} = k \cdot \mathcal{F}\{f\} \mathcal{F}\{g\}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the Fourier transform and <span class="math notranslate nohighlight">\(k\)</span> is a constant.</p>
 <p>Therefore, the Fourier transform of the convolution of two functions in spatial domain corresponds to the product of the transformations of these functions in the frequency domain. Writing in order to facilitate the relationship between ther Convolution theorem and the basic filtering equation, we have:</p>
-<div class="math">
-<p><img src="_images/math/cddb267204b5cabb1cb5c3826936ba988efbd95d.png" alt="f(t) * h(t)  \iff F(\mu)H(\mu)"/></p>
-</div><p>The double arrow means that the expression on the right side is obtained by taking the Fourier transform of the expression on the left, as well as, the expression on the left was obtained by taking the inverse Fourier transform of the expression on the right.</p>
+<div class="math notranslate nohighlight">
+\[f(t) * h(t)  \iff F(\mu)H(\mu)\]</div>
+<p>The double arrow means that the expression on the right side is obtained by taking the Fourier transform of the expression on the left, as well as, the expression on the left was obtained by taking the inverse Fourier transform of the expression on the right.</p>
 <hr class="docutils" />
 <p>Assim, se utilizar a DTF e o Teorema da convolução para obter o mesmo resultado de filtragem, devemos tomar conta a periodicidade implícita na expressão para a DFT. Nesse caso, estaríamos aplicando a convolução à duas funções teóricamente períodicas, o que implicaria no resultado da convolução ser também periódico que, por meio de aplicações práticas nota-se ser completamente errôneo. A proximidade dos períodos de ambas funções é tamanha que eles interferem um no outro, provocando o erro de
 <em>wraparound</em> (efeito de borda).</p>
@@ -574,15 +576,15 @@ points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a
 </div>
 <div class="section" id="Centering-the-transform">
 <h2>Centering the transform<a class="headerlink" href="#Centering-the-transform" title="Permalink to this headline">¶</a></h2>
-<p>With Zero Padding applied, the next step is to try to simplift the definition of the filter transfer function, <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/>. Based on symmetry properties of funcions, it is noted that the specification of <img class="math" src="_images/math/5569f79c6b46681c98af28d4be4fde0f7dde31a1.png" alt="H(u)"/> is quite simplified when we are working with symmetric functions by their center, which requires that their Fourier transform <img class="math" src="_images/math/8099caf8d776fe64c3a4a905bff000d8ab13e1a3.png" alt="F(u)"/> also be centralized.</p>
+<p>With Zero Padding applied, the next step is to try to simplift the definition of the filter transfer function, <span class="math notranslate nohighlight">\(H(u)\)</span>. Based on symmetry properties of funcions, it is noted that the specification of <span class="math notranslate nohighlight">\(H(u)\)</span> is quite simplified when we are working with symmetric functions by their center, which requires that their Fourier transform <span class="math notranslate nohighlight">\(F(u)\)</span> also be centralized.</p>
 <p>The centralization is demostraded by the propert of translation and rotation of the Fourier transform:</p>
-<div class="math">
-<p><img src="_images/math/34705faf40b8b4fec0d71a420ab6cd2d78d707fb.png" alt="f(x) e^{j2\pi(u_0 x/M)} \iff F(u - u_0) \\"/></p>
-</div><p>That is, multiply <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> by the exponential shown shifts the origin of DFT to <img class="math" src="_images/math/d1a17cd80da51b6b0c6c84707c6b7ac1ebadbb5a.png" alt="u_0"/>. Taking <img class="math" src="_images/math/f672c37c6c1e06e8274a4165769ae50d9b53b4e0.png" alt="u_0 = M/2"/>, the exponential becomes <img class="math" src="_images/math/cab46ffb2da85df2d8603f690402ba29b5da0f06.png" alt="e^{j\pi x} = (-1)^{x}"/>, stricly because <img class="math" src="_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/> is an integer. So,</p>
-<div class="math">
-<p><img src="_images/math/99ac397ea85befdf912700ec1e4c0eab52f57ab4.png" alt="f(x) (-1)^{x} \iff F(u - M/2) \\"/></p>
-</div><p>Therefore, the multiplication of the input signal <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> by <img class="math" src="_images/math/9ec9d8503ebeca93f76392ff08cd9cddb66fc223.png" alt="(-1)^{x}"/> implies the displacement of the data so that <img class="math" src="_images/math/4bfa0adc809c863e75f6b01c9f59f6eaec49a9eb.png" alt="F(0)"/> it in the center of the interval <img class="math" src="_images/math/804cef0264d2464727aec7dde546912c25c6173c.png" alt="[0, M-1]"/>, as we wanted.</p>
-<p>This procedure must be done before computing the Fourier transform of <img class="math" src="_images/math/95aabe3d9002fe03d54b9b9d9fbfc27c0eaeb56f.png" alt="f(x)"/> and it is useful to help in visualizing the filtering process and in optimizing the generation of the filter array, so it not mandatory to implement it.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) e^{j2\pi(u_0 x/M)} \iff F(u - u_0) \\\end{split}\]</div>
+<p>That is, multiply <span class="math notranslate nohighlight">\(f(x)\)</span> by the exponential shown shifts the origin of DFT to <span class="math notranslate nohighlight">\(u_0\)</span>. Taking <span class="math notranslate nohighlight">\(u_0 = M/2\)</span>, the exponential becomes <span class="math notranslate nohighlight">\(e^{j\pi x} = (-1)^{x}\)</span>, stricly because <span class="math notranslate nohighlight">\(x\)</span> is an integer. So,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) (-1)^{x} \iff F(u - M/2) \\\end{split}\]</div>
+<p>Therefore, the multiplication of the input signal <span class="math notranslate nohighlight">\(f(x)\)</span> by <span class="math notranslate nohighlight">\((-1)^{x}\)</span> implies the displacement of the data so that <span class="math notranslate nohighlight">\(F(0)\)</span> it in the center of the interval <span class="math notranslate nohighlight">\([0, M-1]\)</span>, as we wanted.</p>
+<p>This procedure must be done before computing the Fourier transform of <span class="math notranslate nohighlight">\(f(x)\)</span> and it is useful to help in visualizing the filtering process and in optimizing the generation of the filter array, so it not mandatory to implement it.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -664,7 +666,7 @@ points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a
 </div>
 </div>
 <div class="section" id="Re-multiplying-data-by-(-1)^{x}">
-<h2>Re-multiplying data by <img class="math" src="_images/math/9ec9d8503ebeca93f76392ff08cd9cddb66fc223.png" alt="(-1)^{x}"/><a class="headerlink" href="#Re-multiplying-data-by-(-1)^{x}" title="Permalink to this headline">¶</a></h2>
+<h2>Re-multiplying data by <span class="math notranslate nohighlight">\((-1)^{x}\)</span><a class="headerlink" href="#Re-multiplying-data-by-(-1)^{x}" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 <div class="section" id="Nonlinear-filter">
@@ -681,7 +683,7 @@ points before <img class="math" src="_images/math/211284f68205c3e66773eaf026f32a
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03%20-%20Ideal%20Lowpass%20Filter.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

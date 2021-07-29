@@ -35,7 +35,7 @@ Now, checkout some of the best results Obtained with this research:
    :maxdepth: 2
    :caption: Ideal Lowpass Filter
 
-   03 - Ideal Lowpass Filter - ALTERAÇÕES
+   03 - Ideal Lowpass Filter
 
 .. toctree::
    :maxdepth: 2

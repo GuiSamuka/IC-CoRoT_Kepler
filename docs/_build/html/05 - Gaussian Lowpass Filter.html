@@ -38,6 +38,8 @@
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -100,9 +102,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Ideal Lowpass Filter</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html">Reading the data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Butterworth Filter</span></p>
 <ul>
@@ -605,9 +607,9 @@ div.rendered_html tbody tr:hover {
 <h1>Gaussian Transfer Function<a class="headerlink" href="#Gaussian-Transfer-Function" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>The transfer function of a Gaussian 1-D lowpass filter (GLPFs) is defined by</p>
-<div class="math">
-<p><img src="_images/math/0f1dd2d077b67114d5c61986c2a4af371743f18c.png" alt="H(u) = e^{-D^2(u)/2D^2_0}"/></p>
-</div><p>where <img class="math" src="_images/math/2edd4e38f871063e255a29826114fdfc329b32c3.png" alt="D(u)"/> and <img class="math" src="_images/math/11a9499496ad35d19d7853a65c2e6d278e0bfafc.png" alt="D_0"/> was defined on <code class="docutils literal notranslate"><span class="pre">03</span> <span class="pre">-</span> <span class="pre">Ideal</span> <span class="pre">Lowpass</span> <span class="pre">Filters.ipynb</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[H(u) = e^{-D^2(u)/2D^2_0}\]</div>
+<p>where <span class="math notranslate nohighlight">\(D(u)\)</span> and <span class="math notranslate nohighlight">\(D_0\)</span> was defined on <code class="docutils literal notranslate"><span class="pre">03</span> <span class="pre">-</span> <span class="pre">Ideal</span> <span class="pre">Lowpass</span> <span class="pre">Filters.ipynb</span></code>.</p>
 <p>Note. The cutoff frequency must be given in Nyquist.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:

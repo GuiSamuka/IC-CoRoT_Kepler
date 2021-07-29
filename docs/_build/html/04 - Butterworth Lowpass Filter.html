@@ -38,6 +38,8 @@
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -45,7 +47,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reading the data" href="05%20-%20Gaussian%20Lowpass%20Filter.html" />
-    <link rel="prev" title="Reading the data" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html" /> 
+    <link rel="prev" title="Reading the data" href="03%20-%20Ideal%20Lowpass%20Filter.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,9 +102,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Ideal Lowpass Filter</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html">Reading the data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Ideal-Lowpass-Filters">Ideal Lowpass Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20-%20Ideal%20Lowpass%20Filter.html#Choosing-the-best-Ideal-Filter-parameters">Choosing the best Ideal Filter parameters</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Butterworth Filter</span></p>
 <ul class="current">
@@ -604,10 +606,10 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Butterworth-Transfer-Function">
 <h1>Butterworth Transfer Function<a class="headerlink" href="#Butterworth-Transfer-Function" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>The transfer function of a Butterworth 1-D lowpass filter (BLPF) of order <img class="math" src="_images/math/5a939c5280da7202ca4531f175a7780ad5e1f80a.png" alt="n"/>, and with cutoff frequency at a distance <img class="math" src="_images/math/11a9499496ad35d19d7853a65c2e6d278e0bfafc.png" alt="D_0"/> from the origin, is defined as</p>
-<div class="math">
-<p><img src="_images/math/a37d2feb64a38351d9e4406894d5454425d2c723.png" alt="H(u) = \frac{1}{ 1 + [D(u) / D_0]^{2n} }"/></p>
-</div><p>where <img class="math" src="_images/math/2edd4e38f871063e255a29826114fdfc329b32c3.png" alt="D(u)"/> and <img class="math" src="_images/math/11a9499496ad35d19d7853a65c2e6d278e0bfafc.png" alt="D_0"/> was defined on <code class="docutils literal notranslate"><span class="pre">03</span> <span class="pre">-</span> <span class="pre">Ideal</span> <span class="pre">Lowpass</span> <span class="pre">Filters.ipynb</span></code>.</p>
+<p>The transfer function of a Butterworth 1-D lowpass filter (BLPF) of order <span class="math notranslate nohighlight">\(n\)</span>, and with cutoff frequency at a distance <span class="math notranslate nohighlight">\(D_0\)</span> from the origin, is defined as</p>
+<div class="math notranslate nohighlight">
+\[H(u) = \frac{1}{ 1 + [D(u) / D_0]^{2n} }\]</div>
+<p>where <span class="math notranslate nohighlight">\(D(u)\)</span> and <span class="math notranslate nohighlight">\(D_0\)</span> was defined on <code class="docutils literal notranslate"><span class="pre">03</span> <span class="pre">-</span> <span class="pre">Ideal</span> <span class="pre">Lowpass</span> <span class="pre">Filters.ipynb</span></code>.</p>
 <p>By the definition, the Butterworth filter have two free parameters: the cutoff frequency and the filtering order. Then, we can modify both, as we can see on the code cell below, intending to have the best results possibles.</p>
 <p>Note. The cutoff frequency must be given in Nyquist.</p>
 <div class="nbinput nblast docutils container">
@@ -1376,7 +1378,7 @@ var element = document.currentScript.previousSibling.previousSibling;
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="05%20-%20Gaussian%20Lowpass%20Filter.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="03%20-%20Ideal%20Lowpass%20Filter%20-%20ALTERA%C3%87%C3%95ES.html" class="btn btn-neutral float-left" title="Reading the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03%20-%20Ideal%20Lowpass%20Filter.html" class="btn btn-neutral float-left" title="Reading the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
