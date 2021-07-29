@@ -27,6 +27,12 @@ Now, checkout some of the best results Obtained with this research:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Manipulating fits files
+
+   01 - Manipulating fits files
+
+.. toctree::
+   :maxdepth: 2
    :caption: Filter
 
    02 - Filters

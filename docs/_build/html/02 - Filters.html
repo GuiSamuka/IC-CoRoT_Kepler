@@ -47,7 +47,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reading the data" href="03%20-%20Ideal%20Lowpass%20Filter.html" />
-    <link rel="prev" title="Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Read .fits data" href="01%20-%20Manipulating%20fits%20files.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,7 +95,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">Filter</span></p>
+              <p class="caption"><span class="caption-text">Manipulating fits files</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html">Read <em>.fits</em> data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Knowing-and-fixing-the-header">Knowing and fixing the header</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Algorithms">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html#Preprocessing-data">Preprocessing data</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Filter</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Frequency Domain Filtering Fundamentals</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a></li>
@@ -511,7 +518,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">expand_borders</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">expand_borders</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
   <span class="n">aux_pre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
   <span class="n">aux_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -684,7 +693,7 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="03%20-%20Ideal%20Lowpass%20Filter.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01%20-%20Manipulating%20fits%20files.html" class="btn btn-neutral float-left" title="Read .fits data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
