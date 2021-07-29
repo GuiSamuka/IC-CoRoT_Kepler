@@ -28,53 +28,7 @@ Some results
 
    01 - Manipulating fits files
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Filter
 
-   02 - Filters
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Ideal Lowpass Filter
-
-   03 - Ideal Lowpass Filter - ALTERAÇÕES
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Butterworth Filter
-
-   04 - Butterworth Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Gaussian Filter
-
-   05 - Gaussian Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Bessel Filter
-
-   06 - Bessel Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Median Filter
-
-   07 - Median Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Phase Folded
-
-   08 - Phase Folded   
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Machine Learning
-
-   09 - Machine Learning
 
 Indices and tables
 ==================
