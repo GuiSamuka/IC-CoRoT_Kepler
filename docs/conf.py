@@ -42,14 +42,13 @@ extensions = [
   'sphinx.ext.githubpages',
   'sphinx.ext.imgconverter',
   'sphinx.ext.doctest',
-  'sphinx.ext.doctest',
   'sphinx.ext.intersphinx',
   'sphinx.ext.todo',
   'sphinx.ext.coverage',
   'sphinx.ext.ifconfig',
   'sphinx.ext.viewcode',
   'sphinx.ext.imgmath'
-]
+  ]
 
 
 
