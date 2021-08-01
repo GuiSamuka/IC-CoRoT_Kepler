@@ -2,15 +2,13 @@
 Created on ...
 
 @author: Guilherme Samuel
-
-1º: O que é o z ? Como define z ? 
-2º: O que é o que em cada for (p, period, adivR, w): range(len(array)) or for i in array
-3º: Hora de PAE da IC ?
 """
-# TEM QUE DAR UM CONTROL -, TIRAR ZOOM
 # Libraries
 from math import acos, log, pi, sqrt
+from typing import final
 import numpy as np
+from scipy import interpolate
+
 
 # Help functions
 def gaussian_sum(X, A):
@@ -133,22 +131,22 @@ def ellpic_bulirsch(n, k):
     return 0.5*pi*(c*m0+d)/(m0*(m0+p))
 
 ## Functions from Table 1, Mandel & Agol (2008)
-def lambda_1(a, b, k, p, q, w, z):
+def calculate_lambda_1(a, b, k, p, q, w, z):
     return (1/(9*pi*sqrt(p*z[w]))) * (((1-b)*(2*b+a-3)-3*q*(b-2))*ellk(k)+4*p*z*(z[w]**2+7*p**2-4)*ellec(k)-(3*q/a)*ellpic_bulirsch(abs((a-1)/a), k))
 
-def lambda_2():
+def calculate_lambda_2():
     pass
 
-def lambda_3():
+def calculate_lambda_3():
     pass
 
-def lambda_4():
+def calculate_lambda_4():
     pass
 
-def lambda_5():
+def calculate_lambda_5():
     pass
 
-def lambda_6():
+def calculate_lambda_6():
     pass
 
 def calculate_eta_2(p, w, z):
@@ -186,17 +184,22 @@ v = 0
 #######################################################
 b_values = [1, 2]
 x_values = [1, 2]
-p_values = [1, 2]
+p_values = [1, 2, 3]
 period_values = [1, 2]
 adivR_values = [1, 2]
+observed_curve = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 #######################################################
 
+simulated_curve = np.ones((2, len(x_values)))
+simulated_curve_resampled = np.ones((2, len(observed_curve)))
+observed_curve_eclipse = np.ones((3, len(observed_curve)))
 F = []
+z = []
+
 
 for i in b_values:
     b_impact = b_values[i]
-    # z = sqrt(x_values**2 + b_impact**2)
-    z = np.sqrt(np.power(x_values, 2) + np.power(b_values, 2))
+    z = np.sqrt((np.power(x_values, 2) + b_impact))
 
     for j in p_values:
         p = p_values[j]
@@ -248,58 +251,44 @@ for i in b_values:
                         print('Case I')
                         lambda_d = 0
                         eta_d = 0
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     if (p == 0) and (z[w] >= 0):
                         print('Case I')
                         lambda_d = 0
-                        eta_d = 0
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)       
+                        eta_d = 0    
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case II
                     elif (p > 0) and (z[w] > 0.5+abs(p-0.5)) and (z[w] < 1+p):
                         print('Case II')
-                        lamda1 = lambda_1(a, b, k, p, q, w, z)
-                        eta_2 = calculate_eta_2(p, w, z)
-                        eta_1 = calculate_eta_1(a, b, k0, k1, p, w, z)
+                        lambda_d = calculate_lambda_1(a, b, k, p, q, w, z)
+                        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
 
-                        lambda_d = lamda1
-                        eta_d = eta_1
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case III
                     elif (p > 0) and (p < 0.5) and (z[w] > p) and (z[w] < 1-p):
                         print('Case III')
-                        lambda2 = lambda_2() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
+                        lambda_d = calculate_lambda_2() #TODO
+                        eta_d = calculate_eta_2(p, w, z) 
 
-                        lambda_d = lambda2
-                        eta_d = eta_2
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case IV
                     elif (p > 0) and (p < 0.5) and (z[w] == 1-p):
                         print('Case IV')
-                        lambda5 = lambda_5() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
-
-                        lambda_d = lambda5
-                        eta_d = eta_2
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
+                        lambda_d = calculate_lambda_5() #TODO
+                        eta_d = calculate_eta_2(p, w, z)
+                        
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
  
                     ## Case V
                     elif (p > 0) and (p < 0.5) and (z[w] == p):
                         print('Case V')
-                        lambda4 = lambda_4() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
+                        lamda_d = calculate_lambda_4() #TODO
+                        eta_d = calculate_eta_2(p, w, z)
 
-                        lamda_d = lambda4
-                        eta_d = eta_2
                         F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
 
                     ## Case VI
@@ -307,54 +296,39 @@ for i in b_values:
                         print('Case VI')
                         lambda_d = (1/3) - (4/(9*pi))
                         eta_d = 3/32
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
+                        
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case VII
                     elif (p > 0.5) and (z[w] == p):
                         print('Case VII')
-                        lambda3 = lambda_3() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
-                        eta_1 = calculate_eta_1(a, b, k0, k1, p, w, z)
+                        lambda_d = calculate_lambda_3() #TODO
+                        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
 
-                        lambda_d = lambda3
-                        eta_d = eta_1
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case VIII
                     elif (p > 0.5) and (z[w] >= abs(1-p)) and (z[w] < p):
                         print('Case VIII')
-                        lambda1 = lambda_1(a, b, k, p, q, w, z)
-                        eta_2 = calculate_eta_2(p, w, z)
-                        eta_1 = calculate_eta_1(a, b, k0, k1, p, w, z)
-
-                        lambda_d = lambda1
-                        eta_d = eta_1
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
+                        lambda_d = calculate_lambda_1(a, b, k, p, q, w, z)
+                        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
+                        
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case IX
                     elif (p > 0) and (p < 1) and (z[w] > 0) and (z[w] < 0.5-abs(p-0.5)):
                         print('Case IX')
-                        lambda2 = lambda_2() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
+                        lambda_d = calculate_lambda_2() #TODO
+                        eta_d = calculate_eta_2(p, w, z) 
 
-                        lambda_d = lambda2
-                        eta_d = eta_2
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case X
                     elif (p > 0) and (p < 1) and (z[w] == 0):
                         print('Case X')
-                        lambda6 = lambda_6() #TODO
-                        eta_2 = calculate_eta_2(p, w, z)
-                        eta_1 = calculate_eta_1(a, b, k0, k1, p, w, z)
-
-                        lambda_d = lambda6
-                        eta_d = eta_2
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
+                        lambda_d = calculate_lambda_6() #TODO
+                        eta_d = calculate_eta_2(p, w, z)
+                        
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
                     ## Case XI
@@ -362,15 +336,47 @@ for i in b_values:
                         print('Case XI')
                         lambda_d = 1
                         eta_d = 1
-                        # F[w] = lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z)
+                        
                         F.insert(w, lightcurve_F(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
             
             
             # Conversao de x para tempo
+            ttrans = period/(pi*adivR)
+            mid = (len(x_values)/2) - 0.5
+            for u in range(len(x_values)):
+                if (u < mid):
+                    simulated_curve[0, u] = (-1)*x_values[u]*ttrans/2
+                elif (u >= mid):
+                    simulated_curve[0, u] = x_values[u]*ttrans/2
             
+            # simulated_curve[1, *] = F[*]          
+                
             # Reamostragem
-
+            # simulated_curve_resampled[0, *] = observed_curve_eclipse[0, *]
+            # simulated_curve_resampled[1, *] = interpolate.interp1d(simulated_curve[1, *], simulated_curve[0, *], simulated_curve_resampled[0, *])
+            
             # Cálculo do qui^2
+            qui2 = 0
+            for u in range(len(observed_curve)):
+                qui2 += ((observed_curve_eclipse[1, u]-simulated_curve_resampled[1, u])**2/observed_curve_eclipse[2, u]**2)
+
+            final_table = np.ones(5)
+            final_table[0] = b_impact
+            final_table[1] = p
+            final_table[2] = period
+            final_table[3] = adivR
+            final_table[4] = qui2
+            string_v = str(v+1)
+            # string_v = strtrim(string_v, 1)
+            v += 1
+            print(final_table)
+            break
+        break
+    break
+
+
+            # 481 line
+
 
 
 
