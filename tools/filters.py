@@ -12,7 +12,9 @@ import sys
 from math import factorial
 from control import *
 import os
+from numpy.core.records import array
 import pandas as pd
+from scipy.signal import medfilt
 
 class FrequencyDomainFiltering:
     """
@@ -200,27 +202,17 @@ class FrequencyDomainFiltering:
         """
 
         if filter_technique.upper() == 'IDEAL':
-            n_time = len(array)
-            D0 = cutoff_freq * n_time
+            Filter = FrequencyDomainFiltering()
 
-            # Expand borders           
+            Filter.expand_borders(array, numExpansion)
+            y_expanded = Filter.getExpandedBorders
 
-            # Padding
+            y_filtered = ideal_filter(y_expanded, np.fft.fft(y_expanded), cutoff_freq)
 
-            # Fourier transform
+            Filter.remove_expanded_borders(y_filtered, numExpansion)
+            y_filtered = Filter.getNoExpanded
 
-            # Filtering
-            # for i in range(len(y_fourier)):
-            #     if y_fourier[i] > D0:
-            #         y_fourier[i] = 0
-            
-            # Inverse Fourier Transform
-
-            # Remove Padding
-
-            # Remove expanded borders
-
-            # self.result = self.no_borders
+            self.result = y_filtered
             
 
 
@@ -286,11 +278,17 @@ class NonLinearFilter:
         pass
 
 
-    def MedianFilter(self):
-        pass
+    def MedianFilter(self, array, numNei):
+        self.result = medfilt(array, numNei)
+
+    @property
+    def getFiltered(self):
+      return self.result
+
+
     
-def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
-    print(f"Saving filtered data for {filter_technique}, order = {order} and cutoff frequency = {cutoff_freq}")
+def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order, numNei):
+    print(f"Saving filtered data for {filter_technique}, order = {order}, cutoff frequency = {cutoff_freq} and number of neighbors = {numNei}")
 
     # Path to resampled csv files
     DATA_DIR = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/02 - Datasets/exoplanets_confirmed/resampled_files'
@@ -301,10 +299,18 @@ def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
                 # print(files[j] + " => Save it!")
                 data = pd.read_csv(root_dir_path + "/" + files[j])
                 y = data.WHITEFLUX.to_numpy()
-                Filter = FrequencyDomainFiltering()
-                Filter.filter(array=y, filter_technique=filter_technique, numExpansion=70, cutoff_freq=cutoff_freq, order=order)
-                y_filtered = Filter.getFiltered
-                y_filtered += (y.mean() - y_filtered.mean())
+
+                if filter_technique != 'median':
+                    Filter = FrequencyDomainFiltering()
+                    Filter.filter(array=y, filter_technique=filter_technique, numExpansion=70, cutoff_freq=cutoff_freq, order=order)
+                    y_filtered = Filter.getFiltered
+                    y_filtered += (y.mean() - y_filtered.mean())
+                
+                elif filter_technique == 'median':
+                    Filter = NonLinearFilter()
+                    Filter.MedianFilter(array=y, numNei=numNei)
+                    y_filtered = Filter.getFiltered
+                    y_filtered += (y.mean() - y_filtered.mean())
 
                 # Creating a new pd.DataFrame
                 concat_dict = {
@@ -317,5 +323,19 @@ def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order):
                 data_filtered.to_csv(PATH_DIR + "/" + files[j], index=False)
                 count += 1
 
-    print("All files have been save sucessefuly\n") if count == 33 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
+    print("All files have been saved sucessefuly\n") if count == 33 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
 
+def ideal_filter(array, fourier_transform, cutoff_freq):
+    """
+        This method ...
+    """ 
+    n_time = len(array)
+    D0 = cutoff_freq * n_time
+    
+    for i in range(len(fourier_transform)):
+        if fourier_transform[i] > D0:
+            fourier_transform[i] = 0
+    y_filtered = np.real(np.fft.ifft(fourier_transform))
+    y_filtered += (array.mean() - y_filtered.mean())
+
+    return y_filtered
