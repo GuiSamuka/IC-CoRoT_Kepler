@@ -55,7 +55,11 @@ Now, checkout some of the best results Obtained with this research:
 
    05 - Gaussian Lowpass Filter
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Bessel Filter
 
+   06 - Bessel Lowpass Filter
 
 .. toctree::
    :maxdepth: 2
@@ -68,6 +72,12 @@ Now, checkout some of the best results Obtained with this research:
    :caption: Phase Folded
 
    08 - Phase Folded   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Feature Engineering
+
+   09 - Feature Engineering
 
 .. toctree::
    :maxdepth: 2

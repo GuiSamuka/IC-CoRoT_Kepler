@@ -140,11 +140,18 @@
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Gaussian%20Lowpass%20Filter.html#Gaussian-Transfer-Function">Gaussian Transfer Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Gaussian%20Lowpass%20Filter.html#Choosing-the-best-Gaussian-parameters">Choosing the best Gaussian parameters</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Bessel Filter</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Bessel-Transfer-Function">Bessel Transfer Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Filtering">Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Choosing-the-best-Bessel-parameters">Choosing the best Bessel parameters</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Median Filter</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html">Reading the data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Median-Filter">Median Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Choosing-the-best-Median-parameter">Choosing the best Median parameter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Saving-filtered-data---Varying-the-number-of-neighbors">Saving filtered data - Varying the number of neighbors</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Phase Folded</span></p>
 <ul>
@@ -153,11 +160,18 @@
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#ORMaster">ORMaster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#Phase-Folded">Phase Folded</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Feature Engineering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html#Feature:-Periodograms">Feature: Periodograms</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Machine Learning Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#Tests">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkTime">SkTime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkLearn">SkLearn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#ML-Classifier---Periodograms">ML Classifier - Periodograms</a></li>
 </ul>
 
             
@@ -518,9 +532,7 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">expand_borders</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+<span></span><span class="k">def</span> <span class="nf">expand_borders</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
   <span class="n">aux_pre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
   <span class="n">aux_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>

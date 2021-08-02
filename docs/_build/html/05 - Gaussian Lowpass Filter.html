@@ -46,7 +46,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reading the data" href="07%20-%20Median%20Filter.html" />
+    <link rel="next" title="Reading the data" href="06%20-%20Bessel%20Lowpass%20Filter.html" />
     <link rel="prev" title="Reading the data" href="04%20-%20Butterworth%20Lowpass%20Filter.html" /> 
 </head>
 
@@ -129,11 +129,18 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Bessel Filter</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Bessel-Transfer-Function">Bessel Transfer Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Filtering">Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Choosing-the-best-Bessel-parameters">Choosing the best Bessel parameters</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Median Filter</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html">Reading the data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Median-Filter">Median Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Choosing-the-best-Median-parameter">Choosing the best Median parameter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Saving-filtered-data---Varying-the-number-of-neighbors">Saving filtered data - Varying the number of neighbors</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Phase Folded</span></p>
 <ul>
@@ -142,11 +149,18 @@
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#ORMaster">ORMaster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#Phase-Folded">Phase Folded</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Feature Engineering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html#Feature:-Periodograms">Feature: Periodograms</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Machine Learning Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#Tests">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkTime">SkTime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkLearn">SkLearn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#ML-Classifier---Periodograms">ML Classifier - Periodograms</a></li>
 </ul>
 
             
@@ -645,346 +659,14 @@ div.rendered_html tbody tr:hover {
 <h1>Choosing the best Gaussian parameters<a class="headerlink" href="#Choosing-the-best-Gaussian-parameters" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>On <code class="docutils literal notranslate"><span class="pre">filters</span></code> module, we can pass <code class="docutils literal notranslate"><span class="pre">gaussian</span></code> on the <code class="docutils literal notranslate"><span class="pre">filter_technique</span></code> and it will makes all the procedures for the Gaussian Lowpass filter.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>pip install control
-<span class="kn">from</span> <span class="nn">tools</span> <span class="kn">import</span> <span class="o">*</span>
+<span></span><span class="kn">from</span> <span class="nn">tools</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Requirement already satisfied: control in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (0.9.0)
-Requirement already satisfied: scipy in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from control) (1.6.1)
-Requirement already satisfied: numpy in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from control) (1.19.5)
-Requirement already satisfied: matplotlib in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from control) (3.3.4)
-Requirement already satisfied: python-dateutil&gt;=2.1 in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from matplotlib-&gt;control) (2.8.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from matplotlib-&gt;control) (2.4.7)
-Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from matplotlib-&gt;control) (8.1.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from matplotlib-&gt;control) (1.3.1)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\guisa\appdata\local\programs\python\python38\lib\site-packages (from matplotlib-&gt;control) (0.10.0)
-Requirement already satisfied: six in c:\users\guisa\appdata\roaming\python\python38\site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;control) (1.15.0)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div class="bk-root">
-    <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-    <span id="1001">Loading BokehJS ...</span>
-</div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="output_javascript"></div>
-<script type="text/javascript">
-var element = document.currentScript.previousSibling.previousSibling;
-
-(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  var force = true;
-
-  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
-    root._bokeh_onload_callbacks = [];
-    root._bokeh_is_loading = undefined;
-  }
-
-  var JS_MIME_TYPE = 'application/javascript';
-  var HTML_MIME_TYPE = 'text/html';
-  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
-  var CLASS_NAME = 'output_bokeh rendered_html';
-
-  /**
-   * Render data to the DOM node
-   */
-  function render(props, node) {
-    var script = document.createElement("script");
-    node.appendChild(script);
-  }
-
-  /**
-   * Handle when an output is cleared or removed
-   */
-  function handleClearOutput(event, handle) {
-    var cell = handle.cell;
-
-    var id = cell.output_area._bokeh_element_id;
-    var server_id = cell.output_area._bokeh_server_id;
-    // Clean up Bokeh references
-    if (id != null && id in Bokeh.index) {
-      Bokeh.index[id].model.document.clear();
-      delete Bokeh.index[id];
-    }
-
-    if (server_id !== undefined) {
-      // Clean up Bokeh references
-      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
-      cell.notebook.kernel.execute(cmd, {
-        iopub: {
-          output: function(msg) {
-            var id = msg.content.text.trim();
-            if (id in Bokeh.index) {
-              Bokeh.index[id].model.document.clear();
-              delete Bokeh.index[id];
-            }
-          }
-        }
-      });
-      // Destroy server and session
-      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
-      cell.notebook.kernel.execute(cmd);
-    }
-  }
-
-  /**
-   * Handle when a new output is added
-   */
-  function handleAddOutput(event, handle) {
-    var output_area = handle.output_area;
-    var output = handle.output;
-
-    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
-    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-      return
-    }
-
-    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-
-    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
-      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
-      // store reference to embed id on output_area
-      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
-    }
-    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-      var bk_div = document.createElement("div");
-      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-      var script_attrs = bk_div.children[0].attributes;
-      for (var i = 0; i < script_attrs.length; i++) {
-        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
-        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
-      }
-      // store reference to server id on output_area
-      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-    }
-  }
-
-  function register_renderer(events, OutputArea) {
-
-    function append_mime(data, metadata, element) {
-      // create a DOM node to render to
-      var toinsert = this.create_output_subarea(
-        metadata,
-        CLASS_NAME,
-        EXEC_MIME_TYPE
-      );
-      this.keyboard_manager.register_events(toinsert);
-      // Render to node
-      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-      render(props, toinsert[toinsert.length - 1]);
-      element.append(toinsert);
-      return toinsert
-    }
-
-    /* Handle when an output is cleared or removed */
-    events.on('clear_output.CodeCell', handleClearOutput);
-    events.on('delete.Cell', handleClearOutput);
-
-    /* Handle when a new output is added */
-    events.on('output_added.OutputArea', handleAddOutput);
-
-    /**
-     * Register the mime type and append_mime function with output_area
-     */
-    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-      /* Is output safe? */
-      safe: true,
-      /* Index of renderer in `output_area.display_order` */
-      index: 0
-    });
-  }
-
-  // register the mime type if in Jupyter Notebook environment and previously unregistered
-  if (root.Jupyter !== undefined) {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  }
-
-
-  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  var NB_LOAD_WARNING = {'data': {'text/html':
-     "<div style='background-color: #fdd'>\n"+
-     "<p>\n"+
-     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
-     "may be due to a slow or bad network connection. Possible fixes:\n"+
-     "</p>\n"+
-     "<ul>\n"+
-     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
-     "<li>use INLINE resources instead, as so:</li>\n"+
-     "</ul>\n"+
-     "<code>\n"+
-     "from bokeh.resources import INLINE\n"+
-     "output_notebook(resources=INLINE)\n"+
-     "</code>\n"+
-     "</div>"}};
-
-  function display_loaded() {
-    var el = document.getElementById("1001");
-    if (el != null) {
-      el.textContent = "BokehJS is loading...";
-    }
-    if (root.Bokeh !== undefined) {
-      if (el != null) {
-        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
-      }
-    } else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(display_loaded, 100)
-    }
-  }
-
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-
-    root._bokeh_onload_callbacks.push(callback);
-    if (root._bokeh_is_loading > 0) {
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    }
-    if (js_urls == null || js_urls.length === 0) {
-      run_callbacks();
-      return null;
-    }
-    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-    root._bokeh_is_loading = css_urls.length + js_urls.length;
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-
-    function on_error() {
-      console.error("failed to load " + url);
-    }
-
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }
-
-    const hashes = {"https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js": "T2yuo9Oe71Cz/I4X9Ac5+gpEa5a8PpJCDlqKYO0CfAuEszu1JrXLl8YugMqYe3sM", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js": "98GDGJ0kOMCUMUePhksaQ/GYgB3+NH9h996V88sh3aOiUNX3N+fLXAtry6xctSZ6", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js": "89bArO+nlbP3sgakeHjCo1JYxYR5wufVgA3IbUvDY+K7w4zyxJqssu7wVnfeKCq8"};
-
-    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      if (url in hashes) {
-        element.crossOrigin = "anonymous";
-        element.integrity = "sha384-" + hashes[url];
-      }
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-  };
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js"];
-  var css_urls = [];
-
-
-  var inline_js = [
-    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-    function(Bokeh) {
-
-
-    }
-  ];
-
-  function run_inline_js() {
-
-    if (root.Bokeh !== undefined || force === true) {
-
-    for (var i = 0; i < inline_js.length; i++) {
-      inline_js[i].call(root, root.Bokeh);
-    }
-    if (force === true) {
-        display_loaded();
-      }} else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    } else if (force !== true) {
-      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
-      cell.output_area.append_execute_result(NB_LOAD_WARNING)
-    }
-
-  }
-
-  if (root._bokeh_is_loading === 0) {
-    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
-    run_inline_js();
-  } else {
-    load_libs(css_urls, js_urls, function() {
-      console.debug("Bokeh: BokehJS plotting callback run at", now());
-      run_inline_js();
-    });
-  }
-}(window));
-</script></div>
 </div>
 <div class="section" id="Plotting-different-cutoff-frequencies">
 <h2>Plotting different cutoff frequencies<a class="headerlink" href="#Plotting-different-cutoff-frequencies" title="Permalink to this headline">¶</a></h2>
@@ -1253,7 +935,7 @@ var element = document.currentScript.previousSibling.previousSibling;
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="07%20-%20Median%20Filter.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06%20-%20Bessel%20Lowpass%20Filter.html" class="btn btn-neutral float-right" title="Reading the data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="04%20-%20Butterworth%20Lowpass%20Filter.html" class="btn btn-neutral float-left" title="Reading the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

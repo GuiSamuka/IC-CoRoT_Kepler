@@ -139,11 +139,18 @@
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Gaussian%20Lowpass%20Filter.html#Gaussian-Transfer-Function">Gaussian Transfer Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Gaussian%20Lowpass%20Filter.html#Choosing-the-best-Gaussian-parameters">Choosing the best Gaussian parameters</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Bessel Filter</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Bessel-Transfer-Function">Bessel Transfer Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Filtering">Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Bessel%20Lowpass%20Filter.html#Choosing-the-best-Bessel-parameters">Choosing the best Bessel parameters</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Median Filter</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html">Reading the data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Median-Filter">Median Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Choosing-the-best-Median-parameter">Choosing the best Median parameter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20-%20Median%20Filter.html#Saving-filtered-data---Varying-the-number-of-neighbors">Saving filtered data - Varying the number of neighbors</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Phase Folded</span></p>
 <ul>
@@ -152,11 +159,18 @@
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#ORMaster">ORMaster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08%20-%20Phase%20Folded.html#Phase-Folded">Phase Folded</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Feature Engineering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html">Reading the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Feature%20Engineering.html#Feature:-Periodograms">Feature: Periodograms</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html">Machine Learning Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#Tests">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkTime">SkTime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#SkLearn">SkLearn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Machine%20Learning.html#ML-Classifier---Periodograms">ML Classifier - Periodograms</a></li>
 </ul>
 
             
@@ -507,8 +521,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>Our database, storage on DATA_DIR, can be found on <code class="docutils literal notranslate"><span class="pre">CoRoT</span> <span class="pre">IAS</span> <span class="pre">Archive</span></code> website or in my <a class="reference external" href="https://drive.google.com/drive/folders/1xMlUVc8K5BRd8663Q-UdfkTworL4vDIK?usp=sharing">Google Drive folder</a>, which for now is structured as …</p>
-<!-- ```Json
-./database
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>./database
    │
    └── exoplanets_confirmed
          │
@@ -519,8 +532,9 @@ div.rendered_html tbody tr:hover {
                ├── ..._.fits
                ⋮       ⋮
                └── ..._n.fits
-
-``` --><p>In <code class="docutils literal notranslate"><span class="pre">database/dataset_exoplanets_confirmed</span></code> has all <em>.fits</em> files of <em>CoRoT targets with confirmed exoplanets</em>, obtained in <code class="docutils literal notranslate"><span class="pre">CoRoT</span> <span class="pre">IAS</span> <span class="pre">Archive</span></code>.</p>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">database/dataset_exoplanets_confirmed</span></code> has all <em>.fits</em> files of <em>CoRoT targets with confirmed exoplanets</em>, obtained in <code class="docutils literal notranslate"><span class="pre">CoRoT</span> <span class="pre">IAS</span> <span class="pre">Archive</span></code>.</p>
 <p>The main purpose of reading <em>.fits</em> data-set is to turn them into a pandas DataFrame. For this, it was decided to use <code class="docutils literal notranslate"><span class="pre">Astropy==4.2</span></code> library.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1099,8 +1113,7 @@ It takes: 39.21 seconds to apply
 <div class="section" id="Updating-folder-structure">
 <h2>Updating folder structure<a class="headerlink" href="#Updating-folder-structure" title="Permalink to this headline">¶</a></h2>
 <p>Now that we created <code class="docutils literal notranslate"><span class="pre">csv_files</span></code> folder, our <code class="docutils literal notranslate"><span class="pre">./database</span></code> folder will be..</p>
-<!-- ```Json
-./database
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>./database
    │
    └── exoplanets_confirmed
          │
@@ -1117,8 +1130,9 @@ It takes: 39.21 seconds to apply
                ├── ..._.csv
                ⋮       ⋮
                └── ..._k.csv
-
-``` --><p>Zipping <em>csv_files</em> folder</p>
+</pre></div>
+</div>
+<p>Zipping <em>csv_files</em> folder</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1204,7 +1218,6 @@ download("download_8378339a-e477-4852-839d-6cbe202ce3ed", "csv_files.zip", 70577
 <div class="section" id="Preprocessing-data">
 <h1>Preprocessing data<a class="headerlink" href="#Preprocessing-data" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>Before doing any kind of study, we need to unify our dataset</p>
 <div class="section" id="Extracting-informations-about-dataset">
 <h2>Extracting informations about dataset<a class="headerlink" href="#Extracting-informations-about-dataset" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
@@ -1433,8 +1446,7 @@ Total of files resampled: 33
 <div class="section" id="id1">
 <h2>Updating folder structure<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Now that we created <code class="docutils literal notranslate"><span class="pre">resampled_files</span></code> folder, our <code class="docutils literal notranslate"><span class="pre">./database</span></code> folder will be..</p>
-<!-- ```Json
-./database
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>./database
    │
    └── exoplanets_confirmed
          │
@@ -1457,7 +1469,9 @@ Total of files resampled: 33
                ├── ..._.csv
                ⋮       ⋮
                └── ..._v.csv
-``` --><p>Zipping <em>resampled_files</em> folder</p>
+</pre></div>
+</div>
+<p>Zipping <em>resampled_files</em> folder</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
