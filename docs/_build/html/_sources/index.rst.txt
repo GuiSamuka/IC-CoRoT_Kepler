@@ -83,7 +83,7 @@ Now, checkout some of the best results Obtained with this research:
    :maxdepth: 2
    :caption: Machine Learning
 
-   09 - Machine Learning
+   10 - Machine Learning
 
 Indices and tables
 ==================
