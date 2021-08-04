@@ -34,6 +34,7 @@ def view_lightcurve(
 
   show(p)
 
+
 def view_filter_results(
   x_original=None,
   y_original=None,
@@ -62,9 +63,47 @@ def view_filter_results(
   p.multi_line(xs, ys, color=["blue", "red"], line_width=2)
 
   show(p)
+
+
+def scatter_plot(
+  x_data=None, 
+  y_data=None,
+  title='Scatter plot',
+  x_axis='X-axis',
+  y_axis='Y-axis',
+  label='Scatter'
+  ):
+
+  p = figure(title=title,
+            plot_width=650, plot_height=400)
+
+  p.xaxis[0].axis_label = x_axis
+  p.yaxis[0].axis_label = y_axis
+
+  p.dot(x_data, y_data, size=10, color='black')
+  
+  show(p)
    
-def line_plot(): #TODO
-  pass
+
+def line_plot(
+  x_data=None, 
+  y_data=None,
+  title='Line plot',
+  x_axis='X-axis',
+  y_axis='Y-axis',
+  label='Line'
+  ):
+
+  p = figure(title=title,
+            plot_width=650, plot_height=400)
+
+  p.xaxis[0].axis_label = x_axis
+  p.yaxis[0].axis_label = y_axis
+
+  p.line(x_data, y_data, line_width=2)
+  
+  show(p)
+
 
 def view_fourier(): #TODO
   pass
