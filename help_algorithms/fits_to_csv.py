@@ -4,35 +4,41 @@ Finished in:
 
 @author: Guilherme Samuel
 """
+import shutil
+import os
+import time
+from datetime import datetime
+import julian
+import pandas as pd
+import numpy as np
+from astropy.io import fits
 from os import system
 system("cls")
 
 
 FITS_FILES_FOLDER_PATH = 'C:/Users/guisa/Desktop/Eclipsing_Binaries'
 
-FILE_NAME = FITS_FILES_FOLDER_PATH + '/EN2_STAR_CHR_0102582649_20071023T223035_20080303T093534.fits'
+FILE_NAME = FITS_FILES_FOLDER_PATH + \
+    '/EN2_STAR_CHR_0102582649_20071023T223035_20080303T093534.fits'
 
-from astropy.io  import fits
-import numpy as np
-import pandas as pd
-import julian
-from datetime import datetime
-import time
-import os
-import shutil
 
 def julian_to_stdtime(old_date):
-  """
-  This is the function used to convert Julian
-  date to Gregorian date
+    """
+    This is the function used to convert Julian
+    date to Gregorian date
 
-  :param numpy.float64 old_date: Represents Julian date of float type
-  """
-  aux_1 = julian.from_jd(old_date, fmt='mjd')
-  aux_2 = datetime.strptime(str(aux_1), '%Y-%m-%d %H:%M:%S.%f')
-  new_date = str(aux_2)
+    :param numpy.float64 old_date: Represents Julian date of float type
+    """
+    aux_1 = julian.from_jd(old_date, fmt='mjd')
+    try:
+        aux_2 = datetime.strptime(str(aux_1), '%Y-%m-%d %H:%M:%S.%f')
+    except:
+        aux_2 = datetime.strptime(str(aux_1), '%Y-%m-%d %H:%M:%S')
 
-  return new_date
+    new_date = str(aux_2)
+
+    return new_date
+
 
 def fits_to_csv(path, CSV_DIR):
     '''
@@ -40,7 +46,8 @@ def fits_to_csv(path, CSV_DIR):
     into a .csv file
 
     :param str path: Path to .fits data-set folder
-    :"param str CSV_DIR: Path to the new folder, with the csv files
+
+    :param str CSV_DIR: Path to the new folder, with the csv files
     '''
 
     # ``image_file`` contains all the information storage into .fits file
@@ -59,20 +66,20 @@ def fits_to_csv(path, CSV_DIR):
     data.drop('STATUSSYS', axis=1, inplace=True)
 
     # Renaming columns
-    data.rename(columns={'DATEBARTT': 'DATE'}, inplace = True)
-    data.rename(columns={'WHITEFLUXSYS': 'WHITEFLUX'}, inplace = True)
+    data.rename(columns={'DATEBARTT': 'DATE'}, inplace=True)
+    data.rename(columns={'WHITEFLUXSYS': 'WHITEFLUX'}, inplace=True)
 
-    ## Verify if there's any Not a Number (NaN) value
+    # Verify if there's any Not a Number (NaN) value
     if (data.isnull().values.any()):
         print("There's some NaN value on data. Check the data!")
         print("Name file:", FILE_NAME)
-    
+
     data.DATE = data.DATE.apply(lambda x: julian_to_stdtime(x))
 
     # Creating folder with .csv files
     if not os.path.isdir(CSV_DIR):
         os.mkdir(CSV_DIR)
-    
+
     # Renaming .csv files
     name = path[path.rfind('/')+1:path.rfind('.')] + '.csv'
 
@@ -82,6 +89,7 @@ def fits_to_csv(path, CSV_DIR):
 
     # Move to .csv folder
     shutil.move(name, CSV_DIR)
+
 
 def main():
     """
@@ -94,15 +102,16 @@ def main():
 
     for root_dir_path, sub_dirs, files in os.walk(my_dir):
         for i in range(0, len(files)):
-            path = my_dir + '/' + files[i] 
+            path = my_dir + '/' + files[i]
 
             if path.endswith('.fits'):
-                fits_to_csv(path, "C:/Users/guisa/Desktop/eclipsing_binaries_csv")
-                break
-            
+                fits_to_csv(
+                    path, "C:/Users/guisa/Desktop/eclipsing_binaries_csv")
+                # break
 
     tf = time.time()
     print("\nIt takes:", round(tf-t0, 2), "seconds to apply")
+
 
 if __name__ == '__main__':
     main()
