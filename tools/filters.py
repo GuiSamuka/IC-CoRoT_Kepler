@@ -292,10 +292,12 @@ def export_results_csv(PATH_DIR, filter_technique, cutoff_freq, order, numNei):
 
     # Path to resampled csv files
     DATA_DIR = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/02 - Datasets/exoplanets_confirmed/resampled_files'
+
+    
     count = 0
     for root_dir_path, sub_dirs, files in os.walk(DATA_DIR):
         for j in range(0, len(files)):
-            if files[j] != 'desktop.ini':
+            if files[j].endswith('.csv'):
                 # print(files[j] + " => Save it!")
                 data = pd.read_csv(root_dir_path + "/" + files[j])
                 y = data.WHITEFLUX.to_numpy()
