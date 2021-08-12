@@ -39,51 +39,27 @@ Now, checkout some of the best results Obtained with this research:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Ideal Lowpass Filter
+   :caption: Filtering processes
 
-   03 - Ideal Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Butterworth Filter
-
-   04 - Butterworth Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Gaussian Filter
-
-   05 - Gaussian Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Bessel Filter
-
-   06 - Bessel Lowpass Filter
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Median Filter
-
-   07 - Median Filter
+   03 - Study of filtering processes
 
 .. toctree::
    :maxdepth: 2
    :caption: Phase Folded
 
-   08 - Phase Folded   
+   04 - Phase Folded   
 
 .. toctree::
    :maxdepth: 2
    :caption: Feature Engineering
 
-   09 - Feature Engineering
+   05 - Feature Engineering
 
 .. toctree::
    :maxdepth: 2
    :caption: Machine Learning
 
-   10 - Machine Learning
+   06 - Machine Learning
 
 Indices and tables
 ==================
