@@ -61,6 +61,12 @@ Now, checkout some of the best results Obtained with this research:
 
    06 - Machine Learning
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Code APIs
+
+   modules
+
 Indices and tables
 ==================
 
