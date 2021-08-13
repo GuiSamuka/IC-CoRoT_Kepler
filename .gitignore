@@ -1,6 +1,8 @@
 ### My files
 tests/
 filters_notebooks/
+tools/
+help_algorithms/
 
 ### Default folders
 .pytest*
