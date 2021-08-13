@@ -39,7 +39,7 @@ class LightCurve():
         data_viz.view_lightcurve(self.time, self.flux)
 
     def ideal_lowpass_filter(self, cutoff_freq, numExpansion=70):
-        return filter_helper.apply_filter(self.time, self.flux, filter_technique='ideal', numExpansion=numExpansion)
+        return filter_helper.apply_filter(self.time, self.flux, filter_technique='ideal', cutoff_freq=cutoff_freq, numExpansion=numExpansion)
         
     def gaussian_lowpass_filter(self, cutoff_freq, numExpansion=70):
         return filter_helper.apply_filter(self.time, self.flux, filter_technique='gaussian', cutoff_freq=cutoff_freq, numExpansion=numExpansion)

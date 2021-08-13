@@ -45,7 +45,7 @@ def view_results(
   y_axis='Flux'):
 
   if filter_technique.upper() == 'IDEAL':
-      title = f"{filter_technique.capitalize()} filter with Cutoff frequency = {cutoff_freq}"
+    title = f"{filter_technique.capitalize()} filter with Cutoff frequency = {cutoff_freq}"
 
   elif filter_technique.upper() == 'MEDIAN':
     title = f"{filter_technique.capitalize()} filter with {numNei} neighbors"

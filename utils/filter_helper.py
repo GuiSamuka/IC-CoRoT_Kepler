@@ -6,7 +6,6 @@
 import numpy as np
 from math import exp, factorial
 from control import *
-# from scipy.signal.signaltools import medfilt
 from scipy.signal import medfilt
 from . import lightcurve
 
