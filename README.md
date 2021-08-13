@@ -1,7 +1,5 @@
 # Study of Filtering Processes of Light Curves
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Guilherme-SSB/IC-CoRoT_Kepler/HEAD)
-[Check de filtering techniques web site!](https://filtering-techniques.readthedocs.io/en/latest/)
-
 
 [Check the filtering techniques web site!](https://filtering-techniques.readthedocs.io/en/latest/)
 
