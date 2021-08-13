@@ -15,6 +15,7 @@ import pandas as pd
 import shutil
 from statistics import median
 import scipy.signal as ssg
+from lightcurve import LightCurve
 
 
 def fits_to_csv(FITS_PATH, CSV_PATH):
@@ -68,10 +69,11 @@ def fits_to_csv(FITS_PATH, CSV_PATH):
 
                 # Renaming .csv files
                 name = path[path.rfind('/')+1:path.rfind('.')] + '.csv'
+                name = name.split('_')[3] + "_" + name.split('_')[4] + ".csv"
 
                 # Saving data
                 data.to_csv(name, index=False)
-                # print("Data saved:", name)
+                print("Data saved:", name)
 
                 # Move to .csv folder
                 shutil.move(name, CSV_PATH)
@@ -178,6 +180,57 @@ def resampling_dataset(CSV_PATH, RESAMPLE_PATH, sample_size):
     print("\nTotal of files resampled:", count)
 
 
+def export_results_csv(WHERE_TO_SAVE_PATH, filter_technique, cutoff_freq, order, numNei):
+    # Path to resampled csv files
+    DATASET_PATH = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/IC-CoRoT_Kepler/resampled_files'
+    
+    count = 0
+    for root_dir_path, sub_dirs, files in os.walk(DATASET_PATH):
+        for j in range(0, len(files)):
+            if files[j].endswith('.csv'):
+                # print(files[j] + " => Save it!")
+                data = pd.read_csv(root_dir_path + "/" + files[j])
+
+                time = data.DATE.to_numpy()
+                flux = data.WHITEFLUX.to_numpy()
+
+                curve = LightCurve(time, flux)
+                
+
+                if filter_technique.upper() == 'IDEAL':
+                    filtered = curve.ideal_lowpass_filter(cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'GAUSSIAN':
+                    filtered = curve.gaussian_lowpass_filter(cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'BUTTERWORTH':
+                    filtered = curve.butterworth_lowpass_filter(order, cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'BESSEL':
+                    filtered = curve.bessel_lowpass_filter(order, cutoff_freq, numExpansion=100)
+                    flux_filtered = filtered.getFilteredFlux()  
+                
+                elif filter_technique.upper() == 'MEDIAN':
+                    filtered = curve.median_filter(numNei)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                
+                # Creating a new `pd.DataFrame`
+                concat_dict = {
+                  "DATE": pd.Series(time), 
+                  "WHITEFLUX": pd.Series(flux_filtered)
+                }
+                curve_filtered = pd.concat(concat_dict, axis=1)
+
+                # Salving data
+                curve_filtered.to_csv(WHERE_TO_SAVE_PATH + "/" + files[j], index=False)
+                count += 1
+    print("All files have been saved sucessefuly\n") if count == 33 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
+
+
 
 def main():
     FITS_FILES_PATH = r'C:\Users\guisa\Google Drive\01 - Iniciação Científica\02 - Datasets\exoplanets_confirmed\dataset_exoplanets_confirmed'
@@ -192,6 +245,8 @@ def main():
     "Second step: Resampling data"
     # sample_size = get_median_sample_size(CSV_FILES_PATH)
     # resampling_dataset(CSV_FILES_PATH, RESAMPLED_FILES_PATH, sample_size)
+
+    
 
 if __name__ == '__main__':
     main()
