@@ -3,7 +3,6 @@
     This module defines a LightCurve
 
 """
-import re
 from . import data_viz
 from . import filter_helper
 
@@ -89,4 +88,7 @@ class FilteredLightCurve():
         Plot the LightCurve using utils.Data_Viz's `~utils.data_viz.view_filter_results` method. 
         """
         data_viz.view_results(self.time, self.flux, self.filtered_flux, self.filter_technique, self.cutoff_freq, self.order, self.numNei)
+
+    def getFilteredFlux(self):
+        return self.filtered_flux
 
