@@ -127,7 +127,6 @@
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Machine Learning Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#Tests">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#SkTime">SkTime</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Preprocessing-data">Preprocessing data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Creating-matrix-of-features-(CoRoT-targets-with-confirmed-exoplanets)">Creating matrix of features (CoRoT targets with confirmed exoplanets)</a></li>
@@ -160,14 +159,50 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#ML-Classifier---Periodograms">ML Classifier - Periodograms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Preprocessing">Preprocessing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Labeling-data---Move-to-Features-notebook">Labeling data - Move to Features notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Decision-Trees---0.57">Decision Trees - 0.57</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Feature:-Periodograms">Feature: Periodograms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Preprocessing">Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">Splitting the dataset into the Training set and Test set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Train-model">Train model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Results">Results</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Train-model---SGD">Train model - SGD</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Results">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#XGBoost---0.585">XGBoost - 0.585</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id9">Feature: Periodograms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Splitting the dataset into the Training set and Test set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Train model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#Gaussian-Mixture-Models">Gaussian Mixture Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id14">Feature: Periodograms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Splitting the dataset into the Training set and Test set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Train model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#Lazy-Predict">Lazy Predict</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id19">Feature: Periodograms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Splitting the dataset into the Training set and Test set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Train model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id23">Results</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -533,238 +568,6 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-<div class="section" id="Tests">
-<h1>Tests<a class="headerlink" href="#Tests" title="Permalink to this headline">¶</a></h1>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="o">!</span>pip install control
-<span class="kn">from</span> <span class="nn">tools</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Requirement already satisfied: control in /usr/local/lib/python3.7/dist-packages (0.9.0)
-Requirement already satisfied: matplotlib in /usr/local/lib/python3.7/dist-packages (from control) (3.4.2)
-Requirement already satisfied: scipy in /usr/local/lib/python3.7/dist-packages (from control) (1.7.0)
-Requirement already satisfied: numpy in /usr/local/lib/python3.7/dist-packages (from control) (1.19.5)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;control) (1.3.1)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;control) (2.4.7)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;control) (7.1.2)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;control) (2.8.1)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;control) (0.10.0)
-Requirement already satisfied: six in /usr/local/lib/python3.7/dist-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;control) (1.15.0)
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># FILE_PATH = r&#39;C:\Users\guisa\Google Drive\01 - Iniciação Científica\02 - Datasets\csv_files\EN2_STAR_CHR_0101086161_20070516T060226_20071005T074409.csv&#39;</span>
-<span class="n">FILE_PATH</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/01 - Iniciação Científica/02 - Datasets/csv_files/EN2_STAR_CHR_0101086161_20070516T060226_20071005T074409.csv&#39;</span>
-</pre></div>
-</div>
-</div>
-<p>Reading one time series</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">FILE_PATH</span><span class="p">)</span>
-
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>DATE</th>
-      <th>WHITEFLUX</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2007-05-16 18:10:55.071642</td>
-      <td>112626.77</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2007-05-16 18:19:27.113766</td>
-      <td>112605.61</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2007-05-16 18:27:59.155929</td>
-      <td>112771.50</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2007-05-16 18:36:31.198092</td>
-      <td>113113.60</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2007-05-16 18:45:03.240256</td>
-      <td>112621.79</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<p>Taking only the flux and “saving” it as <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code></p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">flux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">WHITEFLUX</span>
-<span class="n">flux</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-0        32847.277
-1        32849.570
-2        32850.133
-3        32881.668
-4        32897.824
-           ...
-24451    33611.984
-24452    33498.582
-24453    33537.754
-24454    33552.040
-24455    33650.860
-Name: WHITEFLUX, Length: 24456, dtype: float64
-</pre></div></div>
-</div>
-<p>Creating a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> and appending the data from <code class="docutils literal notranslate"><span class="pre">flux</span></code> to the first column and the first row.</p>
-<p>Later, we are going to do the same for lightcurves</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># to SkTime</span>
-<span class="n">DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-
-<span class="n">DF</span> <span class="o">=</span> <span class="n">DF</span><span class="o">.</span><span class="n">append</span><span class="p">([[</span><span class="n">flux</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">DF</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time_series&#39;</span><span class="p">]</span>
-
-<span class="n">DF</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-
-<span class="c1">###############################################################################</span>
-
-<span class="c1"># to SKLEARN</span>
-<span class="c1"># DF = pd.DataFrame()</span>
-
-<span class="c1"># DF = DF.append(flux, ignore_index=True)</span>
-
-<span class="c1"># DF.head()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>time_series</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0        32847.277
-1        32849.570
-2       ...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">DF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-0        32847.277
-1        32849.570
-2        32850.133
-3        32881.668
-4        32897.824
-           ...
-24451    33611.984
-24452    33498.582
-24453    33537.754
-24454    33552.040
-24455    33650.860
-Name: WHITEFLUX, Length: 24456, dtype: float64
-</pre></div></div>
-</div>
-</div>
 <div class="section" id="SkTime">
 <h1>SkTime<a class="headerlink" href="#SkTime" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
@@ -819,7 +622,7 @@ Name: WHITEFLUX, Length: 24456, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -829,67 +632,7 @@ Name: WHITEFLUX, Length: 24456, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>time_series</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0        141157.216020
-1        141242.434636
-...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0        26051.806326
-1        26113.304520
-2 ...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0        1.298393e+06
-1        1.299550e+06
-2 ...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0        112521.329834
-1        112758.045853
-...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0        40643.684746
-1        40245.967717
-2 ...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -898,26 +641,7 @@ Name: WHITEFLUX, Length: 24456, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-0        141157.216020
-1        141242.434636
-2        141132.564812
-3        141373.143346
-4        141213.262888
-             ...
-15045    141147.423729
-15046    141100.943892
-15047    141378.202818
-15048    141228.656766
-15049    141309.960163
-Name: WHITEFLUX, Length: 15050, dtype: float64
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -925,14 +649,6 @@ Name: WHITEFLUX, Length: 15050, dtype: float64
 <span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(33, 1)
-</pre></div></div>
 </div>
 </div>
 <div class="section" id="Labeling-matrix-of-features">
@@ -942,7 +658,7 @@ Name: WHITEFLUX, Length: 15050, dtype: float64
 <li><p>1: eclipsing_binaries</p></li>
 <li><p>2: none</p></li>
 </ul>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -952,16 +668,7 @@ Name: WHITEFLUX, Length: 15050, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -971,20 +678,7 @@ array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-0    0
-1    0
-2    0
-3    0
-4    0
-dtype: int64
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -993,18 +687,10 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(33,)
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Creating-dataset,-X-and-y">
 <h3>Creating dataset, X and y<a class="headerlink" href="#Creating-dataset,-X-and-y" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -1019,74 +705,8 @@ dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>time_series</th>
-      <th>label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0        141157.216020
-1        141242.434636
-...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0        26051.806326
-1        26113.304520
-2 ...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0        1.298393e+06
-1        1.299550e+06
-2 ...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0        112521.329834
-1        112758.045853
-...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0        40643.684746
-1        40245.967717
-2 ...</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
 <p>How many Labels we got ?</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
@@ -1095,15 +715,6 @@ dtype: int64
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Labels =&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Counts =&#39;</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Labels = [0]
-Counts = [33]
-</pre></div></div>
 </div>
 </div>
 </div>
@@ -2767,11 +2378,14 @@ KNeighborsClassifier()
 </div>
 </div>
 </div>
-<div class="section" id="ML-Classifier---Periodograms">
-<h1>ML Classifier - Periodograms<a class="headerlink" href="#ML-Classifier---Periodograms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Decision-Trees---0.57">
+<h1>Decision Trees - 0.57<a class="headerlink" href="#Decision-Trees---0.57" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</a></p>
+<div class="section" id="Feature:-Periodograms">
+<h2>Feature: Periodograms<a class="headerlink" href="#Feature:-Periodograms" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2781,12 +2395,2128 @@ KNeighborsClassifier()
 <span class="n">PERIODOGRAMS_DIR</span> <span class="o">=</span> <span class="n">FEATURES_DIR</span> <span class="o">+</span> <span class="s1">&#39;/feature_periodograms.csv&#39;</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PERIODOGRAMS_DIR</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+      <th>38</th>
+      <th>39</th>
+      <th>...</th>
+      <th>7487</th>
+      <th>7488</th>
+      <th>7489</th>
+      <th>7490</th>
+      <th>7491</th>
+      <th>7492</th>
+      <th>7493</th>
+      <th>7494</th>
+      <th>7495</th>
+      <th>7496</th>
+      <th>7497</th>
+      <th>7498</th>
+      <th>7499</th>
+      <th>7500</th>
+      <th>7501</th>
+      <th>7502</th>
+      <th>7503</th>
+      <th>7504</th>
+      <th>7505</th>
+      <th>7506</th>
+      <th>7507</th>
+      <th>7508</th>
+      <th>7509</th>
+      <th>7510</th>
+      <th>7511</th>
+      <th>7512</th>
+      <th>7513</th>
+      <th>7514</th>
+      <th>7515</th>
+      <th>7516</th>
+      <th>7517</th>
+      <th>7518</th>
+      <th>7519</th>
+      <th>7520</th>
+      <th>7521</th>
+      <th>7522</th>
+      <th>7523</th>
+      <th>7524</th>
+      <th>7525</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>127</th>
+      <td>1.771419e-21</td>
+      <td>3.118507e+10</td>
+      <td>1.792958e+10</td>
+      <td>1.571999e+10</td>
+      <td>1.392014e+10</td>
+      <td>3.661464e+10</td>
+      <td>1.002512e+10</td>
+      <td>1.852784e+10</td>
+      <td>1.907169e+10</td>
+      <td>1.278961e+10</td>
+      <td>2.216953e+09</td>
+      <td>9.314578e+09</td>
+      <td>6.515043e+09</td>
+      <td>3.546007e+09</td>
+      <td>4.409342e+09</td>
+      <td>9.162630e+09</td>
+      <td>8.302242e+09</td>
+      <td>8.718788e+09</td>
+      <td>6.957977e+09</td>
+      <td>5.611064e+09</td>
+      <td>1.877066e+09</td>
+      <td>2.836627e+09</td>
+      <td>2.936736e+09</td>
+      <td>3.912005e+09</td>
+      <td>3.473252e+09</td>
+      <td>4.388687e+09</td>
+      <td>6.221741e+09</td>
+      <td>7.087409e+09</td>
+      <td>5.035225e+09</td>
+      <td>4.960782e+09</td>
+      <td>4.799346e+09</td>
+      <td>2.262591e+09</td>
+      <td>2.778995e+09</td>
+      <td>4.723886e+09</td>
+      <td>4.334889e+09</td>
+      <td>1.247480e+09</td>
+      <td>1.892225e+09</td>
+      <td>1.962624e+09</td>
+      <td>1.284465e+09</td>
+      <td>9.996783e+08</td>
+      <td>...</td>
+      <td>1.383741e+03</td>
+      <td>1.383737e+03</td>
+      <td>1.383732e+03</td>
+      <td>1.383728e+03</td>
+      <td>1.383724e+03</td>
+      <td>1.383720e+03</td>
+      <td>1.383716e+03</td>
+      <td>1.383712e+03</td>
+      <td>1.383708e+03</td>
+      <td>1.383705e+03</td>
+      <td>1.383701e+03</td>
+      <td>1.383698e+03</td>
+      <td>1.383695e+03</td>
+      <td>1.383692e+03</td>
+      <td>1.383689e+03</td>
+      <td>1.383686e+03</td>
+      <td>1.383683e+03</td>
+      <td>1.383681e+03</td>
+      <td>1.383678e+03</td>
+      <td>1.383676e+03</td>
+      <td>1.383674e+03</td>
+      <td>1.383671e+03</td>
+      <td>1.383670e+03</td>
+      <td>1.383668e+03</td>
+      <td>1.383666e+03</td>
+      <td>1.383664e+03</td>
+      <td>1.383663e+03</td>
+      <td>1.383661e+03</td>
+      <td>1.383660e+03</td>
+      <td>1.383659e+03</td>
+      <td>1.383658e+03</td>
+      <td>1.383657e+03</td>
+      <td>1.383656e+03</td>
+      <td>1.383656e+03</td>
+      <td>1.383655e+03</td>
+      <td>1.383655e+03</td>
+      <td>1.383654e+03</td>
+      <td>1.383654e+03</td>
+      <td>6.918270e+02</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>3.003987e-22</td>
+      <td>2.193934e+10</td>
+      <td>3.476167e+10</td>
+      <td>5.756229e+09</td>
+      <td>3.338234e+09</td>
+      <td>1.596978e+09</td>
+      <td>3.901232e+09</td>
+      <td>3.096381e+09</td>
+      <td>1.385702e+08</td>
+      <td>2.057867e+08</td>
+      <td>1.498203e+09</td>
+      <td>2.778013e+08</td>
+      <td>1.972097e+09</td>
+      <td>1.002296e+08</td>
+      <td>4.203961e+08</td>
+      <td>5.003830e+08</td>
+      <td>9.213325e+08</td>
+      <td>3.639927e+07</td>
+      <td>1.532101e+08</td>
+      <td>7.530989e+08</td>
+      <td>5.727591e+07</td>
+      <td>3.229936e+08</td>
+      <td>1.240524e+08</td>
+      <td>1.682591e+08</td>
+      <td>4.352538e+08</td>
+      <td>1.146596e+08</td>
+      <td>2.886079e+07</td>
+      <td>1.750333e+07</td>
+      <td>2.888187e+07</td>
+      <td>1.230348e+08</td>
+      <td>5.430957e+06</td>
+      <td>1.471160e+08</td>
+      <td>1.814644e+08</td>
+      <td>1.891106e+07</td>
+      <td>1.950586e+08</td>
+      <td>1.176811e+08</td>
+      <td>3.555871e+07</td>
+      <td>9.392426e+07</td>
+      <td>7.405261e+09</td>
+      <td>2.248148e+08</td>
+      <td>...</td>
+      <td>6.895641e+00</td>
+      <td>6.895618e+00</td>
+      <td>6.895596e+00</td>
+      <td>6.895575e+00</td>
+      <td>6.895554e+00</td>
+      <td>6.895534e+00</td>
+      <td>6.895515e+00</td>
+      <td>6.895496e+00</td>
+      <td>6.895477e+00</td>
+      <td>6.895460e+00</td>
+      <td>6.895443e+00</td>
+      <td>6.895426e+00</td>
+      <td>6.895410e+00</td>
+      <td>6.895395e+00</td>
+      <td>6.895380e+00</td>
+      <td>6.895366e+00</td>
+      <td>6.895352e+00</td>
+      <td>6.895340e+00</td>
+      <td>6.895327e+00</td>
+      <td>6.895315e+00</td>
+      <td>6.895304e+00</td>
+      <td>6.895294e+00</td>
+      <td>6.895284e+00</td>
+      <td>6.895275e+00</td>
+      <td>6.895266e+00</td>
+      <td>6.895258e+00</td>
+      <td>6.895250e+00</td>
+      <td>6.895243e+00</td>
+      <td>6.895237e+00</td>
+      <td>6.895231e+00</td>
+      <td>6.895226e+00</td>
+      <td>6.895222e+00</td>
+      <td>6.895218e+00</td>
+      <td>6.895215e+00</td>
+      <td>6.895212e+00</td>
+      <td>6.895210e+00</td>
+      <td>6.895208e+00</td>
+      <td>6.895207e+00</td>
+      <td>3.447603e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>6.085895e-23</td>
+      <td>2.508199e+10</td>
+      <td>2.671433e+10</td>
+      <td>3.458125e+10</td>
+      <td>2.183046e+09</td>
+      <td>2.913235e+10</td>
+      <td>1.529532e+10</td>
+      <td>2.041126e+10</td>
+      <td>9.492592e+09</td>
+      <td>4.173585e+09</td>
+      <td>8.286883e+09</td>
+      <td>3.807406e+09</td>
+      <td>1.621156e+09</td>
+      <td>3.544895e+09</td>
+      <td>1.688447e+09</td>
+      <td>2.456768e+09</td>
+      <td>9.215532e+08</td>
+      <td>3.701348e+09</td>
+      <td>7.629576e+08</td>
+      <td>8.599160e+08</td>
+      <td>9.432845e+07</td>
+      <td>2.130174e+09</td>
+      <td>8.154774e+08</td>
+      <td>1.670346e+09</td>
+      <td>4.049332e+08</td>
+      <td>2.506906e+08</td>
+      <td>1.076488e+09</td>
+      <td>7.620423e+07</td>
+      <td>3.262416e+08</td>
+      <td>4.253027e+08</td>
+      <td>1.258279e+08</td>
+      <td>4.688591e+08</td>
+      <td>1.020505e+09</td>
+      <td>2.253089e+07</td>
+      <td>1.977092e+08</td>
+      <td>1.187127e+09</td>
+      <td>1.304308e+08</td>
+      <td>7.328006e+08</td>
+      <td>1.594333e+09</td>
+      <td>3.496810e+08</td>
+      <td>...</td>
+      <td>1.450557e+03</td>
+      <td>1.450552e+03</td>
+      <td>1.450547e+03</td>
+      <td>1.450543e+03</td>
+      <td>1.450538e+03</td>
+      <td>1.450534e+03</td>
+      <td>1.450530e+03</td>
+      <td>1.450526e+03</td>
+      <td>1.450522e+03</td>
+      <td>1.450519e+03</td>
+      <td>1.450515e+03</td>
+      <td>1.450511e+03</td>
+      <td>1.450508e+03</td>
+      <td>1.450505e+03</td>
+      <td>1.450502e+03</td>
+      <td>1.450499e+03</td>
+      <td>1.450496e+03</td>
+      <td>1.450493e+03</td>
+      <td>1.450491e+03</td>
+      <td>1.450488e+03</td>
+      <td>1.450486e+03</td>
+      <td>1.450484e+03</td>
+      <td>1.450482e+03</td>
+      <td>1.450480e+03</td>
+      <td>1.450478e+03</td>
+      <td>1.450476e+03</td>
+      <td>1.450474e+03</td>
+      <td>1.450473e+03</td>
+      <td>1.450472e+03</td>
+      <td>1.450470e+03</td>
+      <td>1.450469e+03</td>
+      <td>1.450468e+03</td>
+      <td>1.450468e+03</td>
+      <td>1.450467e+03</td>
+      <td>1.450466e+03</td>
+      <td>1.450466e+03</td>
+      <td>1.450466e+03</td>
+      <td>1.450465e+03</td>
+      <td>7.252327e+02</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>7.520660e-23</td>
+      <td>6.582516e+10</td>
+      <td>1.176575e+09</td>
+      <td>5.726639e+10</td>
+      <td>5.566852e+09</td>
+      <td>2.512593e+10</td>
+      <td>6.645201e+09</td>
+      <td>2.633803e+09</td>
+      <td>2.373441e+09</td>
+      <td>2.738804e+09</td>
+      <td>1.108361e+10</td>
+      <td>1.011122e+09</td>
+      <td>1.796283e+10</td>
+      <td>4.548535e+09</td>
+      <td>4.153863e+09</td>
+      <td>5.986967e+09</td>
+      <td>7.591259e+08</td>
+      <td>4.204495e+09</td>
+      <td>2.445218e+09</td>
+      <td>2.999276e+09</td>
+      <td>2.288641e+08</td>
+      <td>5.048715e+09</td>
+      <td>3.212317e+09</td>
+      <td>1.767702e+08</td>
+      <td>3.379057e+09</td>
+      <td>5.470107e+08</td>
+      <td>1.534445e+06</td>
+      <td>8.561774e+07</td>
+      <td>2.678881e+08</td>
+      <td>5.831388e+08</td>
+      <td>2.250089e+09</td>
+      <td>2.945777e+09</td>
+      <td>2.354936e+09</td>
+      <td>4.394168e+08</td>
+      <td>5.295828e+08</td>
+      <td>1.999850e+09</td>
+      <td>3.491288e+08</td>
+      <td>9.152734e+07</td>
+      <td>6.722281e+08</td>
+      <td>2.420303e+09</td>
+      <td>...</td>
+      <td>1.157560e+07</td>
+      <td>4.970938e+06</td>
+      <td>1.044088e+07</td>
+      <td>2.076864e+07</td>
+      <td>5.652504e+06</td>
+      <td>3.240631e+06</td>
+      <td>1.397898e+07</td>
+      <td>1.008912e+06</td>
+      <td>2.327728e+07</td>
+      <td>2.909226e+07</td>
+      <td>3.869044e+06</td>
+      <td>3.251341e+06</td>
+      <td>2.399123e+07</td>
+      <td>5.366716e+07</td>
+      <td>1.863748e+07</td>
+      <td>4.281250e+06</td>
+      <td>1.950633e+07</td>
+      <td>3.989715e+07</td>
+      <td>3.906992e+07</td>
+      <td>1.556306e+07</td>
+      <td>1.263990e+07</td>
+      <td>2.418054e+07</td>
+      <td>1.361411e+07</td>
+      <td>8.309645e+06</td>
+      <td>2.176511e+07</td>
+      <td>8.594606e+06</td>
+      <td>5.784685e+04</td>
+      <td>8.229419e+04</td>
+      <td>2.710502e+07</td>
+      <td>4.228367e+07</td>
+      <td>1.220436e+07</td>
+      <td>1.449948e+06</td>
+      <td>1.991303e+07</td>
+      <td>1.383334e+06</td>
+      <td>3.488514e+06</td>
+      <td>2.693400e+07</td>
+      <td>6.823640e+06</td>
+      <td>5.278711e+06</td>
+      <td>4.999322e+06</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>2.005767e-23</td>
+      <td>2.483386e+11</td>
+      <td>3.034385e+11</td>
+      <td>5.397407e+09</td>
+      <td>9.714590e+10</td>
+      <td>3.074372e+09</td>
+      <td>4.607364e+10</td>
+      <td>6.113658e+09</td>
+      <td>2.487312e+10</td>
+      <td>3.281864e+09</td>
+      <td>3.171297e+09</td>
+      <td>4.322904e+08</td>
+      <td>7.593255e+08</td>
+      <td>5.041733e+09</td>
+      <td>2.014204e+10</td>
+      <td>8.716218e+07</td>
+      <td>1.438071e+10</td>
+      <td>2.324841e+09</td>
+      <td>5.329362e+09</td>
+      <td>2.122016e+09</td>
+      <td>2.336579e+08</td>
+      <td>3.276469e+08</td>
+      <td>3.614434e+08</td>
+      <td>4.081245e+09</td>
+      <td>2.247445e+09</td>
+      <td>5.308821e+08</td>
+      <td>7.717831e+09</td>
+      <td>7.687563e+08</td>
+      <td>3.279740e+09</td>
+      <td>2.631919e+08</td>
+      <td>6.609370e+09</td>
+      <td>2.438674e+09</td>
+      <td>1.032339e+09</td>
+      <td>6.609401e+09</td>
+      <td>2.769244e+09</td>
+      <td>2.386537e+09</td>
+      <td>2.067472e+10</td>
+      <td>2.984367e+10</td>
+      <td>7.234662e+10</td>
+      <td>5.054561e+10</td>
+      <td>...</td>
+      <td>3.646149e+06</td>
+      <td>3.104552e+06</td>
+      <td>6.063856e+07</td>
+      <td>7.379961e+06</td>
+      <td>4.232041e+06</td>
+      <td>8.361054e+06</td>
+      <td>1.008574e+07</td>
+      <td>2.675340e+07</td>
+      <td>2.353878e+06</td>
+      <td>3.933722e+07</td>
+      <td>1.294616e+07</td>
+      <td>6.858054e+07</td>
+      <td>1.564118e+07</td>
+      <td>1.564992e+07</td>
+      <td>1.929105e+07</td>
+      <td>1.895119e+07</td>
+      <td>2.445280e+06</td>
+      <td>1.220851e+07</td>
+      <td>1.957260e+07</td>
+      <td>3.177603e+07</td>
+      <td>9.153447e+06</td>
+      <td>3.882828e+07</td>
+      <td>6.555127e+07</td>
+      <td>3.676038e+06</td>
+      <td>5.286998e+07</td>
+      <td>2.373915e+07</td>
+      <td>3.191280e+06</td>
+      <td>1.308186e+08</td>
+      <td>1.445847e+07</td>
+      <td>2.031333e+07</td>
+      <td>2.910264e+07</td>
+      <td>3.628487e+07</td>
+      <td>8.872919e+07</td>
+      <td>1.077391e+07</td>
+      <td>5.264475e+06</td>
+      <td>2.564387e+07</td>
+      <td>1.219609e+07</td>
+      <td>2.248579e+06</td>
+      <td>4.098014e+06</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 7527 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Matrix of features (Independent variable), X: numpy.ndarray</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Dependent variable vector, y: numpy.ndarray</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this headline">¶</a></h3>
+<p><strong>1. Normalization</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>2. PCA - Dimensionality Reduction</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># What is the minimun value of `n_components` to keep 95% of variance on data ?</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cumsum</span> <span class="o">&gt;=</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The minimun value is:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The minimun value is: 49
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Best altenative… set the <code class="docutils literal notranslate"><span class="pre">n_components</span></code> to fluctuate between 0.0 and 1.0, indicating the rate of variance you want to preserve</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(98, 49) (98,) (33, 49) (33,)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Train-model">
+<h3>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="n">class_trees</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">class_trees</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39;,
+                       max_depth=None, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                       random_state=42, splitter=&#39;best&#39;)
+</pre></div></div>
+</div>
+<div class="section" id="Results">
+<h4>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+
+<span class="n">labels_formated</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;confirmed exoplanets&#39;</span><span class="p">,</span> <span class="s1">&#39;eclipsing binaries&#39;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">class_trees</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span>
+                             <span class="n">display_labels</span><span class="o">=</span><span class="n">labels_formated</span><span class="p">,</span>
+                             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">,</span>
+                             <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision Trees Classifier - Confusion matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/06_-_Machine_Learning_77_0.png" src="_images/06_-_Machine_Learning_77_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="XGBoost---0.585">
+<h1>XGBoost - 0.585<a class="headerlink" href="#XGBoost---0.585" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
+<div class="section" id="id9">
+<h2>Feature: Periodograms<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">FEATURES_DIR</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/01 - Iniciação Científica/02 - Datasets/features&#39;</span>
+<span class="n">PERIODOGRAMS_DIR</span> <span class="o">=</span> <span class="n">FEATURES_DIR</span> <span class="o">+</span> <span class="s1">&#39;/feature_periodograms.csv&#39;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PERIODOGRAMS_DIR</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+      <th>38</th>
+      <th>39</th>
+      <th>...</th>
+      <th>7487</th>
+      <th>7488</th>
+      <th>7489</th>
+      <th>7490</th>
+      <th>7491</th>
+      <th>7492</th>
+      <th>7493</th>
+      <th>7494</th>
+      <th>7495</th>
+      <th>7496</th>
+      <th>7497</th>
+      <th>7498</th>
+      <th>7499</th>
+      <th>7500</th>
+      <th>7501</th>
+      <th>7502</th>
+      <th>7503</th>
+      <th>7504</th>
+      <th>7505</th>
+      <th>7506</th>
+      <th>7507</th>
+      <th>7508</th>
+      <th>7509</th>
+      <th>7510</th>
+      <th>7511</th>
+      <th>7512</th>
+      <th>7513</th>
+      <th>7514</th>
+      <th>7515</th>
+      <th>7516</th>
+      <th>7517</th>
+      <th>7518</th>
+      <th>7519</th>
+      <th>7520</th>
+      <th>7521</th>
+      <th>7522</th>
+      <th>7523</th>
+      <th>7524</th>
+      <th>7525</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>97</th>
+      <td>6.567484e-24</td>
+      <td>1.178041e+10</td>
+      <td>5.298207e+09</td>
+      <td>9.132480e+09</td>
+      <td>1.002822e+10</td>
+      <td>3.540825e+09</td>
+      <td>4.228655e+09</td>
+      <td>4.095593e+09</td>
+      <td>2.244863e+08</td>
+      <td>1.012111e+09</td>
+      <td>2.164379e+09</td>
+      <td>1.789251e+09</td>
+      <td>1.365437e+09</td>
+      <td>1.876186e+09</td>
+      <td>2.027531e+09</td>
+      <td>7.245684e+12</td>
+      <td>1.720589e+09</td>
+      <td>7.179984e+08</td>
+      <td>1.050979e+09</td>
+      <td>9.693505e+08</td>
+      <td>1.354755e+09</td>
+      <td>1.007977e+09</td>
+      <td>3.747895e+08</td>
+      <td>2.814626e+08</td>
+      <td>4.937656e+08</td>
+      <td>2.295634e+09</td>
+      <td>3.026242e+09</td>
+      <td>3.029127e+09</td>
+      <td>1.860285e+09</td>
+      <td>2.587133e+09</td>
+      <td>1.779195e+13</td>
+      <td>8.697306e+08</td>
+      <td>1.296085e+09</td>
+      <td>1.402465e+08</td>
+      <td>1.454082e+09</td>
+      <td>4.639711e+08</td>
+      <td>1.589614e+08</td>
+      <td>1.291053e+09</td>
+      <td>1.517971e+08</td>
+      <td>7.411420e+08</td>
+      <td>...</td>
+      <td>1.076525e+03</td>
+      <td>1.076522e+03</td>
+      <td>1.076519e+03</td>
+      <td>1.076515e+03</td>
+      <td>1.076512e+03</td>
+      <td>1.076509e+03</td>
+      <td>1.076506e+03</td>
+      <td>1.076503e+03</td>
+      <td>1.076500e+03</td>
+      <td>1.076497e+03</td>
+      <td>1.076495e+03</td>
+      <td>1.076492e+03</td>
+      <td>1.076489e+03</td>
+      <td>1.076487e+03</td>
+      <td>1.076485e+03</td>
+      <td>1.076483e+03</td>
+      <td>1.076480e+03</td>
+      <td>1.076478e+03</td>
+      <td>1076.476488</td>
+      <td>1.076475e+03</td>
+      <td>1.076473e+03</td>
+      <td>1.076471e+03</td>
+      <td>1076.469734</td>
+      <td>1.076468e+03</td>
+      <td>1.076467e+03</td>
+      <td>1.076466e+03</td>
+      <td>1.076464e+03</td>
+      <td>1.076463e+03</td>
+      <td>1.076462e+03</td>
+      <td>1.076462e+03</td>
+      <td>1.076461e+03</td>
+      <td>1.076460e+03</td>
+      <td>1.076459e+03</td>
+      <td>1076.458898</td>
+      <td>1.076458e+03</td>
+      <td>1.076458e+03</td>
+      <td>1.076458e+03</td>
+      <td>1.076458e+03</td>
+      <td>5.382289e+02</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>5.748580e-20</td>
+      <td>6.211685e+10</td>
+      <td>2.216964e+09</td>
+      <td>1.435994e+10</td>
+      <td>1.719760e+10</td>
+      <td>8.704939e+09</td>
+      <td>4.907214e+09</td>
+      <td>2.450727e+09</td>
+      <td>6.121095e+09</td>
+      <td>4.615305e+08</td>
+      <td>4.269709e+08</td>
+      <td>2.070437e+09</td>
+      <td>1.608734e+08</td>
+      <td>1.740199e+09</td>
+      <td>2.628103e+08</td>
+      <td>1.164062e+09</td>
+      <td>3.439496e+09</td>
+      <td>3.440799e+09</td>
+      <td>3.752920e+09</td>
+      <td>2.090612e+09</td>
+      <td>1.269435e+09</td>
+      <td>2.729621e+09</td>
+      <td>3.853905e+09</td>
+      <td>8.723574e+09</td>
+      <td>2.646283e+09</td>
+      <td>8.650304e+09</td>
+      <td>6.046799e+09</td>
+      <td>1.536936e+10</td>
+      <td>1.372588e+10</td>
+      <td>3.027827e+10</td>
+      <td>2.291537e+10</td>
+      <td>1.746399e+10</td>
+      <td>2.597201e+11</td>
+      <td>6.334982e+12</td>
+      <td>1.774388e+12</td>
+      <td>2.501299e+11</td>
+      <td>4.467781e+10</td>
+      <td>8.605329e+10</td>
+      <td>3.695356e+10</td>
+      <td>3.505263e+10</td>
+      <td>...</td>
+      <td>2.414816e+04</td>
+      <td>2.414808e+04</td>
+      <td>2.414800e+04</td>
+      <td>2.414793e+04</td>
+      <td>2.414785e+04</td>
+      <td>2.414778e+04</td>
+      <td>2.414772e+04</td>
+      <td>2.414765e+04</td>
+      <td>2.414759e+04</td>
+      <td>2.414752e+04</td>
+      <td>2.414746e+04</td>
+      <td>2.414741e+04</td>
+      <td>2.414735e+04</td>
+      <td>2.414730e+04</td>
+      <td>2.414724e+04</td>
+      <td>2.414719e+04</td>
+      <td>2.414715e+04</td>
+      <td>2.414710e+04</td>
+      <td>24147.059038</td>
+      <td>2.414702e+04</td>
+      <td>2.414698e+04</td>
+      <td>2.414694e+04</td>
+      <td>24146.907523</td>
+      <td>2.414687e+04</td>
+      <td>2.414684e+04</td>
+      <td>2.414682e+04</td>
+      <td>2.414679e+04</td>
+      <td>2.414677e+04</td>
+      <td>2.414674e+04</td>
+      <td>2.414672e+04</td>
+      <td>2.414671e+04</td>
+      <td>2.414669e+04</td>
+      <td>2.414668e+04</td>
+      <td>24146.664472</td>
+      <td>2.414666e+04</td>
+      <td>2.414665e+04</td>
+      <td>2.414664e+04</td>
+      <td>2.414664e+04</td>
+      <td>1.207332e+04</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1.752484e-21</td>
+      <td>9.756491e+10</td>
+      <td>3.995481e+10</td>
+      <td>1.105439e+10</td>
+      <td>3.336733e+09</td>
+      <td>3.161758e+09</td>
+      <td>3.782595e+09</td>
+      <td>5.017278e+09</td>
+      <td>1.508046e+09</td>
+      <td>1.459446e+09</td>
+      <td>5.922758e+08</td>
+      <td>4.391054e+08</td>
+      <td>1.723186e+09</td>
+      <td>1.404142e+09</td>
+      <td>9.070158e+08</td>
+      <td>4.035657e+08</td>
+      <td>8.472543e+08</td>
+      <td>2.859164e+08</td>
+      <td>2.233725e+08</td>
+      <td>4.385475e+08</td>
+      <td>2.653935e+07</td>
+      <td>1.300230e+09</td>
+      <td>1.120066e+09</td>
+      <td>1.688150e+08</td>
+      <td>1.741311e+07</td>
+      <td>5.441521e+08</td>
+      <td>2.447330e+07</td>
+      <td>6.426762e+07</td>
+      <td>2.427007e+08</td>
+      <td>6.739195e+07</td>
+      <td>6.132567e+08</td>
+      <td>1.442627e+08</td>
+      <td>9.345792e+07</td>
+      <td>1.235102e+08</td>
+      <td>4.746666e+08</td>
+      <td>1.192272e+08</td>
+      <td>2.053329e+08</td>
+      <td>2.421255e+08</td>
+      <td>9.038041e+07</td>
+      <td>4.684413e+07</td>
+      <td>...</td>
+      <td>5.069784e+06</td>
+      <td>1.481839e+06</td>
+      <td>6.506158e+06</td>
+      <td>4.203149e+06</td>
+      <td>1.004154e+07</td>
+      <td>7.254977e+06</td>
+      <td>1.675987e+07</td>
+      <td>1.362856e+07</td>
+      <td>3.276551e+06</td>
+      <td>3.198822e+07</td>
+      <td>3.470285e+06</td>
+      <td>2.147650e+07</td>
+      <td>1.048925e+07</td>
+      <td>2.111648e+06</td>
+      <td>7.221949e+06</td>
+      <td>1.317321e+07</td>
+      <td>2.028878e+07</td>
+      <td>2.733158e+06</td>
+      <td>373819.128620</td>
+      <td>1.328582e+07</td>
+      <td>9.991568e+06</td>
+      <td>4.730944e+06</td>
+      <td>474384.659373</td>
+      <td>5.020889e+06</td>
+      <td>9.238025e+06</td>
+      <td>2.269643e+07</td>
+      <td>2.639189e+07</td>
+      <td>1.203043e+07</td>
+      <td>6.267373e+06</td>
+      <td>4.170246e+06</td>
+      <td>4.640980e+06</td>
+      <td>6.198973e+06</td>
+      <td>1.228420e+07</td>
+      <td>223599.331136</td>
+      <td>4.635344e+06</td>
+      <td>2.317602e+07</td>
+      <td>4.720558e+06</td>
+      <td>1.783050e+07</td>
+      <td>7.135303e+07</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>4.444052e-21</td>
+      <td>1.225255e+11</td>
+      <td>8.684239e+11</td>
+      <td>3.046022e+11</td>
+      <td>3.763060e+11</td>
+      <td>3.998026e+10</td>
+      <td>2.059423e+07</td>
+      <td>1.908615e+09</td>
+      <td>1.245052e+10</td>
+      <td>1.664964e+10</td>
+      <td>1.750149e+09</td>
+      <td>1.974743e+09</td>
+      <td>1.564496e+10</td>
+      <td>9.473577e+09</td>
+      <td>4.174117e+09</td>
+      <td>3.589926e+08</td>
+      <td>3.528037e+08</td>
+      <td>4.494764e+08</td>
+      <td>1.807520e+09</td>
+      <td>1.496267e+09</td>
+      <td>9.872100e+07</td>
+      <td>1.281638e+09</td>
+      <td>9.822630e+07</td>
+      <td>2.448930e+09</td>
+      <td>1.786816e+07</td>
+      <td>8.014748e+08</td>
+      <td>9.356294e+08</td>
+      <td>8.695086e+08</td>
+      <td>1.502131e+09</td>
+      <td>8.623401e+08</td>
+      <td>2.380475e+09</td>
+      <td>6.490083e+08</td>
+      <td>1.295033e+09</td>
+      <td>5.574792e+08</td>
+      <td>7.684658e+08</td>
+      <td>2.706459e+09</td>
+      <td>1.572336e+08</td>
+      <td>8.620298e+08</td>
+      <td>2.541334e+08</td>
+      <td>5.012295e+07</td>
+      <td>...</td>
+      <td>3.042985e+04</td>
+      <td>3.042975e+04</td>
+      <td>3.042965e+04</td>
+      <td>3.042956e+04</td>
+      <td>3.042947e+04</td>
+      <td>3.042938e+04</td>
+      <td>3.042929e+04</td>
+      <td>3.042921e+04</td>
+      <td>3.042913e+04</td>
+      <td>3.042905e+04</td>
+      <td>3.042897e+04</td>
+      <td>3.042890e+04</td>
+      <td>3.042883e+04</td>
+      <td>3.042876e+04</td>
+      <td>3.042870e+04</td>
+      <td>3.042864e+04</td>
+      <td>3.042858e+04</td>
+      <td>3.042852e+04</td>
+      <td>30428.464346</td>
+      <td>3.042841e+04</td>
+      <td>3.042836e+04</td>
+      <td>3.042832e+04</td>
+      <td>30428.273418</td>
+      <td>3.042823e+04</td>
+      <td>3.042819e+04</td>
+      <td>3.042816e+04</td>
+      <td>3.042812e+04</td>
+      <td>3.042809e+04</td>
+      <td>3.042807e+04</td>
+      <td>3.042804e+04</td>
+      <td>3.042802e+04</td>
+      <td>3.042800e+04</td>
+      <td>3.042798e+04</td>
+      <td>30427.967140</td>
+      <td>3.042796e+04</td>
+      <td>3.042795e+04</td>
+      <td>3.042794e+04</td>
+      <td>3.042794e+04</td>
+      <td>1.521397e+04</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>4.534147e-21</td>
+      <td>4.810687e+11</td>
+      <td>7.156296e+11</td>
+      <td>7.907086e+10</td>
+      <td>1.827524e+11</td>
+      <td>3.066684e+10</td>
+      <td>2.281262e+10</td>
+      <td>2.472757e+10</td>
+      <td>2.943501e+10</td>
+      <td>3.255523e+10</td>
+      <td>3.103233e+10</td>
+      <td>2.130254e+10</td>
+      <td>3.009069e+10</td>
+      <td>7.761600e+09</td>
+      <td>1.505235e+10</td>
+      <td>6.974905e+09</td>
+      <td>1.466913e+10</td>
+      <td>5.582512e+08</td>
+      <td>1.547837e+10</td>
+      <td>8.222439e+09</td>
+      <td>8.399665e+08</td>
+      <td>1.454228e+09</td>
+      <td>3.245127e+09</td>
+      <td>4.154653e+09</td>
+      <td>1.935284e+09</td>
+      <td>5.700948e+09</td>
+      <td>3.176125e+09</td>
+      <td>3.062322e+09</td>
+      <td>3.942368e+08</td>
+      <td>1.405007e+09</td>
+      <td>5.606020e+08</td>
+      <td>8.074106e+08</td>
+      <td>8.842706e+08</td>
+      <td>1.022849e+08</td>
+      <td>2.209409e+09</td>
+      <td>3.976962e+09</td>
+      <td>3.228091e+08</td>
+      <td>1.296049e+09</td>
+      <td>1.387544e+09</td>
+      <td>3.794390e+08</td>
+      <td>...</td>
+      <td>2.085999e+05</td>
+      <td>2.085992e+05</td>
+      <td>2.085985e+05</td>
+      <td>2.085979e+05</td>
+      <td>2.085973e+05</td>
+      <td>2.085966e+05</td>
+      <td>2.085961e+05</td>
+      <td>2.085955e+05</td>
+      <td>2.085949e+05</td>
+      <td>2.085944e+05</td>
+      <td>2.085939e+05</td>
+      <td>2.085934e+05</td>
+      <td>2.085929e+05</td>
+      <td>2.085924e+05</td>
+      <td>2.085920e+05</td>
+      <td>2.085916e+05</td>
+      <td>2.085911e+05</td>
+      <td>2.085908e+05</td>
+      <td>208590.383540</td>
+      <td>2.085900e+05</td>
+      <td>2.085897e+05</td>
+      <td>2.085894e+05</td>
+      <td>208589.074708</td>
+      <td>2.085888e+05</td>
+      <td>2.085885e+05</td>
+      <td>2.085883e+05</td>
+      <td>2.085881e+05</td>
+      <td>2.085878e+05</td>
+      <td>2.085877e+05</td>
+      <td>2.085875e+05</td>
+      <td>2.085873e+05</td>
+      <td>2.085872e+05</td>
+      <td>2.085871e+05</td>
+      <td>208586.975144</td>
+      <td>2.085869e+05</td>
+      <td>2.085868e+05</td>
+      <td>2.085868e+05</td>
+      <td>2.085868e+05</td>
+      <td>1.042934e+05</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 7527 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Matrix of features (Independent variable), X: numpy.ndarray</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Dependent variable vector, y: numpy.ndarray</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>Preprocessing<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p><strong>1. Normalization</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>2. PCA - Dimensionality Reduction</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># What is the minimun value of `n_components` to keep 95% of variance on data ?</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cumsum</span> <span class="o">&gt;=</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The minimun value is:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The minimun value is: 49
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Best altenative… set the <code class="docutils literal notranslate"><span class="pre">n_components</span></code> to fluctuate between 0.0 and 1.0, indicating the rate of variance you want to preserve</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(98, 49) (98,) (33, 49) (33,)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Train model<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+
+<span class="n">class_xgb</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">class_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=1, gamma=0,
+              learning_rate=0.3, max_delta_step=0, max_depth=6,
+              min_child_weight=1, missing=None, n_estimators=100, n_jobs=1,
+              nthread=None, objective=&#39;binary:logistic&#39;, random_state=42,
+              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=None,
+              silent=None, subsample=1, verbosity=0)
+</pre></div></div>
+</div>
+<div class="section" id="id13">
+<h4>Results<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+
+<span class="n">labels_formated</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;confirmed exoplanets&#39;</span><span class="p">,</span> <span class="s1">&#39;eclipsing binaries&#39;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">class_xgb</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span>
+                             <span class="n">display_labels</span><span class="o">=</span><span class="n">labels_formated</span><span class="p">,</span>
+                             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">,</span>
+                             <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;XGBoost Classifier - Confusion matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/06_-_Machine_Learning_95_0.png" src="_images/06_-_Machine_Learning_95_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Gaussian-Mixture-Models">
+<h1>Gaussian Mixture Models<a class="headerlink" href="#Gaussian-Mixture-Models" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html">https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html</a></p>
+<div class="section" id="id14">
+<h2>Feature: Periodograms<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">FEATURES_DIR</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/01 - Iniciação Científica/02 - Datasets/features&#39;</span>
+<span class="n">PERIODOGRAMS_DIR</span> <span class="o">=</span> <span class="n">FEATURES_DIR</span> <span class="o">+</span> <span class="s1">&#39;/feature_periodograms.csv&#39;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PERIODOGRAMS_DIR</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+      <th>38</th>
+      <th>39</th>
+      <th>...</th>
+      <th>7487</th>
+      <th>7488</th>
+      <th>7489</th>
+      <th>7490</th>
+      <th>7491</th>
+      <th>7492</th>
+      <th>7493</th>
+      <th>7494</th>
+      <th>7495</th>
+      <th>7496</th>
+      <th>7497</th>
+      <th>7498</th>
+      <th>7499</th>
+      <th>7500</th>
+      <th>7501</th>
+      <th>7502</th>
+      <th>7503</th>
+      <th>7504</th>
+      <th>7505</th>
+      <th>7506</th>
+      <th>7507</th>
+      <th>7508</th>
+      <th>7509</th>
+      <th>7510</th>
+      <th>7511</th>
+      <th>7512</th>
+      <th>7513</th>
+      <th>7514</th>
+      <th>7515</th>
+      <th>7516</th>
+      <th>7517</th>
+      <th>7518</th>
+      <th>7519</th>
+      <th>7520</th>
+      <th>7521</th>
+      <th>7522</th>
+      <th>7523</th>
+      <th>7524</th>
+      <th>7525</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>121</th>
+      <td>3.099730e-21</td>
+      <td>1.450455e+11</td>
+      <td>5.851971e+10</td>
+      <td>1.371264e+10</td>
+      <td>6.332105e+10</td>
+      <td>7.659462e+10</td>
+      <td>2.038631e+10</td>
+      <td>1.701385e+10</td>
+      <td>3.411757e+10</td>
+      <td>1.877369e+10</td>
+      <td>8.258293e+10</td>
+      <td>4.761234e+09</td>
+      <td>1.889632e+10</td>
+      <td>4.737847e+10</td>
+      <td>6.443619e+10</td>
+      <td>2.390949e+10</td>
+      <td>3.833547e+10</td>
+      <td>4.000678e+10</td>
+      <td>1.699051e+10</td>
+      <td>1.877011e+10</td>
+      <td>2.347108e+10</td>
+      <td>1.919521e+10</td>
+      <td>1.872913e+10</td>
+      <td>5.364253e+10</td>
+      <td>9.076523e+09</td>
+      <td>4.618874e+10</td>
+      <td>2.637520e+10</td>
+      <td>1.318005e+10</td>
+      <td>3.798276e+10</td>
+      <td>2.442435e+10</td>
+      <td>4.000654e+10</td>
+      <td>4.623934e+10</td>
+      <td>3.615225e+10</td>
+      <td>2.993127e+10</td>
+      <td>3.303417e+10</td>
+      <td>3.022440e+10</td>
+      <td>2.011551e+10</td>
+      <td>3.900373e+10</td>
+      <td>4.138960e+10</td>
+      <td>2.368466e+10</td>
+      <td>...</td>
+      <td>9970.968395</td>
+      <td>9970.935809</td>
+      <td>9970.904092</td>
+      <td>9970.873244</td>
+      <td>9970.843265</td>
+      <td>9970.814155</td>
+      <td>9970.785914</td>
+      <td>9970.758543</td>
+      <td>9970.732040</td>
+      <td>9970.706406</td>
+      <td>9970.681642</td>
+      <td>9970.657746</td>
+      <td>9970.634719</td>
+      <td>9970.612562</td>
+      <td>9970.591273</td>
+      <td>9970.570853</td>
+      <td>9970.551303</td>
+      <td>9970.532621</td>
+      <td>9970.514808</td>
+      <td>9970.497864</td>
+      <td>9970.481790</td>
+      <td>9970.466584</td>
+      <td>9970.452247</td>
+      <td>9970.438779</td>
+      <td>9970.426180</td>
+      <td>9970.414449</td>
+      <td>9970.403588</td>
+      <td>9970.393596</td>
+      <td>9970.384472</td>
+      <td>9970.376218</td>
+      <td>9970.368832</td>
+      <td>9970.362315</td>
+      <td>9970.356668</td>
+      <td>9970.351889</td>
+      <td>9970.347979</td>
+      <td>9970.344938</td>
+      <td>9970.342765</td>
+      <td>9970.341462</td>
+      <td>4985.170514</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2.544691e-21</td>
+      <td>9.069646e+10</td>
+      <td>6.643117e+10</td>
+      <td>5.117582e+10</td>
+      <td>3.413736e+10</td>
+      <td>4.787929e+10</td>
+      <td>1.866267e+10</td>
+      <td>1.943006e+10</td>
+      <td>2.532991e+09</td>
+      <td>9.193865e+09</td>
+      <td>2.942133e+08</td>
+      <td>7.123645e+09</td>
+      <td>1.065354e+10</td>
+      <td>2.174687e+10</td>
+      <td>2.695494e+11</td>
+      <td>2.432953e+11</td>
+      <td>1.574357e+10</td>
+      <td>3.968706e+09</td>
+      <td>2.984037e+09</td>
+      <td>4.355211e+09</td>
+      <td>4.921942e+09</td>
+      <td>6.969427e+09</td>
+      <td>9.030065e+09</td>
+      <td>6.355329e+09</td>
+      <td>9.656856e+09</td>
+      <td>4.718208e+09</td>
+      <td>3.562666e+09</td>
+      <td>1.698194e+09</td>
+      <td>8.258263e+09</td>
+      <td>7.824319e+11</td>
+      <td>8.895930e+08</td>
+      <td>1.499607e+09</td>
+      <td>1.739245e+10</td>
+      <td>2.566922e+09</td>
+      <td>9.158103e+09</td>
+      <td>6.630252e+10</td>
+      <td>1.937514e+10</td>
+      <td>1.056860e+11</td>
+      <td>1.433715e+10</td>
+      <td>1.082412e+10</td>
+      <td>...</td>
+      <td>2453.104169</td>
+      <td>2453.096152</td>
+      <td>2453.088348</td>
+      <td>2453.080759</td>
+      <td>2453.073384</td>
+      <td>2453.066222</td>
+      <td>2453.059274</td>
+      <td>2453.052540</td>
+      <td>2453.046019</td>
+      <td>2453.039713</td>
+      <td>2453.033620</td>
+      <td>2453.027741</td>
+      <td>2453.022076</td>
+      <td>2453.016625</td>
+      <td>2453.011387</td>
+      <td>2453.006364</td>
+      <td>2453.001554</td>
+      <td>2452.996957</td>
+      <td>2452.992575</td>
+      <td>2452.988406</td>
+      <td>2452.984452</td>
+      <td>2452.980711</td>
+      <td>2452.977183</td>
+      <td>2452.973870</td>
+      <td>2452.970770</td>
+      <td>2452.967884</td>
+      <td>2452.965212</td>
+      <td>2452.962754</td>
+      <td>2452.960509</td>
+      <td>2452.958478</td>
+      <td>2452.956661</td>
+      <td>2452.955058</td>
+      <td>2452.953669</td>
+      <td>2452.952493</td>
+      <td>2452.951531</td>
+      <td>2452.950783</td>
+      <td>2452.950248</td>
+      <td>2452.949928</td>
+      <td>1226.474910</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>7.221651e-21</td>
+      <td>4.505717e+08</td>
+      <td>7.566718e+06</td>
+      <td>9.076482e+08</td>
+      <td>5.055431e+08</td>
+      <td>5.201719e+08</td>
+      <td>3.460490e+08</td>
+      <td>2.954526e+08</td>
+      <td>3.242125e+08</td>
+      <td>4.557197e+07</td>
+      <td>3.167933e+07</td>
+      <td>2.440220e+07</td>
+      <td>1.403096e+08</td>
+      <td>9.453829e+07</td>
+      <td>1.654833e+07</td>
+      <td>1.208286e+06</td>
+      <td>3.350352e+07</td>
+      <td>5.316386e+07</td>
+      <td>3.449430e+07</td>
+      <td>1.229629e+08</td>
+      <td>1.553346e+08</td>
+      <td>2.783925e+08</td>
+      <td>8.946271e+07</td>
+      <td>7.675415e+06</td>
+      <td>1.505378e+07</td>
+      <td>6.678298e+05</td>
+      <td>1.965005e+08</td>
+      <td>4.079288e+08</td>
+      <td>9.018535e+07</td>
+      <td>3.032997e+07</td>
+      <td>5.564186e+07</td>
+      <td>1.726893e+08</td>
+      <td>2.075812e+08</td>
+      <td>7.274091e+08</td>
+      <td>1.861569e+08</td>
+      <td>2.016792e+08</td>
+      <td>4.417020e+08</td>
+      <td>2.089950e+08</td>
+      <td>3.106678e+08</td>
+      <td>9.919087e+08</td>
+      <td>...</td>
+      <td>121.901107</td>
+      <td>121.900708</td>
+      <td>121.900321</td>
+      <td>121.899943</td>
+      <td>121.899577</td>
+      <td>121.899221</td>
+      <td>121.898876</td>
+      <td>121.898541</td>
+      <td>121.898217</td>
+      <td>121.897904</td>
+      <td>121.897601</td>
+      <td>121.897309</td>
+      <td>121.897027</td>
+      <td>121.896756</td>
+      <td>121.896496</td>
+      <td>121.896247</td>
+      <td>121.896008</td>
+      <td>121.895779</td>
+      <td>121.895561</td>
+      <td>121.895354</td>
+      <td>121.895158</td>
+      <td>121.894972</td>
+      <td>121.894797</td>
+      <td>121.894632</td>
+      <td>121.894478</td>
+      <td>121.894334</td>
+      <td>121.894202</td>
+      <td>121.894079</td>
+      <td>121.893968</td>
+      <td>121.893867</td>
+      <td>121.893777</td>
+      <td>121.893697</td>
+      <td>121.893628</td>
+      <td>121.893570</td>
+      <td>121.893522</td>
+      <td>121.893485</td>
+      <td>121.893458</td>
+      <td>121.893442</td>
+      <td>60.946718</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>2.472828e-21</td>
+      <td>8.480713e+10</td>
+      <td>3.326409e+10</td>
+      <td>1.004276e+10</td>
+      <td>1.105842e+10</td>
+      <td>9.378111e+09</td>
+      <td>5.750926e+08</td>
+      <td>2.931827e+09</td>
+      <td>7.503412e+09</td>
+      <td>2.734914e+09</td>
+      <td>7.226858e+09</td>
+      <td>8.336502e+08</td>
+      <td>3.357986e+09</td>
+      <td>9.016144e+08</td>
+      <td>1.089214e+09</td>
+      <td>2.594842e+09</td>
+      <td>2.696162e+09</td>
+      <td>1.423190e+09</td>
+      <td>3.079399e+09</td>
+      <td>1.936290e+09</td>
+      <td>4.090007e+06</td>
+      <td>3.107745e+08</td>
+      <td>4.000904e+08</td>
+      <td>3.199724e+07</td>
+      <td>3.106817e+08</td>
+      <td>1.349838e+09</td>
+      <td>1.368688e+07</td>
+      <td>2.230739e+08</td>
+      <td>9.444796e+08</td>
+      <td>5.780070e+08</td>
+      <td>3.091359e+08</td>
+      <td>1.091311e+08</td>
+      <td>7.396224e+07</td>
+      <td>1.655690e+09</td>
+      <td>2.581546e+09</td>
+      <td>8.553230e+06</td>
+      <td>3.868140e+08</td>
+      <td>1.264882e+09</td>
+      <td>1.846532e+08</td>
+      <td>4.150413e+08</td>
+      <td>...</td>
+      <td>8732.550481</td>
+      <td>8732.521943</td>
+      <td>8732.494165</td>
+      <td>8732.467148</td>
+      <td>8732.440893</td>
+      <td>8732.415398</td>
+      <td>8732.390665</td>
+      <td>8732.366693</td>
+      <td>8732.343482</td>
+      <td>8732.321032</td>
+      <td>8732.299343</td>
+      <td>8732.278416</td>
+      <td>8732.258249</td>
+      <td>8732.238843</td>
+      <td>8732.220199</td>
+      <td>8732.202315</td>
+      <td>8732.185193</td>
+      <td>8732.168832</td>
+      <td>8732.153231</td>
+      <td>8732.138392</td>
+      <td>8732.124313</td>
+      <td>8732.110996</td>
+      <td>8732.098440</td>
+      <td>8732.086645</td>
+      <td>8732.075610</td>
+      <td>8732.065337</td>
+      <td>8732.055825</td>
+      <td>8732.047073</td>
+      <td>8732.039083</td>
+      <td>8732.031854</td>
+      <td>8732.025386</td>
+      <td>8732.019678</td>
+      <td>8732.014732</td>
+      <td>8732.010546</td>
+      <td>8732.007122</td>
+      <td>8732.004459</td>
+      <td>8732.002556</td>
+      <td>8732.001415</td>
+      <td>4366.000517</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1.750600e-22</td>
+      <td>7.424050e+09</td>
+      <td>1.358892e+09</td>
+      <td>3.309422e+08</td>
+      <td>5.295420e+08</td>
+      <td>2.036254e+09</td>
+      <td>8.268143e+08</td>
+      <td>1.861110e+09</td>
+      <td>9.343690e+07</td>
+      <td>1.156138e+08</td>
+      <td>2.263122e+07</td>
+      <td>2.557775e+08</td>
+      <td>4.054398e+07</td>
+      <td>3.574917e+08</td>
+      <td>1.151586e+08</td>
+      <td>1.266685e+08</td>
+      <td>2.280232e+08</td>
+      <td>1.757015e+08</td>
+      <td>6.112853e+07</td>
+      <td>4.058141e+06</td>
+      <td>3.930772e+07</td>
+      <td>2.389294e+08</td>
+      <td>1.018442e+07</td>
+      <td>2.026846e+08</td>
+      <td>8.033815e+07</td>
+      <td>5.084299e+07</td>
+      <td>2.686861e+08</td>
+      <td>2.468639e+07</td>
+      <td>7.259111e+07</td>
+      <td>6.207652e+07</td>
+      <td>1.287359e+06</td>
+      <td>1.152442e+07</td>
+      <td>1.407730e+08</td>
+      <td>1.035752e+08</td>
+      <td>4.983365e+07</td>
+      <td>7.823538e+07</td>
+      <td>3.741193e+06</td>
+      <td>2.443456e+07</td>
+      <td>5.221536e+07</td>
+      <td>5.451975e+07</td>
+      <td>...</td>
+      <td>82.035061</td>
+      <td>82.034793</td>
+      <td>82.034532</td>
+      <td>82.034278</td>
+      <td>82.034032</td>
+      <td>82.033792</td>
+      <td>82.033560</td>
+      <td>82.033335</td>
+      <td>82.033117</td>
+      <td>82.032906</td>
+      <td>82.032702</td>
+      <td>82.032505</td>
+      <td>82.032316</td>
+      <td>82.032134</td>
+      <td>82.031958</td>
+      <td>82.031790</td>
+      <td>82.031630</td>
+      <td>82.031476</td>
+      <td>82.031329</td>
+      <td>82.031190</td>
+      <td>82.031058</td>
+      <td>82.030932</td>
+      <td>82.030815</td>
+      <td>82.030704</td>
+      <td>82.030600</td>
+      <td>82.030504</td>
+      <td>82.030414</td>
+      <td>82.030332</td>
+      <td>82.030257</td>
+      <td>82.030189</td>
+      <td>82.030128</td>
+      <td>82.030075</td>
+      <td>82.030028</td>
+      <td>82.029989</td>
+      <td>82.029957</td>
+      <td>82.029932</td>
+      <td>82.029914</td>
+      <td>82.029903</td>
+      <td>41.014950</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 7527 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Matrix of features (Independent variable), X: numpy.ndarray</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Dependent variable vector, y: numpy.ndarray</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>Preprocessing<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p><strong>1. Normalization</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>2. PCA - Dimensionality Reduction</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># What is the minimun value of `n_components` to keep 95% of variance on data ?</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cumsum</span> <span class="o">&gt;=</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The minimun value is:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The minimun value is: 49
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Best altenative… set the <code class="docutils literal notranslate"><span class="pre">n_components</span></code> to fluctuate between 0.0 and 1.0, indicating the rate of variance you want to preserve</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(98, 49) (98,) (33, 49) (33,)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>Train model<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># from sklearn.mixture import GaussianMixture</span>
+
+<span class="c1"># classifier = GaussianMixture(n_components=2, random_state=42)</span>
+
+<span class="c1"># classifier.fit(X_train, y_train)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>Results<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># from sklearn.metrics import plot_confusion_matrix</span>
+
+<span class="c1"># labels_formated = [&#39;confirmed exoplanets&#39;, &#39;eclipsing binaries&#39;]</span>
+
+<span class="c1"># fig = plot_confusion_matrix(classifier, X_test, y_test,</span>
+<span class="c1">#                              display_labels=labels_formated,</span>
+<span class="c1">#                              cmap=plt.cm.Blues,</span>
+<span class="c1">#                              normalize=&#39;true&#39;)</span>
+
+<span class="c1"># fig.ax_.set_title(&#39;Gaussian Mixture Classifier - Confusion matrix&#39;)</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Lazy-Predict">
+<h1>Lazy Predict<a class="headerlink" href="#Lazy-Predict" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://lazypredict.readthedocs.io/en/latest/usage.html#classification">https://lazypredict.readthedocs.io/en/latest/usage.html#classification</a></p>
+<div class="section" id="id19">
+<h2>Feature: Periodograms<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">FEATURES_DIR</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/01 - Iniciação Científica/02 - Datasets/features&#39;</span>
+<span class="n">PERIODOGRAMS_DIR</span> <span class="o">=</span> <span class="n">FEATURES_DIR</span> <span class="o">+</span> <span class="s1">&#39;/feature_periodograms.csv&#39;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PERIODOGRAMS_DIR</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2849,7 +4579,6 @@ KNeighborsClassifier()
       <th>38</th>
       <th>39</th>
       <th>...</th>
-      <th>7486</th>
       <th>7487</th>
       <th>7488</th>
       <th>7489</th>
@@ -2889,180 +4618,13 @@ KNeighborsClassifier()
       <th>7523</th>
       <th>7524</th>
       <th>7525</th>
+      <th>label</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>3.698734e-21</td>
-      <td>2.187372e+10</td>
-      <td>4.653541e+09</td>
-      <td>2.977435e+10</td>
-      <td>5.847694e+09</td>
-      <td>1.299638e+10</td>
-      <td>9.043435e+09</td>
-      <td>1.605398e+09</td>
-      <td>4.163878e+08</td>
-      <td>6.495074e+08</td>
-      <td>8.126626e+09</td>
-      <td>9.406637e+09</td>
-      <td>2.139047e+09</td>
-      <td>7.464040e+08</td>
-      <td>8.710111e+08</td>
-      <td>3.066070e+08</td>
-      <td>1.722429e+09</td>
-      <td>1.694147e+09</td>
-      <td>9.865663e+08</td>
-      <td>8.465616e+08</td>
-      <td>1.380645e+09</td>
-      <td>3.179946e+07</td>
-      <td>1.181358e+09</td>
-      <td>7.756270e+08</td>
-      <td>1.003634e+08</td>
-      <td>6.288176e+08</td>
-      <td>3.771828e+08</td>
-      <td>8.828726e+08</td>
-      <td>1.492417e+09</td>
-      <td>1.647794e+08</td>
-      <td>1.810905e+09</td>
-      <td>1.071801e+10</td>
-      <td>1.822772e+10</td>
-      <td>8.686493e+08</td>
-      <td>1.672761e+09</td>
-      <td>4.151073e+08</td>
-      <td>1.422037e+08</td>
-      <td>3.095936e+08</td>
-      <td>4.878045e+07</td>
-      <td>3.732714e+08</td>
-      <td>...</td>
-      <td>5.859518e+06</td>
-      <td>1.802153e+07</td>
-      <td>6.298346e+06</td>
-      <td>4.934046e+06</td>
-      <td>3.243160e+07</td>
-      <td>4.082484e+06</td>
-      <td>1.900234e+07</td>
-      <td>1.505044e+07</td>
-      <td>8.717856e+06</td>
-      <td>1.667094e+07</td>
-      <td>2.006054e+07</td>
-      <td>1.210509e+06</td>
-      <td>1.945082e+07</td>
-      <td>7.096113e+06</td>
-      <td>2.315154e+07</td>
-      <td>4.012920e+07</td>
-      <td>1.055361e+06</td>
-      <td>4.469378e+06</td>
-      <td>3.237999e+05</td>
-      <td>4.170387e+06</td>
-      <td>1.672472e+07</td>
-      <td>3.123520e+07</td>
-      <td>1.453152e+06</td>
-      <td>3.700304e+07</td>
-      <td>1.612176e+06</td>
-      <td>1.006348e+07</td>
-      <td>2.784085e+06</td>
-      <td>1.442023e+06</td>
-      <td>1.009989e+07</td>
-      <td>5.640032e+06</td>
-      <td>3.093162e+06</td>
-      <td>6.324198e+07</td>
-      <td>5.984340e+06</td>
-      <td>5.636384e+07</td>
-      <td>6.359579e+06</td>
-      <td>2.165289e+07</td>
-      <td>3.362567e+07</td>
-      <td>1.639384e+06</td>
-      <td>7.700957e+07</td>
-      <td>4.122675e+05</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3.999557e-18</td>
-      <td>5.784624e+13</td>
-      <td>5.242573e+12</td>
-      <td>1.114427e+12</td>
-      <td>8.653755e+12</td>
-      <td>3.495333e+13</td>
-      <td>6.333985e+13</td>
-      <td>1.223317e+13</td>
-      <td>7.133227e+11</td>
-      <td>3.332728e+12</td>
-      <td>6.307572e+12</td>
-      <td>1.189972e+13</td>
-      <td>1.339273e+13</td>
-      <td>4.585274e+12</td>
-      <td>2.595879e+12</td>
-      <td>1.647835e+11</td>
-      <td>1.322158e+12</td>
-      <td>3.092180e+12</td>
-      <td>1.231179e+11</td>
-      <td>8.636186e+10</td>
-      <td>3.534272e+10</td>
-      <td>1.728992e+11</td>
-      <td>1.773730e+10</td>
-      <td>1.762227e+11</td>
-      <td>3.180256e+10</td>
-      <td>1.703417e+11</td>
-      <td>2.373593e+10</td>
-      <td>5.385853e+10</td>
-      <td>2.690612e+10</td>
-      <td>7.111801e+10</td>
-      <td>8.931761e+10</td>
-      <td>1.096729e+11</td>
-      <td>3.603436e+10</td>
-      <td>2.655039e+08</td>
-      <td>3.324433e+10</td>
-      <td>1.137900e+11</td>
-      <td>5.872237e+10</td>
-      <td>3.719629e+10</td>
-      <td>4.964274e+10</td>
-      <td>3.085536e+10</td>
-      <td>...</td>
-      <td>1.209086e+09</td>
-      <td>1.702009e+09</td>
-      <td>3.732716e+08</td>
-      <td>3.764944e+07</td>
-      <td>6.530433e+08</td>
-      <td>3.449799e+08</td>
-      <td>2.953255e+06</td>
-      <td>5.937585e+08</td>
-      <td>8.981582e+07</td>
-      <td>3.058008e+08</td>
-      <td>1.005418e+08</td>
-      <td>3.397017e+08</td>
-      <td>3.034542e+08</td>
-      <td>1.506536e+08</td>
-      <td>2.785713e+08</td>
-      <td>6.444151e+08</td>
-      <td>2.399501e+08</td>
-      <td>9.712044e+08</td>
-      <td>3.309554e+08</td>
-      <td>5.073232e+08</td>
-      <td>1.480754e+09</td>
-      <td>4.535894e+08</td>
-      <td>9.340738e+06</td>
-      <td>2.035568e+08</td>
-      <td>7.644298e+08</td>
-      <td>2.158474e+08</td>
-      <td>8.841379e+08</td>
-      <td>2.560128e+08</td>
-      <td>1.858450e+08</td>
-      <td>1.644058e+08</td>
-      <td>7.884955e+08</td>
-      <td>8.525404e+07</td>
-      <td>5.671301e+08</td>
-      <td>6.771197e+08</td>
-      <td>8.770928e+07</td>
-      <td>7.573039e+06</td>
-      <td>2.590354e+08</td>
-      <td>3.938666e+07</td>
-      <td>2.073784e+08</td>
-      <td>3.598600e+08</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3.301438e-21</td>
+      <th>20</th>
+      <td>5.244937e-22</td>
       <td>1.656106e+11</td>
       <td>4.241954e+10</td>
       <td>1.295592e+10</td>
@@ -3103,7 +4665,6 @@ KNeighborsClassifier()
       <td>1.700110e+08</td>
       <td>1.287244e+07</td>
       <td>...</td>
-      <td>6.336029e+06</td>
       <td>2.901623e+06</td>
       <td>9.709432e+06</td>
       <td>6.766949e+06</td>
@@ -3143,201 +4704,381 @@ KNeighborsClassifier()
       <td>6.561321e+06</td>
       <td>2.489063e+06</td>
       <td>2.142671e+05</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>2.347411e-21</td>
-      <td>1.446522e+11</td>
-      <td>2.926439e+10</td>
-      <td>8.856258e+10</td>
-      <td>1.267793e+11</td>
-      <td>7.801648e+10</td>
-      <td>9.524482e+10</td>
-      <td>5.849805e+10</td>
-      <td>2.288253e+10</td>
-      <td>2.312979e+10</td>
-      <td>2.931245e+10</td>
-      <td>2.805120e+10</td>
-      <td>3.957929e+10</td>
-      <td>6.142179e+10</td>
-      <td>6.216595e+10</td>
-      <td>2.295419e+10</td>
-      <td>9.917353e+09</td>
-      <td>2.422448e+10</td>
-      <td>2.340713e+10</td>
-      <td>2.166599e+10</td>
-      <td>9.182803e+09</td>
-      <td>6.499000e+09</td>
-      <td>6.344703e+09</td>
-      <td>4.445389e+09</td>
-      <td>1.498852e+09</td>
-      <td>9.027348e+08</td>
-      <td>2.036861e+09</td>
-      <td>2.321052e+09</td>
-      <td>3.358732e+09</td>
-      <td>2.087908e+09</td>
-      <td>1.687891e+09</td>
-      <td>1.970376e+09</td>
-      <td>1.535445e+09</td>
-      <td>6.515868e+08</td>
-      <td>1.452884e+09</td>
-      <td>4.013471e+09</td>
-      <td>9.788411e+08</td>
-      <td>1.176883e+09</td>
-      <td>3.133791e+09</td>
-      <td>4.906828e+09</td>
+      <th>109</th>
+      <td>5.222241e-23</td>
+      <td>7.189921e+10</td>
+      <td>9.901414e+10</td>
+      <td>1.476100e+10</td>
+      <td>1.398462e+10</td>
+      <td>1.147834e+10</td>
+      <td>6.674100e+09</td>
+      <td>4.094150e+09</td>
+      <td>3.790864e+10</td>
+      <td>4.962443e+09</td>
+      <td>9.110133e+08</td>
+      <td>1.529316e+09</td>
+      <td>2.659406e+08</td>
+      <td>5.565563e+09</td>
+      <td>2.297864e+06</td>
+      <td>2.821536e+09</td>
+      <td>2.618699e+09</td>
+      <td>2.476775e+09</td>
+      <td>2.353264e+08</td>
+      <td>3.537825e+09</td>
+      <td>4.176115e+07</td>
+      <td>1.394874e+08</td>
+      <td>2.349405e+09</td>
+      <td>4.841487e+07</td>
+      <td>4.160097e+09</td>
+      <td>3.921834e+08</td>
+      <td>1.123126e+09</td>
+      <td>2.430828e+08</td>
+      <td>1.808513e+09</td>
+      <td>4.106579e+08</td>
+      <td>5.394205e+07</td>
+      <td>1.265701e+09</td>
+      <td>2.936783e+08</td>
+      <td>4.351451e+06</td>
+      <td>5.507590e+08</td>
+      <td>2.131361e+08</td>
+      <td>1.194628e+09</td>
+      <td>4.435846e+08</td>
+      <td>6.775218e+07</td>
+      <td>6.498562e+07</td>
       <td>...</td>
-      <td>2.277813e+06</td>
-      <td>4.568980e+06</td>
-      <td>3.991391e+06</td>
-      <td>7.130943e+06</td>
-      <td>1.204470e+07</td>
-      <td>3.825498e+06</td>
-      <td>9.432747e+05</td>
-      <td>2.249743e+07</td>
-      <td>1.022491e+06</td>
-      <td>3.314838e+06</td>
-      <td>5.426386e+06</td>
-      <td>1.971414e+07</td>
-      <td>1.918997e+06</td>
-      <td>5.693808e+06</td>
-      <td>1.010783e+06</td>
-      <td>8.312123e+05</td>
-      <td>1.079153e+07</td>
-      <td>5.020188e+06</td>
-      <td>1.862797e+06</td>
-      <td>1.532614e+07</td>
-      <td>2.007534e+06</td>
-      <td>4.360234e+06</td>
-      <td>1.105087e+07</td>
-      <td>2.224375e+06</td>
-      <td>2.473986e+06</td>
-      <td>7.483401e+06</td>
-      <td>2.209326e+07</td>
-      <td>2.079834e+06</td>
-      <td>4.852925e+06</td>
-      <td>1.833137e+07</td>
-      <td>1.312425e+06</td>
-      <td>1.618716e+06</td>
-      <td>6.161822e+05</td>
-      <td>7.069934e+06</td>
-      <td>8.741769e+05</td>
-      <td>1.412689e+07</td>
-      <td>2.782050e+07</td>
-      <td>8.039433e+06</td>
-      <td>1.307975e+07</td>
-      <td>3.595673e+06</td>
+      <td>1.676719e+07</td>
+      <td>1.069171e+06</td>
+      <td>1.431339e+07</td>
+      <td>7.417587e+06</td>
+      <td>2.241231e+07</td>
+      <td>4.796347e+06</td>
+      <td>7.506176e+05</td>
+      <td>2.630452e+06</td>
+      <td>9.664950e+05</td>
+      <td>2.038954e+07</td>
+      <td>1.462608e+07</td>
+      <td>2.389343e+07</td>
+      <td>1.720616e+06</td>
+      <td>4.120930e+05</td>
+      <td>3.470017e+06</td>
+      <td>3.228340e+06</td>
+      <td>5.715047e+05</td>
+      <td>1.583645e+07</td>
+      <td>2.447099e+07</td>
+      <td>2.556097e+07</td>
+      <td>4.713815e+06</td>
+      <td>1.216467e+07</td>
+      <td>1.930779e+07</td>
+      <td>1.756057e+07</td>
+      <td>2.729222e+07</td>
+      <td>1.440361e+07</td>
+      <td>1.199978e+07</td>
+      <td>5.090961e+06</td>
+      <td>4.848588e+06</td>
+      <td>1.571179e+07</td>
+      <td>3.844894e+06</td>
+      <td>2.743101e+06</td>
+      <td>4.370159e+05</td>
+      <td>5.439133e+06</td>
+      <td>7.427570e+04</td>
+      <td>1.760637e+06</td>
+      <td>2.320080e+06</td>
+      <td>6.450329e+06</td>
+      <td>5.866100e+06</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>1.514690e-21</td>
-      <td>2.660556e+12</td>
-      <td>8.750812e+11</td>
-      <td>5.456667e+11</td>
-      <td>8.604106e+11</td>
-      <td>5.928171e+12</td>
-      <td>3.845155e+11</td>
-      <td>6.003512e+10</td>
-      <td>1.230223e+12</td>
-      <td>5.696613e+11</td>
-      <td>5.510373e+11</td>
-      <td>1.229502e+11</td>
-      <td>4.331146e+11</td>
-      <td>6.536904e+11</td>
-      <td>1.155310e+11</td>
-      <td>3.729638e+11</td>
-      <td>6.861902e+11</td>
-      <td>7.168059e+11</td>
-      <td>1.163156e+12</td>
-      <td>6.739932e+11</td>
-      <td>6.537787e+11</td>
-      <td>9.457468e+11</td>
-      <td>1.641149e+12</td>
-      <td>9.234042e+11</td>
-      <td>3.391170e+11</td>
-      <td>2.400593e+12</td>
-      <td>1.125012e+12</td>
-      <td>1.619200e+13</td>
-      <td>4.257016e+13</td>
-      <td>1.386066e+14</td>
-      <td>1.251609e+14</td>
-      <td>2.513605e+14</td>
-      <td>6.976831e+13</td>
-      <td>2.252078e+13</td>
-      <td>1.101076e+13</td>
-      <td>8.750051e+12</td>
-      <td>4.718911e+12</td>
-      <td>2.135353e+12</td>
-      <td>2.630677e+12</td>
-      <td>1.462807e+12</td>
+      <th>12</th>
+      <td>1.741909e-23</td>
+      <td>7.970192e+09</td>
+      <td>3.650109e+09</td>
+      <td>1.582624e+09</td>
+      <td>3.266343e+10</td>
+      <td>3.377317e+10</td>
+      <td>1.471925e+09</td>
+      <td>1.665996e+08</td>
+      <td>8.887137e+09</td>
+      <td>4.330463e+10</td>
+      <td>2.479880e+09</td>
+      <td>2.478121e+08</td>
+      <td>7.060146e+08</td>
+      <td>1.036437e+10</td>
+      <td>3.542269e+08</td>
+      <td>4.027595e+06</td>
+      <td>3.590214e+08</td>
+      <td>1.353871e+09</td>
+      <td>4.792989e+08</td>
+      <td>5.705030e+08</td>
+      <td>8.400022e+08</td>
+      <td>7.151057e+08</td>
+      <td>2.327222e+08</td>
+      <td>2.219457e+08</td>
+      <td>1.349461e+08</td>
+      <td>2.387996e+09</td>
+      <td>5.975332e+09</td>
+      <td>3.989845e+08</td>
+      <td>1.002950e+08</td>
+      <td>3.872512e+07</td>
+      <td>9.498571e+07</td>
+      <td>2.608256e+08</td>
+      <td>1.725462e+08</td>
+      <td>5.317832e+08</td>
+      <td>1.437279e+08</td>
+      <td>1.145169e+08</td>
+      <td>8.002391e+07</td>
+      <td>2.828761e+08</td>
+      <td>6.701132e+09</td>
+      <td>1.186455e+09</td>
       <td>...</td>
-      <td>8.021413e+07</td>
-      <td>9.226670e+07</td>
-      <td>6.950245e+07</td>
-      <td>2.063020e+07</td>
-      <td>1.330526e+08</td>
-      <td>5.228473e+07</td>
-      <td>8.631832e+07</td>
-      <td>7.812558e+07</td>
-      <td>5.874413e+07</td>
-      <td>7.679085e+08</td>
-      <td>8.844318e+06</td>
-      <td>1.591009e+08</td>
-      <td>6.224376e+07</td>
-      <td>1.198233e+07</td>
-      <td>1.006110e+08</td>
-      <td>2.624271e+08</td>
-      <td>5.238574e+07</td>
-      <td>2.207024e+07</td>
-      <td>8.199011e+07</td>
-      <td>9.283523e+07</td>
-      <td>1.381196e+08</td>
-      <td>8.889676e+07</td>
-      <td>2.658051e+07</td>
-      <td>1.604157e+07</td>
-      <td>9.881702e+06</td>
-      <td>1.427925e+08</td>
-      <td>3.425586e+07</td>
-      <td>1.080499e+08</td>
-      <td>8.890381e+07</td>
-      <td>7.306812e+07</td>
-      <td>3.266698e+07</td>
-      <td>4.452323e+07</td>
-      <td>1.256674e+06</td>
-      <td>1.378539e+08</td>
-      <td>5.313656e+07</td>
-      <td>1.253566e+07</td>
-      <td>2.295495e+07</td>
-      <td>1.237998e+08</td>
-      <td>7.109648e+07</td>
-      <td>1.491803e+08</td>
+      <td>1.947367e+03</td>
+      <td>1.947360e+03</td>
+      <td>1.947354e+03</td>
+      <td>1.947348e+03</td>
+      <td>1.947342e+03</td>
+      <td>1.947337e+03</td>
+      <td>1.947331e+03</td>
+      <td>1.947326e+03</td>
+      <td>1.947320e+03</td>
+      <td>1.947315e+03</td>
+      <td>1.947311e+03</td>
+      <td>1.947306e+03</td>
+      <td>1.947301e+03</td>
+      <td>1.947297e+03</td>
+      <td>1.947293e+03</td>
+      <td>1.947289e+03</td>
+      <td>1.947285e+03</td>
+      <td>1.947282e+03</td>
+      <td>1.947278e+03</td>
+      <td>1.947275e+03</td>
+      <td>1.947272e+03</td>
+      <td>1.947269e+03</td>
+      <td>1.947266e+03</td>
+      <td>1.947263e+03</td>
+      <td>1.947261e+03</td>
+      <td>1.947258e+03</td>
+      <td>1.947256e+03</td>
+      <td>1.947254e+03</td>
+      <td>1.947253e+03</td>
+      <td>1.947251e+03</td>
+      <td>1.947250e+03</td>
+      <td>1.947248e+03</td>
+      <td>1.947247e+03</td>
+      <td>1.947246e+03</td>
+      <td>1.947245e+03</td>
+      <td>1.947245e+03</td>
+      <td>1.947244e+03</td>
+      <td>1.947244e+03</td>
+      <td>9.736221e+02</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>1.537079e-21</td>
+      <td>2.334249e+10</td>
+      <td>1.246708e+11</td>
+      <td>7.693346e+10</td>
+      <td>3.661008e+10</td>
+      <td>9.257208e+08</td>
+      <td>1.661148e+09</td>
+      <td>4.462807e+09</td>
+      <td>2.758899e+09</td>
+      <td>2.238848e+09</td>
+      <td>8.078527e+09</td>
+      <td>3.787129e+09</td>
+      <td>5.939399e+09</td>
+      <td>3.755190e+09</td>
+      <td>3.769742e+09</td>
+      <td>4.052975e+08</td>
+      <td>5.671221e+09</td>
+      <td>6.723360e+09</td>
+      <td>1.641852e+09</td>
+      <td>5.226829e+09</td>
+      <td>6.062483e+08</td>
+      <td>1.519938e+09</td>
+      <td>1.789390e+09</td>
+      <td>2.119600e+07</td>
+      <td>1.049363e+09</td>
+      <td>1.143246e+08</td>
+      <td>3.384769e+08</td>
+      <td>5.382716e+08</td>
+      <td>7.376932e+08</td>
+      <td>8.038340e+08</td>
+      <td>8.351175e+08</td>
+      <td>2.170651e+08</td>
+      <td>6.091711e+06</td>
+      <td>1.795124e+09</td>
+      <td>8.766678e+07</td>
+      <td>6.037906e+07</td>
+      <td>9.266256e+08</td>
+      <td>3.747338e+08</td>
+      <td>1.156053e+09</td>
+      <td>5.333725e+07</td>
+      <td>...</td>
+      <td>7.612817e+00</td>
+      <td>7.612792e+00</td>
+      <td>7.612768e+00</td>
+      <td>7.612744e+00</td>
+      <td>7.612721e+00</td>
+      <td>7.612699e+00</td>
+      <td>7.612677e+00</td>
+      <td>7.612656e+00</td>
+      <td>7.612636e+00</td>
+      <td>7.612617e+00</td>
+      <td>7.612598e+00</td>
+      <td>7.612580e+00</td>
+      <td>7.612562e+00</td>
+      <td>7.612545e+00</td>
+      <td>7.612529e+00</td>
+      <td>7.612513e+00</td>
+      <td>7.612498e+00</td>
+      <td>7.612484e+00</td>
+      <td>7.612470e+00</td>
+      <td>7.612457e+00</td>
+      <td>7.612445e+00</td>
+      <td>7.612434e+00</td>
+      <td>7.612423e+00</td>
+      <td>7.612412e+00</td>
+      <td>7.612403e+00</td>
+      <td>7.612394e+00</td>
+      <td>7.612385e+00</td>
+      <td>7.612378e+00</td>
+      <td>7.612371e+00</td>
+      <td>7.612365e+00</td>
+      <td>7.612359e+00</td>
+      <td>7.612354e+00</td>
+      <td>7.612350e+00</td>
+      <td>7.612346e+00</td>
+      <td>7.612343e+00</td>
+      <td>7.612341e+00</td>
+      <td>7.612339e+00</td>
+      <td>7.612338e+00</td>
+      <td>3.806169e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>1.676619e-22</td>
+      <td>6.268024e+10</td>
+      <td>1.892612e+09</td>
+      <td>4.589268e+09</td>
+      <td>2.553798e+09</td>
+      <td>1.436860e+09</td>
+      <td>1.871399e+09</td>
+      <td>6.763201e+08</td>
+      <td>8.569126e+08</td>
+      <td>4.346068e+08</td>
+      <td>3.224972e+09</td>
+      <td>6.266573e+08</td>
+      <td>5.095192e+08</td>
+      <td>2.118835e+07</td>
+      <td>2.047743e+09</td>
+      <td>1.136897e+10</td>
+      <td>9.023897e+10</td>
+      <td>1.642913e+10</td>
+      <td>1.140840e+10</td>
+      <td>8.220013e+09</td>
+      <td>7.671658e+09</td>
+      <td>3.662531e+09</td>
+      <td>7.649781e+09</td>
+      <td>7.552201e+09</td>
+      <td>9.279831e+09</td>
+      <td>6.586815e+09</td>
+      <td>8.289219e+09</td>
+      <td>1.490018e+10</td>
+      <td>2.078385e+10</td>
+      <td>3.645875e+10</td>
+      <td>4.881829e+10</td>
+      <td>1.412379e+11</td>
+      <td>1.441203e+12</td>
+      <td>9.568005e+11</td>
+      <td>1.428168e+11</td>
+      <td>5.584073e+10</td>
+      <td>2.796076e+10</td>
+      <td>1.304114e+10</td>
+      <td>1.200738e+10</td>
+      <td>8.144469e+09</td>
+      <td>...</td>
+      <td>1.037832e+03</td>
+      <td>1.037829e+03</td>
+      <td>1.037825e+03</td>
+      <td>1.037822e+03</td>
+      <td>1.037819e+03</td>
+      <td>1.037816e+03</td>
+      <td>1.037813e+03</td>
+      <td>1.037810e+03</td>
+      <td>1.037807e+03</td>
+      <td>1.037805e+03</td>
+      <td>1.037802e+03</td>
+      <td>1.037800e+03</td>
+      <td>1.037797e+03</td>
+      <td>1.037795e+03</td>
+      <td>1.037793e+03</td>
+      <td>1.037791e+03</td>
+      <td>1.037789e+03</td>
+      <td>1.037787e+03</td>
+      <td>1.037785e+03</td>
+      <td>1.037783e+03</td>
+      <td>1.037781e+03</td>
+      <td>1.037780e+03</td>
+      <td>1.037778e+03</td>
+      <td>1.037777e+03</td>
+      <td>1.037776e+03</td>
+      <td>1.037774e+03</td>
+      <td>1.037773e+03</td>
+      <td>1.037772e+03</td>
+      <td>1.037771e+03</td>
+      <td>1.037770e+03</td>
+      <td>1.037770e+03</td>
+      <td>1.037769e+03</td>
+      <td>1.037768e+03</td>
+      <td>1.037768e+03</td>
+      <td>1.037767e+03</td>
+      <td>1.037767e+03</td>
+      <td>1.037767e+03</td>
+      <td>1.037767e+03</td>
+      <td>5.188833e+02</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 7526 columns</p>
+<p>5 rows × 7527 columns</p>
 </div></div>
 </div>
-<div class="section" id="Preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Matrix of features (Independent variable), X: numpy.ndarray</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Dependent variable vector, y: numpy.ndarray</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>Preprocessing<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p><strong>1. Normalization</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
 
-<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p><strong>2. PCA - Dimensionality Reduction</strong></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
 <span class="c1"># What is the minimun value of `n_components` to keep 95% of variance on data ?</span>
 
@@ -3355,25 +5096,23 @@ KNeighborsClassifier()
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The minimun value is: 12
+The minimun value is: 49
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
 <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
-<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca_dec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">normalized_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Best altenative… set the <code class="docutils literal notranslate"><span class="pre">n_components</span></code> to fluctuate between 0.0 and 1.0, indicating the rate of variance you want to preserve</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3382,182 +5121,17 @@ The minimun value is: 12
 </pre></div>
 </div>
 </div>
-<div class="section" id="Labeling-data---Move-to-Features-notebook">
-<h3>Labeling data - Move to Features notebook<a class="headerlink" href="#Labeling-data---Move-to-Features-notebook" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>0: confirmed_exoplanets</p></li>
-<li><p>1: eclipsing_binaries</p></li>
-<li><p>2: none</p></li>
-</ul>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_reduced</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="section" id="id21">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Creating pd.DataFrame with X_reduced data, and setted columns</span>
-<span class="n">data_labeled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">)</span>
-
-<span class="c1"># Adding labels</span>
-<span class="n">data_labeled</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-
-<span class="n">data_labeled</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>11</th>
-      <th>label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>-0.183844</td>
-      <td>0.163366</td>
-      <td>0.310768</td>
-      <td>0.285708</td>
-      <td>0.013719</td>
-      <td>0.002408</td>
-      <td>-0.117863</td>
-      <td>0.062306</td>
-      <td>-0.058234</td>
-      <td>-0.114998</td>
-      <td>0.061483</td>
-      <td>-0.055326</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>-0.310238</td>
-      <td>-0.185057</td>
-      <td>0.105947</td>
-      <td>-0.122822</td>
-      <td>0.079757</td>
-      <td>-0.015586</td>
-      <td>0.009165</td>
-      <td>0.075386</td>
-      <td>-0.063351</td>
-      <td>-0.090487</td>
-      <td>0.158804</td>
-      <td>0.061291</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.483832</td>
-      <td>-0.021631</td>
-      <td>0.002591</td>
-      <td>0.206774</td>
-      <td>0.039691</td>
-      <td>-0.036169</td>
-      <td>-0.143799</td>
-      <td>0.142803</td>
-      <td>0.055436</td>
-      <td>-0.307767</td>
-      <td>0.202479</td>
-      <td>0.030654</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>-0.598290</td>
-      <td>-0.244020</td>
-      <td>-0.147174</td>
-      <td>-0.057469</td>
-      <td>-0.047162</td>
-      <td>0.026209</td>
-      <td>0.040734</td>
-      <td>-0.074681</td>
-      <td>0.005445</td>
-      <td>-0.042826</td>
-      <td>0.049707</td>
-      <td>-0.036782</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>-0.218547</td>
-      <td>0.296190</td>
-      <td>-0.368951</td>
-      <td>-0.264952</td>
-      <td>-0.022906</td>
-      <td>0.143660</td>
-      <td>0.211274</td>
-      <td>0.793491</td>
-      <td>-0.050449</td>
-      <td>0.035791</td>
-      <td>-0.062440</td>
-      <td>0.018867</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data_labeled</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Matrix of features</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">data_labeled</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Vector of labels</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id8">
-<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -3568,22 +5142,50 @@ The minimun value is: 12
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(24, 12) (24,) (9, 12) (9,)
+(98, 49) (98,) (33, 49) (33,)
 </pre></div></div>
 </div>
 </div>
-</div>
-<div class="section" id="Train-model---SGD">
-<h2>Train model - SGD<a class="headerlink" href="#Train-model---SGD" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="section" id="id22">
+<h3>Train model<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+<span></span><span class="o">!</span>pip install lazypredict
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">lazypredict.Supervised</span> <span class="kn">import</span> <span class="n">LazyClassifier</span>
 
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LazyClassifier</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ignore_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">custom_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">models</span><span class="p">,</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 29/29 [00:01&lt;00:00, 24.28it/s]
+</pre></div></div>
+</div>
+<div class="section" id="id23">
+<h4>Results<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Accuracy</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3592,189 +5194,35 @@ The minimun value is: 12
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-55-4311a117f733&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> classifier <span class="ansi-blue-fg">=</span> SGDClassifier<span class="ansi-blue-fg">(</span>random_state<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">42</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>classifier<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">,</span> y_train<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-fg">(self, X, y, coef_init, intercept_init, sample_weight)</span>
-<span class="ansi-green-intense-fg ansi-bold">    709</span>                          loss<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>loss<span class="ansi-blue-fg">,</span> learning_rate<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>learning_rate<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    710</span>                          coef_init<span class="ansi-blue-fg">=</span>coef_init<span class="ansi-blue-fg">,</span> intercept_init<span class="ansi-blue-fg">=</span>intercept_init<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 711</span><span class="ansi-red-fg">                          sample_weight=sample_weight)
-</span><span class="ansi-green-intense-fg ansi-bold">    712</span>
-<span class="ansi-green-intense-fg ansi-bold">    713</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">_fit</span><span class="ansi-blue-fg">(self, X, y, alpha, C, loss, learning_rate, coef_init, intercept_init, sample_weight)</span>
-<span class="ansi-green-intense-fg ansi-bold">    548</span>
-<span class="ansi-green-intense-fg ansi-bold">    549</span>         self._partial_fit(X, y, alpha, C, loss, learning_rate, self.max_iter,
-<span class="ansi-green-fg">--&gt; 550</span><span class="ansi-red-fg">                           classes, sample_weight, coef_init, intercept_init)
-</span><span class="ansi-green-intense-fg ansi-bold">    551</span>
-<span class="ansi-green-intense-fg ansi-bold">    552</span>         if (self.tol is not None and self.tol &gt; -np.inf
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">_partial_fit</span><span class="ansi-blue-fg">(self, X, y, alpha, C, loss, learning_rate, max_iter, classes, sample_weight, coef_init, intercept_init)</span>
-<span class="ansi-green-intense-fg ansi-bold">    512</span>             raise ValueError(
-<span class="ansi-green-intense-fg ansi-bold">    513</span>                 <span class="ansi-blue-fg">&#34;The number of classes has to be greater than one;&#34;</span>
-<span class="ansi-green-fg">--&gt; 514</span><span class="ansi-red-fg">                 &#34; got %d class&#34; % n_classes)
-</span><span class="ansi-green-intense-fg ansi-bold">    515</span>
-<span class="ansi-green-intense-fg ansi-bold">    516</span>         <span class="ansi-green-fg">return</span> self
-
-<span class="ansi-red-fg">ValueError</span>: The number of classes has to be greater than one; got 1 class
+Model
+QuadraticDiscriminantAnalysis   0.70
+SVC                             0.70
+AdaBoostClassifier              0.70
+XGBClassifier                   0.70
+ExtraTreesClassifier            0.70
+RandomForestClassifier          0.70
+CalibratedClassifierCV          0.70
+KNeighborsClassifier            0.67
+LGBMClassifier                  0.67
+BaggingClassifier               0.67
+NearestCentroid                 0.67
+DecisionTreeClassifier          0.64
+BernoulliNB                     0.64
+GaussianNB                      0.64
+DummyClassifier                 0.61
+SGDClassifier                   0.58
+LinearDiscriminantAnalysis      0.58
+RidgeClassifier                 0.55
+ExtraTreeClassifier             0.55
+LogisticRegression              0.55
+Perceptron                      0.52
+PassiveAggressiveClassifier     0.52
+LinearSVC                       0.52
+RidgeClassifierCV               0.52
+LabelSpreading                  0.33
+LabelPropagation                0.33
+Name: Accuracy, dtype: float64
 </pre></div></div>
-</div>
-<div class="section" id="Results">
-<h3>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
-
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-63-28ab2e94bd90&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>model_selection <span class="ansi-green-fg">import</span> cross_val_predict
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>y_pred <span class="ansi-blue-fg">=</span> cross_val_predict<span class="ansi-blue-fg">(</span>classifier<span class="ansi-blue-fg">,</span> X_train<span class="ansi-blue-fg">,</span> y_train<span class="ansi-blue-fg">,</span> cv<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/model_selection/_validation.py</span> in <span class="ansi-cyan-fg">cross_val_predict</span><span class="ansi-blue-fg">(estimator, X, y, groups, cv, n_jobs, verbose, fit_params, pre_dispatch, method)</span>
-<span class="ansi-green-intense-fg ansi-bold">    753</span>     prediction_blocks = parallel(delayed(_fit_and_predict)(
-<span class="ansi-green-intense-fg ansi-bold">    754</span>         clone(estimator), X, y, train, test, verbose, fit_params, method)
-<span class="ansi-green-fg">--&gt; 755</span><span class="ansi-red-fg">         for train, test in cv.split(X, y, groups))
-</span><span class="ansi-green-intense-fg ansi-bold">    756</span>
-<span class="ansi-green-intense-fg ansi-bold">    757</span>     <span class="ansi-red-fg"># Concatenate the predictions</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/parallel.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, iterable)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1039</span>             <span class="ansi-red-fg"># remaining jobs.</span>
-<span class="ansi-green-intense-fg ansi-bold">   1040</span>             self<span class="ansi-blue-fg">.</span>_iterating <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span>
-<span class="ansi-green-fg">-&gt; 1041</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>dispatch_one_batch<span class="ansi-blue-fg">(</span>iterator<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1042</span>                 self<span class="ansi-blue-fg">.</span>_iterating <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_original_iterator <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span>
-<span class="ansi-green-intense-fg ansi-bold">   1043</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/parallel.py</span> in <span class="ansi-cyan-fg">dispatch_one_batch</span><span class="ansi-blue-fg">(self, iterator)</span>
-<span class="ansi-green-intense-fg ansi-bold">    857</span>                 <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">False</span>
-<span class="ansi-green-intense-fg ansi-bold">    858</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 859</span><span class="ansi-red-fg">                 </span>self<span class="ansi-blue-fg">.</span>_dispatch<span class="ansi-blue-fg">(</span>tasks<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    860</span>                 <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
-<span class="ansi-green-intense-fg ansi-bold">    861</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/parallel.py</span> in <span class="ansi-cyan-fg">_dispatch</span><span class="ansi-blue-fg">(self, batch)</span>
-<span class="ansi-green-intense-fg ansi-bold">    775</span>         <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    776</span>             job_idx <span class="ansi-blue-fg">=</span> len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_jobs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 777</span><span class="ansi-red-fg">             </span>job <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">.</span>apply_async<span class="ansi-blue-fg">(</span>batch<span class="ansi-blue-fg">,</span> callback<span class="ansi-blue-fg">=</span>cb<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    778</span>             <span class="ansi-red-fg"># A job can complete so quickly than its callback is</span>
-<span class="ansi-green-intense-fg ansi-bold">    779</span>             <span class="ansi-red-fg"># called before we get here, causing self._jobs to</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/_parallel_backends.py</span> in <span class="ansi-cyan-fg">apply_async</span><span class="ansi-blue-fg">(self, func, callback)</span>
-<span class="ansi-green-intense-fg ansi-bold">    206</span>     <span class="ansi-green-fg">def</span> apply_async<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">,</span> callback<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    207</span>         <span class="ansi-blue-fg">&#34;&#34;&#34;Schedule a func to be run&#34;&#34;&#34;</span>
-<span class="ansi-green-fg">--&gt; 208</span><span class="ansi-red-fg">         </span>result <span class="ansi-blue-fg">=</span> ImmediateResult<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    209</span>         <span class="ansi-green-fg">if</span> callback<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    210</span>             callback<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/_parallel_backends.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, batch)</span>
-<span class="ansi-green-intense-fg ansi-bold">    570</span>         <span class="ansi-red-fg"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="ansi-green-intense-fg ansi-bold">    571</span>         <span class="ansi-red-fg"># arguments in memory</span>
-<span class="ansi-green-fg">--&gt; 572</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>results <span class="ansi-blue-fg">=</span> batch<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    573</span>
-<span class="ansi-green-intense-fg ansi-bold">    574</span>     <span class="ansi-green-fg">def</span> get<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/parallel.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    261</span>         <span class="ansi-green-fg">with</span> parallel_backend<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">,</span> n_jobs<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>_n_jobs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    262</span>             return [func(*args, **kwargs)
-<span class="ansi-green-fg">--&gt; 263</span><span class="ansi-red-fg">                     for func, args, kwargs in self.items]
-</span><span class="ansi-green-intense-fg ansi-bold">    264</span>
-<span class="ansi-green-intense-fg ansi-bold">    265</span>     <span class="ansi-green-fg">def</span> __reduce__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/joblib/parallel.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">    261</span>         <span class="ansi-green-fg">with</span> parallel_backend<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">,</span> n_jobs<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>_n_jobs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    262</span>             return [func(*args, **kwargs)
-<span class="ansi-green-fg">--&gt; 263</span><span class="ansi-red-fg">                     for func, args, kwargs in self.items]
-</span><span class="ansi-green-intense-fg ansi-bold">    264</span>
-<span class="ansi-green-intense-fg ansi-bold">    265</span>     <span class="ansi-green-fg">def</span> __reduce__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/model_selection/_validation.py</span> in <span class="ansi-cyan-fg">_fit_and_predict</span><span class="ansi-blue-fg">(estimator, X, y, train, test, verbose, fit_params, method)</span>
-<span class="ansi-green-intense-fg ansi-bold">    839</span>         estimator<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>fit_params<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    840</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 841</span><span class="ansi-red-fg">         </span>estimator<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">,</span> y_train<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>fit_params<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    842</span>     func <span class="ansi-blue-fg">=</span> getattr<span class="ansi-blue-fg">(</span>estimator<span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    843</span>     predictions <span class="ansi-blue-fg">=</span> func<span class="ansi-blue-fg">(</span>X_test<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-fg">(self, X, y, coef_init, intercept_init, sample_weight)</span>
-<span class="ansi-green-intense-fg ansi-bold">    709</span>                          loss<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>loss<span class="ansi-blue-fg">,</span> learning_rate<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>learning_rate<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    710</span>                          coef_init<span class="ansi-blue-fg">=</span>coef_init<span class="ansi-blue-fg">,</span> intercept_init<span class="ansi-blue-fg">=</span>intercept_init<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 711</span><span class="ansi-red-fg">                          sample_weight=sample_weight)
-</span><span class="ansi-green-intense-fg ansi-bold">    712</span>
-<span class="ansi-green-intense-fg ansi-bold">    713</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">_fit</span><span class="ansi-blue-fg">(self, X, y, alpha, C, loss, learning_rate, coef_init, intercept_init, sample_weight)</span>
-<span class="ansi-green-intense-fg ansi-bold">    548</span>
-<span class="ansi-green-intense-fg ansi-bold">    549</span>         self._partial_fit(X, y, alpha, C, loss, learning_rate, self.max_iter,
-<span class="ansi-green-fg">--&gt; 550</span><span class="ansi-red-fg">                           classes, sample_weight, coef_init, intercept_init)
-</span><span class="ansi-green-intense-fg ansi-bold">    551</span>
-<span class="ansi-green-intense-fg ansi-bold">    552</span>         if (self.tol is not None and self.tol &gt; -np.inf
-
-<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py</span> in <span class="ansi-cyan-fg">_partial_fit</span><span class="ansi-blue-fg">(self, X, y, alpha, C, loss, learning_rate, max_iter, classes, sample_weight, coef_init, intercept_init)</span>
-<span class="ansi-green-intense-fg ansi-bold">    512</span>             raise ValueError(
-<span class="ansi-green-intense-fg ansi-bold">    513</span>                 <span class="ansi-blue-fg">&#34;The number of classes has to be greater than one;&#34;</span>
-<span class="ansi-green-fg">--&gt; 514</span><span class="ansi-red-fg">                 &#34; got %d class&#34; % n_classes)
-</span><span class="ansi-green-intense-fg ansi-bold">    515</span>
-<span class="ansi-green-intense-fg ansi-bold">    516</span>         <span class="ansi-green-fg">return</span> self
-
-<span class="ansi-red-fg">ValueError</span>: The number of classes has to be greater than one; got 1 class
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
-
-<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[[9]]
-
-Accuracy: 1.0
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/06_-_Machine_Learning_91_0.png" src="_images/06_-_Machine_Learning_91_0.png" />
 </div>
 </div>
 </div>

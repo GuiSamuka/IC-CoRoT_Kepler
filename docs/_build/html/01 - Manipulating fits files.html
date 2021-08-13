@@ -143,10 +143,12 @@
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html">Machine Learning Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#Tests">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#SkTime">SkTime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#SkLearn">SkLearn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#ML-Classifier---Periodograms">ML Classifier - Periodograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#Decision-Trees---0.57">Decision Trees - 0.57</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#XGBoost---0.585">XGBoost - 0.585</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#Gaussian-Mixture-Models">Gaussian Mixture Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Machine%20Learning.html#Lazy-Predict">Lazy Predict</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Code APIs</span></p>
 <ul>
@@ -1046,8 +1048,6 @@ measure the period between two events since it is only necessary to subtract one
   <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;DATEBARTT&#39;</span><span class="p">:</span> <span class="s1">&#39;DATE&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
   <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;WHITEFLUXSYS&#39;</span><span class="p">:</span> <span class="s1">&#39;WHITEFLUX&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
-  <span class="n">data</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DATE</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">julian_to_stdtime</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-
   <span class="c1"># Creating folder with .csv files</span>
   <span class="n">CSV_DIR</span> <span class="o">=</span> <span class="s1">&#39;csv_files&#39;</span>
   <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">CSV_DIR</span><span class="p">):</span>
@@ -1055,6 +1055,8 @@ measure the period between two events since it is only necessary to subtract one
 
   <span class="c1"># Renaming .csv file</span>
   <span class="n">name</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">path</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">path</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
+
   <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
   <span class="c1"># Move to .csv folder</span>
@@ -1222,7 +1224,7 @@ download("download_8378339a-e477-4852-839d-6cbe202ce3ed", "csv_files.zip", 70577
 
 <span class="k">for</span> <span class="n">root_dir_path</span><span class="p">,</span> <span class="n">sub_dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="p">(</span><span class="s1">&#39;desktop.ini&#39;</span> <span class="ow">and</span> <span class="s1">&#39;csv_files.rar&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">root_dir_path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 
             <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -1338,7 +1340,7 @@ All curves will have: 15050 points
 
 <span class="k">for</span> <span class="n">root_dir_path</span><span class="p">,</span> <span class="n">sub_dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="p">(</span><span class="s1">&#39;desktop.ini&#39;</span> <span class="ow">and</span> <span class="s1">&#39;csv_files.rar&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">root_dir_path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
@@ -1346,11 +1348,6 @@ All curves will have: 15050 points
             <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DATE</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">584</span><span class="p">):</span>
               <span class="n">flux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">WHITEFLUX</span>
               <span class="n">time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DATE</span>
-
-              <span class="k">try</span><span class="p">:</span>
-                <span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">time</span><span class="p">]</span>
-              <span class="k">except</span><span class="p">:</span>
-                <span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">time</span><span class="p">]</span>
 
               <span class="n">flux_resampled</span><span class="p">,</span> <span class="n">time_resampled</span> <span class="o">=</span> <span class="n">scs</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
 
@@ -1369,14 +1366,14 @@ All curves will have: 15050 points
               <span class="c1"># Renaming lightcurve</span>
               <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;RESAMPLED_&#39;</span> <span class="o">+</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 
-              <span class="c1"># Salving lightcurves resampled</span>
+              <span class="c1"># Saving lightcurves resampled</span>
               <span class="n">FILE_DIR</span> <span class="o">=</span> <span class="n">file_name</span>
 
               <span class="n">data_resampled</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
               <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">FILE_DIR</span><span class="p">,</span> <span class="n">RESAMPLED_DIR</span><span class="p">)</span>
 
               <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-              <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resampled and salved: &#39;</span> <span class="o">+</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+              <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resampled and saved: &#39;</span> <span class="o">+</span> <span class="n">files</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total of files resampled:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
 </pre></div>
 </div>
