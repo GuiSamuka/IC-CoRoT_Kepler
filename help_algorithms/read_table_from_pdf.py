@@ -10,6 +10,7 @@ import numpy as np
 
 path = r"C:\Users\guisa\Google Drive\01 - Iniciação Científica\01 - Referências\Deleuil et. all (2018).pdf"
 
+lista_table_5 = tabula.read_pdf(path, pages='20', multiple_tables=True)
 lista_table_7 = tabula.read_pdf(path, pages='22', multiple_tables=True)
 lista_table_8 = tabula.read_pdf(path, pages='23', multiple_tables=True)
 
@@ -20,9 +21,12 @@ tabela_8 = pd.DataFrame(lista_table_8[0])  # 48 valores
 eclipsing_binaries_ids = np.append(eclipsing_binaries_ids, tabela_8['CoRoT-ID'].values)
 eclipsing_binaries_ids = eclipsing_binaries_ids[~np.isnan(eclipsing_binaries_ids)]
 
-print("Eclipsing Binaries IDs:\n", eclipsing_binaries_ids)
-print("Total of Eclipsing Binaries:", len(eclipsing_binaries_ids))
+tabela_5 = pd.DataFrame(lista_table_5[0])
 
+# print("Eclipsing Binaries IDs:\n", eclipsing_binaries_ids)
+# print("Total of Eclipsing Binaries:", len(eclipsing_binaries_ids))
+
+print(tabela_5['FU'].value_counts())
 
 # np.savetxt('tests/eclipsing_binaries_ids.txt', eclipsing_binaries_ids, fmt='%9.0f', delimiter=',', newline=',')
 
