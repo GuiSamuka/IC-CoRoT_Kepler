@@ -5,7 +5,8 @@
 """
 from . import data_viz
 from . import filter_helper
-
+import os
+import pandas as pd
 
 __all__ = ["LightCurve"]
 
@@ -92,3 +93,54 @@ class FilteredLightCurve():
     def getFilteredFlux(self):
         return self.filtered_flux
 
+
+
+def export_results_csv(WHERE_TO_SAVE_PATH, filter_technique, cutoff_freq, order, numNei):
+    # Path to resampled csv files
+    DATASET_PATH = 'C:/Users/guisa/Google Drive/01 - Iniciação Científica/IC-CoRoT_Kepler/resampled_files'
+    
+    count = 0
+    for root_dir_path, sub_dirs, files in os.walk(DATASET_PATH):
+        for j in range(0, len(files)):
+            if files[j].endswith('.csv'):
+                # print(files[j] + " => Save it!")
+                data = pd.read_csv(root_dir_path + "/" + files[j])
+
+                time = data.DATE.to_numpy()
+                flux = data.WHITEFLUX.to_numpy()
+
+                curve = LightCurve(time, flux)
+                
+
+                if filter_technique.upper() == 'IDEAL':
+                    filtered = curve.ideal_lowpass_filter(cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'GAUSSIAN':
+                    filtered = curve.gaussian_lowpass_filter(cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'BUTTERWORTH':
+                    filtered = curve.butterworth_lowpass_filter(order, cutoff_freq)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                elif filter_technique.upper() == 'BESSEL':
+                    filtered = curve.bessel_lowpass_filter(order, cutoff_freq, numExpansion=100)
+                    flux_filtered = filtered.getFilteredFlux()  
+                
+                elif filter_technique.upper() == 'MEDIAN':
+                    filtered = curve.median_filter(numNei)
+                    flux_filtered = filtered.getFilteredFlux()
+
+                
+                # Creating a new `pd.DataFrame`
+                concat_dict = {
+                  "DATE": pd.Series(time), 
+                  "WHITEFLUX": pd.Series(flux_filtered)
+                }
+                curve_filtered = pd.concat(concat_dict, axis=1)
+
+                # Salving data
+                curve_filtered.to_csv(WHERE_TO_SAVE_PATH + "/" + files[j], index=False)
+                count += 1
+    # print("All files have been saved sucessefuly\n") if count == 33 else print("Something went wrong! Please uncomment the line just under the if statement to see details of what file have been not saved\n")
