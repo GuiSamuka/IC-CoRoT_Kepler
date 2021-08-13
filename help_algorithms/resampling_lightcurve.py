@@ -20,7 +20,7 @@ import shutil
 def get_median_sample_size(DIR_PATH):
     '''
     Computes the sample size for each curve and 
-    return the median one
+    returns the median one
 
     :param str DIR_PATH: Path to the dataset to extract
     the median sample size
