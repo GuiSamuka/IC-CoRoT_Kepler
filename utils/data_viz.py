@@ -10,8 +10,8 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.io import output_notebook
 import pandas as pd
 
-output_file('image.html')
-# output_notebook()
+# output_file('image.html')
+output_notebook()
 
 
 def view_lightcurve(
