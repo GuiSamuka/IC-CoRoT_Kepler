@@ -53,6 +53,19 @@ class LightCurve():
     def median_filter(self, numNei, numExpansion=70):
         return filter_helper.apply_filter(self.time, self.flux, filter_technique='median', numNei=numNei, numExpansion=numExpansion)
 
+    def how_to_filter(self, order, cutoff_freq, numNei, numExpansion=70):
+        """
+        This function describes how to filtering
+
+        Parameters
+        ----------
+        order:
+        cutoff_freq:
+        numNei:
+        numExpansion:
+        """
+        pass
+
 
 class FilteredLightCurve():
     """
