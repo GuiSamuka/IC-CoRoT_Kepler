@@ -7,6 +7,7 @@ import numpy as np
 from math import exp, factorial
 from control import *
 from scipy.signal import medfilt
+import pandas as pd
 from . import lightcurve
 
 
