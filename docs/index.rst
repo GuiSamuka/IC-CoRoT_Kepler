@@ -63,7 +63,7 @@ Now, checkout some of the best results Obtained with this research:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Code APIs
+   :caption: Code Library
 
    modules
 

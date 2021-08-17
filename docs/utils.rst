@@ -29,7 +29,7 @@ Data Manipulating
 Filter Helper
 -------------------------
 
-.. automodule:: utils.filter_help
+.. automodule:: utils.filter_helper
    :members:
    :undoc-members:
    :show-inheritance:
