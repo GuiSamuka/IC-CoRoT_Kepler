@@ -53,16 +53,56 @@ class LightCurve():
     def median_filter(self, numNei, numExpansion=70):
         return filter_helper.apply_filter(self.time, self.flux, filter_technique='median', numNei=numNei, numExpansion=numExpansion)
 
-    def how_to_filter(self, order, cutoff_freq, numNei, numExpansion=70):
+    def how_to_filter(self, order: int, cutoff_freq: float, numNei: int, numExpansion: int):
         """
-        This function describes how to filtering
+
+        This function describes how to filtering using this library
 
         Parameters
         ----------
-        order:
-        cutoff_freq:
-        numNei:
-        numExpansion:
+        order : int
+            Used in Butterworth and Bessel filtering. Matches the filter order. 
+
+        cutoff_freq : float
+            Used in Ideal, Gaussian, Butterworth and Bessel filtering. Matches the cutoff frequency.
+
+        numNei : int
+            Used in Median. Matches the number of neighbors to consider
+
+        numExpansion : int
+            Used in all processes. Corresponds to how much you want to expanded the curve's edges 
+            (to avoid some problems caused by the Fast Fourier Transform algorithm). 
+            Preliminary tests show that all processes works fine with numExpansion=70, 
+            except for Bessel filtering, which required numExpansion=100 
+          
+
+        Methods
+        -------
+        curve.ideal_lowpass_filter(cutoff_freq)
+
+        curve.gaussian_lowpass_filter(cutoff_freq)
+
+        curve.butterworth_lowpass_filter(order, cutoff_freq)
+
+        curve.bessel_lowpass_filter(order, cutoff_freq)
+
+        curve.median_filter(numNei)
+
+
+        Examples
+        --------
+        >>> from utils import *
+        >>> curve = lightcurve.Lightcurve(time=[1, 2, 3, 4], flux=[10, 15, 12, 20])
+        >>> print(curve)
+        <utils.lightcurve.LightCurve object>
+        >>> curve.plot()
+
+        >>> filtered = curve.bessel_lowpass_filter(order=3, cutoff_freq=0.4, numExpansion=100)
+        >>> print(filtered)
+        <utils.lightcurve.FilteredLightCurve object>
+
+        >>> filtered.view_filter_results()
+
         """
         pass
 
