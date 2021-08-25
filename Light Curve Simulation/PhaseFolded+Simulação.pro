@@ -4,6 +4,10 @@ FUNCTION gaussians_sum, X, A
        [2.0*A[0]*exp(-((X-A[1])/A[2])^2.0)*((X-A[1])^2.0/(A[2])^3.0)]]
 END
 
+; A = [Amplitude, mi, sigma]
+; derivada parcial da gaussiano em relacao A[0]
+; derivada parcial da gaussiano em relacao A[1]
+; derivada parcial da gaussiano em relacao A[2]
 
 ; FUNCTION file_lines, filename
 ;    OPENR, unit, filename, /GET_LUN
@@ -112,7 +116,6 @@ delta_b=0.01
 delta_adivR=0.1
 delta_periodo=0.01
 delta_p=0.01
-
 
 ;nomes (caminhos completos) dos arquivos de par�metros
 
