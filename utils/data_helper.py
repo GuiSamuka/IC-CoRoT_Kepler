@@ -190,7 +190,7 @@ def main():
     RESAMPLED_FILES_PATH = r'resampled_files'
 
     "First step: convert all files to a csv format"
-    # fits_to_csv(FITS_FILES_PATH, 'csv_files')
+    fits_to_csv(FITS_FILES_PATH, 'C:/Users/guisa/Desktop/csv_files')
 
     "Second step: Resampling data"
     # sample_size = get_median_sample_size(CSV_FILES_PATH)
