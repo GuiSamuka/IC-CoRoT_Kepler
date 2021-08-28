@@ -1,17 +1,46 @@
 """
 
-    This module ...
+    This module contains the methods 
+    related to the `02 - Filters` notebook.
+    It has the implementation of each filtering
+    processes used on this research.
 
 """
 import numpy as np
 from math import exp, factorial
-from control import *
+# from control import *
 from scipy.signal import medfilt
 import pandas as pd
 from . import lightcurve
 
 
 def expand_edges(array, numExpansion):
+    """
+    Receive an array and expanded their edges.
+
+    Given an array of length N, it returns 
+    an array with length (N + 2*numExpansion).
+    The procedure add a certain `numExpansion`
+    points before the first point of the array, 
+    and the same `numExpansion` after the last 
+    point of the array. This values added are
+    respectively equals to the first point and 
+    the last point of the array.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to be expanded.
+
+    numExpansion : int
+        Number of points to be added at the beginning 
+        and at the end of the array.
+
+    Returns
+    -------
+    `np.array`
+
+    """
     aux_pre = np.zeros(numExpansion)
     aux_pos = np.zeros(numExpansion)
     i = 0
@@ -24,10 +53,42 @@ def expand_edges(array, numExpansion):
 
 
 def padding(array):
+    """
+    Receive an array and apply the 
+    zero padding algorithm.
+
+    Given an array of length N, it returns 
+    an array with length (2*N), filled 
+    with zeros.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to be zero padded.
+
+    Returns
+    -------
+    `np.array`
+
+    """
     return np.append(array, np.zeros(len(array)))
 
 
 def centralize_fourier(array):
+    """
+    Receive an array and multiply
+    each value of it by the factor:
+    (-1)^i, being i the array index.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to be multiplied
+
+    Returns
+    -------
+    `np.array`
+    """
     multiplied = np.ones(len(array))
     i = 0
 
@@ -38,18 +99,80 @@ def centralize_fourier(array):
 
 
 def fourier_transform(array):
+    """
+    Receive an array and computes 
+    the fourier transform of it.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to be transformed
+
+    Returns
+    -------
+    `np.array`
+    """
     return np.fft.fft(array)
 
 
 def inverse_fourier_transform(array):
+    """
+    Receive an array and computes 
+    the inverse fourier transform of it.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to be [inversed] transformed
+
+    Returns
+    -------
+    `np.array`
+    """
     return np.real(np.fft.ifft(array))
 
 
-def remove_padding(array):
+def remove_padding(array): #TODO Conferir ingles do parametro
+    """
+    Receive an array and remove
+    the padding transformation 
+    previously applied.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to lose their padded
+
+    Returns
+    -------
+    `np.array`
+    
+    """
     return array[:int(len(array)/2)]
 
 
 def remove_expand_edges(array, numExpansion):
+    """
+    Receive an array and remove the 
+    expantion edges.
+
+    The description of what the expanded
+    borded do is at `filter_helper.expand_edges`.
+    This method undo this procedure.
+
+    Parameters
+    ----------
+    array : numpy ndarray
+        Array to lose the expansion.
+
+    numExpansion : int
+        Number of points previously choose.
+
+    Returns
+    -------
+    `np.array`
+
+    """
     aux = np.delete(array, np.s_[:numExpansion])
 
     return np.delete(aux, np.s_[-numExpansion:])
@@ -64,8 +187,59 @@ def apply_filter(
         numNei=3,
         numExpansion=70):
     """
+    This method is called by all the filtering
+    processes on `utils.lightcurve`. It have the 
+    implementation of all techniques: Ideal, Gaussian,
+    Butterworth and Bessel low-pass filter, as well as 
+    the Median filter.
+
+    The `filter_helper.apply_filter` uses the others 
+    methods defined at this package to filtering
+    an LightCurve.
+
+    Parameters
+    ----------
+    time : numpy ndarray
+        Time array. For now, it only accepts an 
+        array of float numbers (as Julian Data,
+        for exemple)
+
+    array : numpy array
+        Flux array. Corresponds to the lightcurve flux
+        to be filtered.
+
+    filter_technique : String
+        Corresponds to the filtering tecnhique to be used.
+
+        Available tecnhiques: 
+
+        - ideal
+        - butterworth
+        - gaussian
+        - bessel
+        - median
+
+    cutoff_freq : float
+        Corresponds to the cutoff frequency used on
+        Ideal, Butterworth, Gaussian and Bessel 
+        lowpass filters. It must be inputed in Nyquist unit.
+
+    order : int
+        Corresponds to the order of the filter, used on
+        Butterworth and Bessel lowpass fiteres.
+
+    numNei : int
+        Corresponds to the number of neighbors to be 
+        considered on the Median Filter. 
+
+    numExpansion : int
+        Corresponds to the number of points to be used
+        on the `expand_edges` and `remove_expand_edges`
+        methods.
     
-    Returns : `lightcurve.FilteredLightCurve`
+    Returns
+    -------
+    `lightcurve.FilteredLightCurve`
     
     """
 

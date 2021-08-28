@@ -1,6 +1,7 @@
 """
 
-    This module ...
+    This module contains the methods 
+    related to visualization
 
 """
 
@@ -8,7 +9,8 @@
 # Imports
 from bokeh.plotting import figure, output_file, show
 from bokeh.io import output_notebook
-import pandas as pd
+# import pandas as pd
+import numpy as np
 
 # output_file('image.html')
 output_notebook()
@@ -72,3 +74,58 @@ def view_results(
   p.multi_line(xs, ys, color=["blue", "red"], line_width=2)
 
   show(p)
+
+def view_fourier(
+  freq_data=None,
+  sp_data=None,
+  title='Original Fourier Spectrum'):
+
+  p = figure(title=title,
+        y_axis_type='log',
+        plot_width=650, plot_height=400,
+        background_fill_color='#fafafa')
+
+  p.line(freq_data, np.real(sp_data),
+        line_color='blue',
+        legend_label='Original Spectrum',
+        line_width=2)
+
+  p.xaxis[0].axis_label = 'Frequency'
+  p.yaxis[0].axis_label = 'Magnitude'
+
+  output_notebook()
+  show(p)
+
+def compare_fourier_original_filtered(
+  freq_original_data=None,
+  sp_original_data=None,
+  freq_filtered_data=None,
+  sp_filtered_data=None,
+  title='Original and Filtered Fourier Spectrum'):
+  
+  # print('Original frequency data: ', freq_original_data)
+  # print('Original sp data: ', sp_original_data)
+  # print('Filtered frequency data: ', freq_filtered_data)
+  # print('Filtered sp data:', sp_filtered_data)
+
+  p = figure(title=title, 
+        y_axis_type='log',
+        plot_width=650, plot_height=400,
+        background_fill_color='#fafafa')
+  
+  p.line(freq_original_data, np.real(sp_original_data),
+        line_color='blue',
+        legend_label='Original Spectrum',
+        line_width=2)
+  
+  p.line(freq_filtered_data, np.real(sp_filtered_data),
+        line_color='red',
+        legend_label='Filtered Spectrum',
+        line_width=2)
+
+  p.xaxis[0].axis_label = 'Frequency'
+  p.yaxis[0].axis_label = 'Magnitude'
+
+  output_notebook()
+  show(p)
+

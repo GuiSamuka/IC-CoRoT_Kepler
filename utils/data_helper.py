@@ -179,9 +179,6 @@ def resampling_dataset(CSV_PATH, RESAMPLE_PATH, sample_size):
     print("\nTotal of files resampled:", count)
 
 
-
-
-
 def main():
     FITS_FILES_PATH = r'C:\Users\guisa\Google Drive\01 - Iniciação Científica\02 - Datasets\exoplanets_confirmed\dataset_exoplanets_confirmed'
 
@@ -190,7 +187,7 @@ def main():
     RESAMPLED_FILES_PATH = r'resampled_files'
 
     "First step: convert all files to a csv format"
-    fits_to_csv(FITS_FILES_PATH, 'C:/Users/guisa/Desktop/csv_files')
+    # fits_to_csv(FITS_FILES_PATH, 'C:/Users/guisa/Desktop/csv_files')
 
     "Second step: Resampling data"
     # sample_size = get_median_sample_size(CSV_FILES_PATH)
