@@ -1,3 +1,6 @@
+from os import system
+system("cls")
+
 observed_curve_path = 'files\curva_luz_eclipse_medio_ID100725706_Butterworth_n2_f02_autocalibrada.txt'
 
 vetor = [x.split('\n')[0] for x in open(observed_curve_path).readlines()]
@@ -9,3 +12,4 @@ primeira_linha_splitada_filtrada_iterator = filter(None, primeira_linha_splitada
 primeira_linha_splitada_filtrada = list(primeira_linha_splitada_filtrada_iterator)
 
 print(primeira_linha_splitada_filtrada)
+
