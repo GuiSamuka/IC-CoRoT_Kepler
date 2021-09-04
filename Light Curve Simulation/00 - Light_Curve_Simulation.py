@@ -6,7 +6,6 @@ Finished in:
 """
 
 from os import system
-from typing import final
 system("cls")
 
 # Libraries
@@ -15,7 +14,9 @@ import numpy as np
 from scipy import interpolate
 from numpy import loadtxt
 import pandas as pd
+import time
 
+t0 = time.time()
 
 # Help functions
 def gaussian_sum(X, A):
@@ -185,13 +186,20 @@ def calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z):
 """
 Simula_Curvas_Luz_Plus
 """
-final_table = pd.DataFrame(columns=['b_impact', 'p', 'period', 'adivR', 'qui2'])
 
 
 # Complete path to the lightcurve phase folded
-observed_curve = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # observed_curve_path = 'files\curva_luz_eclipse_medio_ID100725706_Butterworth_n2_f02_autocalibrada.txt'
-# observed_curve = loadtxt(observed_curve_path, dtype='float', delimiter='\n')
+# observed_curve = []
+
+# vector = [x.split('\n')[0] for x in open(observed_curve_path).readlines()]
+# for line in vector:
+#     splitted_line = line.split(' ')
+#     splitted_line_iterator = filter(None, splitted_line)
+#     splitted_line_filtered = list(splitted_line_iterator)
+#     observed_curve.append(float(splitted_line_filtered[1]))
+
+observed_curve = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 # Sampling intervals of parameter's values
@@ -231,15 +239,23 @@ gamma2 = 0.23
 
 # simulated_curve = np.ones((2, len(x_values)))
 # simulated_curve_resampled = np.ones((2, len(observed_curve)))
-simulated_curve = np.ones(len(x_values))
-simulated_curve_resampled = np.ones(len(observed_curve))
+simulated_curve = np.zeros(len(x_values))
+simulated_curve_resampled = np.zeros(len(observed_curve))
 
-# observed_curve_eclipse = np.ones((3, len(observed_curve)))
-observed_curve_eclipse = np.random.random(len(observed_curve))
+observed_curve_eclipse = np.ones((3, len(observed_curve)))
+# observed_curve_eclipse = np.random.random(len(observed_curve))
 
 
 F = []
 z = []
+list_b_values        = []
+list_p_values        = []
+list_period_values   = []
+list_adivR_values    = []
+list_qui2_values     = []
+
+final_table = pd.DataFrame(columns=['b_impact', 'p', 'period', 'adivR', 'qui2'])
+
 
 v = 0
 for b_impact in b_values:
@@ -286,10 +302,7 @@ for b_impact in b_values:
                     #     print('(1-a) / (4*z[w]*p) = ', (1-a) / (4*z[w]*p))
                     #     raise
                     except ValueError:
-                        print(final_table.head())
-                        raise
-                        
-
+                        pass
                     q = p**2 - z[w]**2
 
                     c1 = 0
@@ -339,12 +352,12 @@ for b_impact in b_values:
                         lambda_d = calculate_lambda_5(p)
                         eta_d = calculate_eta_2(p, w, z)
                         
-                        F.insert(w, calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+                        F.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
  
                     ## Case V
                     elif (p > 0) and (p < 0.5) and (z[w] == p):
                         # print('Case V')
-                        lamda_d = calculate_lambda_4(p)
+                        lambda_d = calculate_lambda_4(p)
                         eta_d = calculate_eta_2(p, w, z)
 
                         F.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
@@ -404,63 +417,208 @@ for b_impact in b_values:
                         F.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
             
-#############################################################################################            
-                # Conversao de x para tempo
-                ttrans = period/(pi*adivR)
-                mid = (len(x_values)/2) - 0.5
-                for u in range(len(x_values)):
-                    if (u < mid):
-                        # simulated_curve[0, u] = (-1)*x_values[u]*ttrans/2
-                        simulated_curve[u] = (-1)*x_values[u]*ttrans/2
-                    elif (u >= mid):
-                        # simulated_curve[0, u] = x_values[u]*ttrans/2
-                        simulated_curve[u] = x_values[u]*ttrans/2
-                
-                # simulated_curve[1, *] = F[*]          
-                    
-                # Reamostragem
-                # simulated_curve_resampled[0, *] = observed_curve_eclipse[0, *]
-                # simulated_curve_resampled[1, *] = interpolate.interp1d(simulated_curve[1, *], simulated_curve[0, *], simulated_curve_resampled[0, *])
+#############################################################################################                           
+                simulated_curve = F 
                 simulated_curve_resampled = simulated_curve
                 
                 # Cálculo do qui^2
                 qui2 = 0
                 for u in range(len(observed_curve)):
-                    # qui2 += ((observed_curve_eclipse[1, u]-simulated_curve_resampled[1, u])**2/observed_curve_eclipse[2, u]**2)
                     qui2 += ((observed_curve_eclipse[u]-simulated_curve_resampled[u])**2/observed_curve_eclipse[u]**2)
 
-                # final_table.loc[w,'b_impact'] = b_impact
-                # final_table.loc[w,'p']        = p
-                # final_table.loc[w,'period']   = period
-                # final_table.loc[w,'adivR']    = adivR
-                # final_table.loc[w,'qui2']     = qui2  
-                # print(w)
-    
-                # print(final_table.head())
+                list_b_values.append(b_impact)
+                list_p_values.append(p)
+                list_period_values.append(period)
+                list_adivR_values.append(adivR)
+                list_qui2_values.append(qui2)
+                
                        
+                final_table = pd.DataFrame(columns=['b', 'p', 'period', 'adivR', 'qui2'])
+                final_table['b'] = list_b_values
+                final_table['p'] = list_p_values
+                final_table['period'] = list_period_values
+                final_table['adivR'] = list_adivR_values
+                final_table['qui2'] = list_qui2_values
 
+    print('Simulating ... ')
 
-                # final_table = np.ones(5)
-                # final_table[0] = b_impact
-                # final_table[1] = p
-                # final_table[2] = period
-                # final_table[3] = adivR
-                # final_table[4] = qui2
+                
 
-                # string_v = str(v+1)
-                # string_v = strtrim(string_v, 1)
-                # v += 1
-
-                # print("b_impact:", final_table[0])
-                # print("p:", final_table[1])
-                # print("period:", final_table[2])
-                # print("adivR:", final_table[3])
-                # print("qui2:", final_table[4])
-# 481 line
         
 # Ordenamento da tabela de quis quadrados
-# print(qui2)
+system('cls')
+print(final_table)
+final_table.to_csv('final_table.csv', index=False)
+
+print()
+print("\nCurva observada: ", observed_curve)
+
+# Elaboraçao da curva simulada final
+
+sorted = final_table.sort_values(by='qui2')
+b_impact = sorted.loc[sorted.index[0]][0]
+p = sorted.loc[sorted.index[0]][1]
+period = sorted.loc[sorted.index[0]][2]
+adivR = sorted.loc[sorted.index[0]][3]
+qui2 = sorted.loc[sorted.index[0]][4]
+z = np.sqrt((np.power(x_values, 2) + b_impact**2))
+
+F_final = []
+
+w = 0
+for w in range(len(x_values)):
+    # Application of basic modeling
+    if ((1+p) < z[w]):
+        lambda_e = 0
+
+    elif (abs(1-p) < z[w] and (z[w] <= (1+p))):
+        k0 = acos((p**2 + z[w]**2 - 1) / (2*p*z[w]))
+        k1 = acos((1 - p**2 + z[w]**2) / (2*z[w]))
+        lambda_e = (1/pi) * (p**2*k0 + k1 -
+                                sqrt((4*z[w]**2 - (1+z[w]**2-p**2)**2)/(4)))
+
+    elif (z[w] <= 1-p):
+        lambda_e = p**2
+
+    elif (z[w] <= p-1):
+        lambda_e = 1
+    
+    # Application of limb darkening
+    a = (z[w]-p)**2
+    b = (z[w]+p)**2
+    try:
+        k = sqrt((1-a)/(4*z[w]*p))
+    # except ValueError:
+    #     system('cls')
+    #     print('k = sqrt( (1-a) / (4*z[w]*p) )')
+    #     print('a = ', a)
+    #     print('z[w] = ', z[w])
+    #     print('p = ', p)
+    #     print('(1-a) = ', 1-a)
+    #     print('(4*z[w]*p) = ', (4*z[w]*p))
+    #     print('(1-a) / (4*z[w]*p) = ', (1-a) / (4*z[w]*p))
+    #     raise
+    except ValueError:
+        pass
+    q = p**2 - z[w]**2
+
+    c1 = 0
+    c2 = gamma1 + 2*gamma2
+    c3 = 0
+    c4 = -1*gamma2
+    c0 = 1 - c1 - c2 - c3 - c4
+    Omega = (c0/4) + (c1/5) + (c2/6) + (c3/7) + (c4/8)
+
+    ## Case I
+    if (p > 0) and (z[w] >= 1+p):
+        # print('Case I')
+        lambda_d = 0
+        eta_d = 0
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+    elif (p == 0) and (z[w] >= 0):
+        # print('Case I')
+        lambda_d = 0
+        eta_d = 0   
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+    ## Case II
+    elif (p > 0) and (z[w] > 0.5+abs(p-0.5)) and (z[w] < 1+p):
+        # print('Case II')
+        lambda_d = calculate_lambda_1(a, b, k, p, q, w, z)
+        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+    ## Case III
+    elif (p > 0) and (p < 0.5) and (z[w] > p) and (z[w] < 1-p):
+        # print('Case III')
+        lambda_d = calculate_lambda_2(a, b, k, p, q, w, z)
+        eta_d = calculate_eta_2(p, w, z) 
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
 
+    ## Case IV
+    elif (p > 0) and (p < 0.5) and (z[w] == 1-p):
+        # print('Case IV')
+        lambda_d = calculate_lambda_5(p)
+        eta_d = calculate_eta_2(p, w, z)
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
 
+    ## Case V
+    elif (p > 0) and (p < 0.5) and (z[w] == p):
+        # print('Case V')
+        lamda_d = calculate_lambda_4(p)
+        eta_d = calculate_eta_2(p, w, z)
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case VI
+    elif (p == 0.5) and (z[w] == 0.5):
+        # print('Case VI')
+        lambda_d = (1/3) - (4/(9*pi))
+        eta_d = 3/32
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case VII
+    elif (p > 0.5) and (z[w] == p):
+        # print('Case VII')
+        lambda_d = calculate_lambda_3(p)
+        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case VIII
+    elif (p > 0.5) and (z[w] >= abs(1-p)) and (z[w] < p):
+        # print('Case VIII')
+        lambda_d = calculate_lambda_1(a, b, k, p, q, w, z)
+        eta_d = calculate_eta_1(a, b, k0, k1, p, w, z)
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case IX
+    elif (p > 0) and (p < 1) and (z[w] > 0) and (z[w] < 0.5-abs(p-0.5)):
+        # print('Case IX')
+        lambda_d = calculate_lambda_2(a, b, k, p, q, w, z)
+        eta_d = calculate_eta_2(p, w, z) 
+
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case X
+    elif (p > 0) and (p < 1) and (z[w] == 0):
+        # print('Case X')
+        lambda_d = calculate_lambda_6(p)
+        eta_d = calculate_eta_2(p, w, z)
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+    ## Case XI
+    elif (p > 1) and (z[w] >= 0) and (z[w] < p-1):
+        # print('Case XI')
+        lambda_d = 1
+        eta_d = 1
+        
+        F_final.append(calculate_flux(c2, c4, Omega, lambda_e, lambda_d, eta_d, p, w, z))
+
+
+tf = time.time()
+takes = tf - t0
+print("It takes: ", round(takes, 2))
+
+curva_final_final_final = []
+curva_final_final_final = F_final
+print("\nCurva final final final: \n", curva_final_final_final)
+
+print("Fim")
 

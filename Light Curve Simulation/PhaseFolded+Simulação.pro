@@ -457,7 +457,8 @@ FOR i=0, Nb-1 DO BEGIN
             ;reamostragem
             curva_simulada_reamostrada[0,*]=curva_observada_eclipse[0,*]
             curva_simulada_reamostrada[1,*]=INTERPOL(curva_simulada[1,*],curva_simulada[0,*],curva_simulada_reamostrada[0,*])
-
+            ; https://www.l3harrisgeospatial.com/docs/interpol.html
+            ; irregular grid
 
             ;calculo do qui2
             qui2=0.0
@@ -936,6 +937,7 @@ z=SQRT(xs^2.0+b_impacto^2.0)
 p=nova_tabela_final_ordenada_mesmo[1,0]
 periodo=nova_tabela_final_ordenada_mesmo[2,0]
 adivR=nova_tabela_final_ordenada_mesmo[3,0]
+
 FOR w=0, Nx-1 DO BEGIN
    ;aplica�ao da modelagem b�sica
    IF (1.0+p LT z[w]) THEN BEGIN
