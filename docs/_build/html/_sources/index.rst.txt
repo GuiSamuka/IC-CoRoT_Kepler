@@ -45,9 +45,9 @@ Now, checkout some of the best results Obtained with this research:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Phase Folded
+   :caption: Simulation
 
-   04 - Phase Folded   
+   04 - Simulation   
 
 .. toctree::
    :maxdepth: 2
