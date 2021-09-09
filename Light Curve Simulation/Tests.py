@@ -1,189 +1,58 @@
-from os import system
-import re
-from utils.visualization.data_viz import make_histogram
-system("cls")
-
-# observed_curve_path = 'files\curva_luz_eclipse_medio_ID100725706_Butterworth_n2_f02_autocalibrada.txt'
-# flux = []
-
-# vetor = [x.split('\n')[0] for x in open(observed_curve_path).readlines()]
-# for line in vetor:
-#     splitted_line = line.split(' ')
-#     splitted_line_iterator = filter(None, splitted_line)
-#     splitted_line_filtered = list(splitted_line_iterator)
-#     flux.append(float(splitted_line_filtered[1]))
-
-# print(flux)
-# print(primeira_linha_splitada_filtrada)
-# flux.append(primeira_linha_splitada_filtrada[1])
-# print(flux)
-
-
-
-# import numpy as np
-# Nmax = 10
-# new_final_table = np.zeros((5, Nmax))
-# new_sorted_final_table = np.zeros((5, Nmax))
-
-# print(new_final_table)
-# print()
-# print(new_final_table[4,:])
-
-
-# # %%
-# import numpy as np
-# from scipy.stats import norm
-# import matplotlib.pyplot as plt
-# import pandas as pd
-
-# dataset = pd.read_csv('final_table.csv')
-# print(dataset.columns)
-# data = dataset['qui2']
-
-# mean,std=norm.fit(data)
-
-
-# plt.hist(data, bins=30, density=True, histtype='stepfilled', alpha=0.2)
-# xmin, xmax = plt.xlim()
-# x = np.linspace(xmin, xmax, 100)
-# y = norm.pdf(x, mean, std)
-# plt.plot(x, y)
-# plt.title(f'{data.name} histogram')
-# plt.show()
-
-
-
-# # %%
-# import numpy as np
-# import pandas as pd
-
-# dataset = pd.read_csv('final_table.csv')
-
-# sorted = dataset.sort_values(by='qui2')
-
-# b = sorted.loc[sorted.index[0]][0]
-# p = sorted.loc[sorted.index[0]][1]
-# period = sorted.loc[sorted.index[0]][2]
-# adivR = sorted.loc[sorted.index[0]][3]
-# qui2 = sorted.loc[sorted.index[0]][4]
-
-# print(sorted.loc[sorted.index[0]])
-# print(qui2)
-
-
-
-
-################################
-## Testando classe
 #%%
+from os import system
+system('cls')
 
 import utils
+import pandas as pd
+import numpy as np
+from math import sqrt
+
+# Incertezas
+SimulateObject = utils.Simulate()
+delta_adivR  = SimulateObject.delta_adivR
+
+table = pd.read_csv('final_table.csv')
+
+parameter = 'adivR'
+
+
+data = table[parameter].sort_values().to_numpy()
+
+utils.make_histogram(data, bins=len(np.unique(data)), gaussian_approx=True, plot_cdf=False)
+
+
+
+# %%
+import utils 
 import numpy as np
 
+time = [-0.1481600000,-0.1422336000,-0.1363072000,-0.1303808000,-0.1244544000,-0.1185280000,-0.1126016000,-0.1066752000,-0.1007488000,-0.0948224000,-0.0888960000,-0.0829696000,-0.0770432000,-0.0711168000,-0.0651904000,-0.0592640000,-0.0533376000,-0.0474112000,-0.0414848000,-0.0355584000,-0.0296320000,-0.0237056000,-0.0177792000,-0.0118528000,-0.0059264000,0.0000000000,0.0059264000,0.0118528000,0.0177792000,0.0237056000,0.0296320000,0.0355584000,0.0414848000,0.0474112000,0.0533376000,0.0592640000,0.0651904000,0.0711168000,0.0770432000,0.0829696000,0.0888960000,0.0948224000,0.1007488000,0.1066752000,0.1126016000,0.1185280000,0.1244544000,0.1303808000,0.1363072000,0.1422336000,0.1481600000]
+flux = [0.9998890000,0.9998620000,0.9998410000,0.9998240000,0.9998330000,0.9998400000,0.9998260000,0.9997920000,0.9997690000,0.9997670000,0.9997310000,0.9996390000,0.9994670000,0.9991300000,0.9985820000,0.9977730000,0.9966470000,0.9952250000,0.9935850000,0.9918480000,0.9901580000,0.9886300000,0.9873990000,0.9865560000,0.9860810000,0.9859430000,0.9861100000,0.9865810000,0.9873940000,0.9885630000,0.9900410000,0.9917440000,0.9935490000,0.9953280000,0.9969150000,0.9981570000,0.9990020000,0.9994800000,0.9996950000,0.9997550000,0.9997350000,0.9996680000,0.9995930000,0.9995660000,0.9996100000,0.9997080000,0.9998520000,1.0000200000,1.0001600000,1.0002200000,1.0002200000]
+flux_error = [0.0004429030,0.0004730390,0.0005336970,0.0006176250,0.0006609910,0.0006181630,0.0005694660,0.0007174970,0.0010042000,0.0012532200,0.0014065300,0.0015066500,0.0015661100,0.0015462300,0.0014475700,0.0013270600,0.0012236200,0.0011347000,0.0010342600,0.0009445330,0.0008957230,0.0009176060,0.0010341200,0.0012847100,0.0016077100,0.0018928900,0.0020054000,0.0018970600,0.0016677200,0.0014806900,0.0013842700,0.0013265800,0.0012413100,0.0011207500,0.0009860860,0.0009293850,0.0010354500,0.0011807500,0.0012602800,0.0012458800,0.0011885000,0.0011429700,0.0011507400,0.0012024600,0.0012284900,0.0011691800,0.0010192300,0.0008780320,0.0007979110,0.0007564010,0.0007313150]
+x_values = [1.5000000000,1.4000000000,1.3000000000,1.2000000000,1.1000000000,1.0000000000,0.9000000000,0.8000000000,0.7000000000,0.6000000000,0.5000000000,0.4000000000,0.3000000000,0.2000000000,0.1000000000,0.0000000000,0.1000000000,0.2000000000,0.3000000000,0.4000000000,0.5000000000,0.6000000000,0.7000000000,0.8000000000,0.9000000000,1.0000000000,1.1000000000,1.2000000000,1.3000000000,1.4000000000,1.5000000000]
 
-# Planet coordinate, along the x-axis, as a function of the start's radius
-x_values_path = 'files\Valores_x_simulacao.txt'
-x_values = np.loadtxt(x_values_path, dtype='float', delimiter='\n')
-
-# Transit impact parameter
-b_values_path = 'files\Valores_b_simulacao_rodada2.txt'
-b_values = np.loadtxt(b_values_path, dtype='float', delimiter='\n')
-
-# Radius values of the planet compared to the star
-p_values_path = 'files\Valores_p_simulacao_rodada2.txt'
-p_values = np.loadtxt(p_values_path, dtype='float', delimiter='\n')
-
-# Orbital period values to be considered
-period_values_path = 'files\Valores_periodo_simulacao_rodada2.txt'
-period_values = np.loadtxt(period_values_path, dtype='float', delimiter='\n')
-
-# Orbital radius values compared to star radius
-adivR_values_path = 'files\Valores_adivR_simulacao_rodada2.txt'
-adivR_values = np.loadtxt(adivR_values_path, dtype='float', delimiter='\n')
-
-
-observed_curve_path = 'files\curva_luz_eclipse_medio_ID100725706_Butterworth_n2_f02_autocalibrada.txt'
-vetor = [x.split('\n')[0] for x in open(observed_curve_path).readlines()]
-
-Nobs = 0
-for line in vetor:
-    Nobs += 1
-
-observed_curve = np.zeros((Nobs, 3))
-
-time = []
-flux = []
-flux_error = []
-
-for line in vetor:
-    splitted_line = line.split(' ')
-    splitted_line_iterator = filter(None, splitted_line)
-    splitted_line_filtered = list(splitted_line_iterator)
-    time.append(splitted_line_filtered[0])
-    flux.append(splitted_line_filtered[1])
-    flux_error.append(splitted_line_filtered[2])
-
+# observed_curve = utils.LightCurve(time=time, flux=flux)
+# observed_curve.plot()
+observed_curve = np.zeros((len(time), 3))
+# print(observed_curve)
 observed_curve[:, 0] = time
 observed_curve[:, 1] = flux
 observed_curve[:, 2] = flux_error
 
 
-simulation_object = utils.Simulate()
-final_table_sorted_by_chi2 = simulation_object.simulate_values(observed_curve, [0.91, 0.92, 0.12, 0.13, 0.123, 0.123], [0.13, 0.14], [13, 14], [18.3, 18.4], x_values, results_to_csv=False)
+
+SimulateObject = utils.Simulate()
+
+final_table_sorted_by_chi2 = SimulateObject.simulate_values(observed_curve, [0.91, 0.92], [0.13, 0.14], [13, 14], [18.3, 18.4], x_values, results_to_csv=False)
+
 print(final_table_sorted_by_chi2.head())
-# final_table_sorted_by_chi2 = simulation_object.simulate_values(observed_curve, b_values, p_values, period_values, adivR_values, x_values, results_to_csv=True)
-# print(final_table_sorted_by_chi2.head())
 
-simulated_curve = simulation_object.simulate_lightcurve(observed_curve=observed_curve, x_values=x_values)
-simulated_curve.view_simulation_results()
-simulated_curve.compare_results(see_values=True)
+## Build the lightcurve with the best parameters computeds
+simulated_curve = SimulateObject.simulate_lightcurve(observed_curve=observed_curve, x_values=x_values)
+chi2 = simulated_curve.compare_results(see_values=False)
+
 
 
 # %%
-## Calculo do erro por parametro
-## Capítulo 14.1 do livro: Numerical recipe : the art of scientific computing
-
-# https://docs.bokeh.org/en/latest/docs/gallery/histogram.html
-
-import utils
-import numpy as np
-from math import sqrt
-
-adivR_values_path = 'files\Valores_adivR_simulacao_rodada2.txt'
-data = np.loadtxt(adivR_values_path, dtype='float', delimiter='\n')
-
-# mu, sigma = 0, 0.5
-# data = np.random.normal(mu, sigma, 1000)
-
-# utils.make_histogram(data, bins=int(round(sqrt(len(data)), 0)))
-# mu, sigma = utils.make_histogram(data, bins=int(round(sqrt(len(data)), 0)), gaussian_approx=True, plot_cdf=False)
-# print(f'Computed values: μ≈{round(mu,4)} and σ≈{round(sigma,4)}')
 
 
-
-import numpy as np
-import statsmodels.stats.api as sms
-
-sms.DescrStatsW(data).tconfint_mean()
-
-
-#%%
-from uncertainties import ufloat
-import numpy as np
-
-array = [1, 2]
-print('Original array =', array)
-
-std = np.std(array)
-
-# uncert_arr = np.array([ufloat(array[0], std), ufloat(array[1], std)])
-uncert_arr = []
-for i in range(len(array)):
-    uncert_arr.append(ufloat(array[i], std))
-uncert_arr = np.array(uncert_arr)
-
-
-print('Array with uncertainties =', uncert_arr)
-
-
-# %%
