@@ -2,6 +2,6 @@ Filtering Techniques
 ===================
 
 .. toctree::
-   :maxdepth: 4
+    :maxdepth: 4
 
-   imt_lightcurve
+    utils
