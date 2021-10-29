@@ -1,39 +1,18 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Frequency Domain Filtering Fundamentals &mdash; Filtering Techniques</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-
-  
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
@@ -42,43 +21,22 @@
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reading data" href="03%20-%20Study%20of%20filtering%20processes.html" />
     <link rel="prev" title="Read .fits data" href="01%20-%20Manipulating%20fits%20files.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites
-          
-
-          
-            
             <img src="_static/Logos_white_bg.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -86,18 +44,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Manipulating fits files</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html">Read <em>.fits</em> data</a></li>
@@ -161,71 +108,30 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Filtering Techniques</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Frequency Domain Filtering Fundamentals</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/02 - Filters.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -496,18 +402,18 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Frequency-Domain-Filtering-Fundamentals">
-<h1>Frequency Domain Filtering Fundamentals<a class="headerlink" href="#Frequency-Domain-Filtering-Fundamentals" title="Permalink to this headline">¶</a></h1>
+<section id="Frequency-Domain-Filtering-Fundamentals">
+<h1>Frequency Domain Filtering Fundamentals<a class="headerlink" href="#Frequency-Domain-Filtering-Fundamentals" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<div class="section" id="Introduction">
-<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline"></a></h2>
 <p>Filtering in the frequency domain consists of modifying the Fourier transform of an signal (can be a image, a media file, a light curve…) and then taking the inverse tranform to obtained the filtered result. Thus, given a digital signal, <span class="math notranslate nohighlight">\(f(x)\)</span>, of length <span class="math notranslate nohighlight">\(M\)</span>, the basic filtering equation is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}g(x) = \mathcal{F}^{-1}[H(u)F(u)] \\\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{F}^{-1}\)</span> is the Inverse discrete Fourier transform, <span class="math notranslate nohighlight">\(F(u)\)</span> is the Fourier transform of the given function <span class="math notranslate nohighlight">\(f(x)\)</span> (input), <span class="math notranslate nohighlight">\(H(u)\)</span> is the <em>filter transfer function</em>, and <span class="math notranslate nohighlight">\(g(x)\)</span> is the filtered signal (output). Both <span class="math notranslate nohighlight">\(F\)</span>, <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are arrays of size <span class="math notranslate nohighlight">\(M\)</span>, the same as the input signal. The product <span class="math notranslate nohighlight">\(H(u)F(u)\)</span> is formed using array multiplication; that is, <span class="math notranslate nohighlight">\(G(i, k)=H(i, k)F(i, k)\)</span>.</p>
-</div>
-<div class="section" id="Expand-LightCurves-borders">
-<h2>Expand LightCurves borders<a class="headerlink" href="#Expand-LightCurves-borders" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Expand-LightCurves-borders">
+<h2>Expand LightCurves borders<a class="headerlink" href="#Expand-LightCurves-borders" title="Permalink to this headline"></a></h2>
 <p>To perform the filtering of the light curves in this work, we will use the Fast Fourier Transform (FFT) algorithm in order to convert the signal in its original domain in the frequency domain. The choice of FFT is simple, this algorithm has complexity of <span class="math notranslate nohighlight">\(O(N log\ N)\)</span>, while the Discrete-time Fourier transform has complexity <span class="math notranslate nohighlight">\(O(N^2)\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the input data size, it means, FFT is much more computationally efficient.</p>
 <p>However, the FFT has some peculiarities that can lead to problemas and unexpected results. The algorithm is based on the sucessive folding method [Gonzales and Woods, 1992], in other words, it assumes that the input signal is periodic and that the number of samples is an integer and a power of 2, but the second premise is not a requirement general. The first conjecture is quite relevant to not having distortion in the algorithm outout although. Colleting <span class="math notranslate nohighlight">\(M\)</span> samples of a signal, which
 CoRoT did for us, is equivalent to cutting a finite piece of the real signal, i.e., we take a window between <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> of a defined signal of <span class="math notranslate nohighlight">\({-\infty}\)</span> to <span class="math notranslate nohighlight">\({+\infty}\)</span>. There is a possibility that this window perfectly represents the oscillations of the original signal, that is contain complete periods of all frequencies, thus we will have a FFT without distortions, but it is statistically unlikely that this will happen. In this case, we will have incomplete
@@ -531,9 +437,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Avoiding-wraparound-error">
-<h2>Avoiding <em>wraparound</em> error<a class="headerlink" href="#Avoiding-wraparound-error" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Avoiding-wraparound-error">
+<h2>Avoiding <em>wraparound</em> error<a class="headerlink" href="#Avoiding-wraparound-error" title="Permalink to this headline"></a></h2>
 <p>The product <span class="math notranslate nohighlight">\([H(u)F(u)]\)</span>, provided by the basis filtering equation, is obtained by the Array product. Consider the following 4x1 vectors:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
@@ -581,9 +487,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Centering-the-transform">
-<h2>Centering the transform<a class="headerlink" href="#Centering-the-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Centering-the-transform">
+<h2>Centering the transform<a class="headerlink" href="#Centering-the-transform" title="Permalink to this headline"></a></h2>
 <p>With Zero Padding applied, the next step is to try to simplift the definition of the filter transfer function, <span class="math notranslate nohighlight">\(H(u)\)</span>. Based on symmetry properties of funcions, it is noted that the specification of <span class="math notranslate nohighlight">\(H(u)\)</span> is quite simplified when we are working with symmetric functions by their center, which requires that their Fourier transform <span class="math notranslate nohighlight">\(F(u)\)</span> also be centralized.</p>
 <p>The centralization is demostraded by the propert of translation and rotation of the Fourier transform:</p>
 <div class="math notranslate nohighlight">
@@ -609,9 +515,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Taking-the-Fourier-transform">
-<h2>Taking the Fourier transform<a class="headerlink" href="#Taking-the-Fourier-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Taking-the-Fourier-transform">
+<h2>Taking the Fourier transform<a class="headerlink" href="#Taking-the-Fourier-transform" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -624,13 +530,13 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Filter-Transfer-Function">
-<h2>Filter Transfer Function<a class="headerlink" href="#Filter-Transfer-Function" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Filter-Transfer-Function">
+<h2>Filter Transfer Function<a class="headerlink" href="#Filter-Transfer-Function" title="Permalink to this headline"></a></h2>
 <p>Each filter has their own transfer function, …</p>
-</div>
-<div class="section" id="Inverse-Fourier-transform">
-<h2>Inverse Fourier transform<a class="headerlink" href="#Inverse-Fourier-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Inverse-Fourier-transform">
+<h2>Inverse Fourier transform<a class="headerlink" href="#Inverse-Fourier-transform" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -643,9 +549,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Removing-Zero-Padding">
-<h2>Removing Zero-Padding<a class="headerlink" href="#Removing-Zero-Padding" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Removing-Zero-Padding">
+<h2>Removing Zero-Padding<a class="headerlink" href="#Removing-Zero-Padding" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -656,9 +562,9 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Removing-borders-expanded">
-<h2>Removing borders expanded<a class="headerlink" href="#Removing-borders-expanded" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Removing-borders-expanded">
+<h2>Removing borders expanded<a class="headerlink" href="#Removing-borders-expanded" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -672,65 +578,48 @@ points before <span class="math notranslate nohighlight">\(A\)</span>’s first 
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Re-multiplying-data-by-(-1)^{x}">
-<h2>Re-multiplying data by <span class="math notranslate nohighlight">\((-1)^{x}\)</span><a class="headerlink" href="#Re-multiplying-data-by-(-1)^{x}" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
-<div class="section" id="Nonlinear-filter">
-<h1>Nonlinear filter<a class="headerlink" href="#Nonlinear-filter" title="Permalink to this headline">¶</a></h1>
+</section>
+<section id="Re-multiplying-data-by-(-1)^{x}">
+<h2>Re-multiplying data by <span class="math notranslate nohighlight">\((-1)^{x}\)</span><a class="headerlink" href="#Re-multiplying-data-by-(-1)^{x}" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="Nonlinear-filter">
+<h1>Nonlinear filter<a class="headerlink" href="#Nonlinear-filter" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<div class="section" id="id1">
-<h2>Introduction<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+<section id="id1">
+<h2>Introduction<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="03%20-%20Study%20of%20filtering%20processes.html" class="btn btn-neutral float-right" title="Reading data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="01%20-%20Manipulating%20fits%20files.html" class="btn btn-neutral float-left" title="Read .fits data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03%20-%20Study%20of%20filtering%20processes.html" class="btn btn-neutral float-right" title="Reading data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Guilherme Samuel.
-
-    </p>
+    <p>&#169; Copyright 2021, Guilherme Samuel.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

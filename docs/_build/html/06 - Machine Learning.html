@@ -1,39 +1,18 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Machine Learning Data &mdash; Filtering Techniques</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-
-  
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
@@ -42,43 +21,22 @@
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Filtering Techniques" href="modules.html" />
     <link rel="prev" title="Reading the data" href="05%20-%20Feature%20Engineering.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites
-          
-
-          
-            
             <img src="_static/Logos_white_bg.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -86,18 +44,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Manipulating fits files</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01%20-%20Manipulating%20fits%20files.html">Read <em>.fits</em> data</a></li>
@@ -220,71 +167,30 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Filtering Techniques</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Filtering Techniques of Light Curves Obtained from CoRoT and Kepler satellites</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Machine Learning Data</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/06 - Machine Learning.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -555,8 +461,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Machine-Learning-Data">
-<h1>Machine Learning Data<a class="headerlink" href="#Machine-Learning-Data" title="Permalink to this headline">¶</a></h1>
+<section id="Machine-Learning-Data">
+<h1>Machine Learning Data<a class="headerlink" href="#Machine-Learning-Data" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <p>Now, we are going to apply some ML algorithms on lightcurves contained:</p>
 <ul class="simple">
@@ -574,9 +480,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="SkTime">
-<h1>SkTime<a class="headerlink" href="#SkTime" title="Permalink to this headline">¶</a></h1>
+</section>
+<section id="SkTime">
+<h1>SkTime<a class="headerlink" href="#SkTime" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -591,10 +497,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Preprocessing-data">
-<h2>Preprocessing data<a class="headerlink" href="#Preprocessing-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Creating-matrix-of-features-(CoRoT-targets-with-confirmed-exoplanets)">
-<h3>Creating matrix of features (CoRoT targets with confirmed exoplanets)<a class="headerlink" href="#Creating-matrix-of-features-(CoRoT-targets-with-confirmed-exoplanets)" title="Permalink to this headline">¶</a></h3>
+<section id="Preprocessing-data">
+<h2>Preprocessing data<a class="headerlink" href="#Preprocessing-data" title="Permalink to this headline"></a></h2>
+<section id="Creating-matrix-of-features-(CoRoT-targets-with-confirmed-exoplanets)">
+<h3>Creating matrix of features (CoRoT targets with confirmed exoplanets)<a class="headerlink" href="#Creating-matrix-of-features-(CoRoT-targets-with-confirmed-exoplanets)" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -657,9 +563,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Labeling-matrix-of-features">
-<h3>Labeling matrix of features<a class="headerlink" href="#Labeling-matrix-of-features" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Labeling-matrix-of-features">
+<h3>Labeling matrix of features<a class="headerlink" href="#Labeling-matrix-of-features" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>0: confirmed_exoplanets</p></li>
 <li><p>1: eclipsing_binaries</p></li>
@@ -694,9 +600,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Creating-dataset,-X-and-y">
-<h3>Creating dataset, X and y<a class="headerlink" href="#Creating-dataset,-X-and-y" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Creating-dataset,-X-and-y">
+<h3>Creating dataset, X and y<a class="headerlink" href="#Creating-dataset,-X-and-y" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -723,14 +629,14 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Machine-Learning---SkTime">
-<h2>Machine Learning - SkTime<a class="headerlink" href="#Machine-Learning---SkTime" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="Machine-Learning---SkTime">
+<h2>Machine Learning - SkTime<a class="headerlink" href="#Machine-Learning---SkTime" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://github.com/alan-turing-institute/sktime/tree/v0.4.3">https://github.com/alan-turing-institute/sktime/tree/v0.4.3</a></p>
 <p><a class="reference external" href="https://github.com/alan-turing-institute/sktime/blob/main/sktime/classification/compose/">https://github.com/alan-turing-institute/sktime/blob/main/sktime/classification/compose/</a><strong>init</strong>.py</p>
-<div class="section" id="Preliminaries">
-<h3><strong>Preliminaries</strong><a class="headerlink" href="#Preliminaries" title="Permalink to this headline">¶</a></h3>
+<section id="Preliminaries">
+<h3><strong>Preliminaries</strong><a class="headerlink" href="#Preliminaries" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -740,9 +646,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Splitting-the-dataset-into-the-Training-set-and-Test-set">
-<h3><strong>Splitting the dataset into the Training set and Test set</strong><a class="headerlink" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Splitting-the-dataset-into-the-Training-set-and-Test-set">
+<h3><strong>Splitting the dataset into the Training set and Test set</strong><a class="headerlink" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -764,9 +670,9 @@ div.rendered_html tbody tr:hover {
 (24, 1) (24,) (9, 1) (9,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Time-Series-Classification">
-<h3><strong>Time Series Classification</strong><a class="headerlink" href="#Time-Series-Classification" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Time-Series-Classification">
+<h3><strong>Time Series Classification</strong><a class="headerlink" href="#Time-Series-Classification" title="Permalink to this headline"></a></h3>
 <p><a class="reference external" href="https://towardsdatascience.com/sktime-a-unified-python-library-for-time-series-machine-learning-3c103c139a55">https://towardsdatascience.com/sktime-a-unified-python-library-for-time-series-machine-learning-3c103c139a55</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -826,9 +732,9 @@ TimeSeriesForestClassifier()
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Feature-extraction">
-<h3><strong>Feature extraction</strong><a class="headerlink" href="#Feature-extraction" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Feature-extraction">
+<h3><strong>Feature extraction</strong><a class="headerlink" href="#Feature-extraction" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -981,9 +887,9 @@ Feature Extraction: 100%|██████████| 5/5 [00:00&lt;00:00, 18
 1
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Time-Series-Classification-with-Feature-Extraction">
-<h3><strong>Time Series Classification with Feature Extraction</strong><a class="headerlink" href="#Time-Series-Classification-with-Feature-Extraction" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Time-Series-Classification-with-Feature-Extraction">
+<h3><strong>Time Series Classification with Feature Extraction</strong><a class="headerlink" href="#Time-Series-Classification-with-Feature-Extraction" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1029,11 +935,11 @@ Feature Extraction: 100%|██████████| 5/5 [02:50&lt;00:00, 34
 1.0
 </pre></div></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="SkLearn">
-<h1>SkLearn<a class="headerlink" href="#SkLearn" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section id="SkLearn">
+<h1>SkLearn<a class="headerlink" href="#SkLearn" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1048,10 +954,10 @@ Feature Extraction: 100%|██████████| 5/5 [02:50&lt;00:00, 34
 </pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>Preprocessing data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3>Creating matrix of features (CoRoT targets with confirmed exoplanets)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h2>Preprocessing data<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>Creating matrix of features (CoRoT targets with confirmed exoplanets)<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1643,9 +1549,9 @@ Feature Extraction: 100%|██████████| 5/5 [02:50&lt;00:00, 34
 (33, 15050)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id3">
-<h3>Labeling matrix of features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id3">
+<h3>Labeling matrix of features<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>0: confirmed_exoplanets</p></li>
 <li><p>1: eclipsing_binaries</p></li>
@@ -1709,9 +1615,9 @@ dtype: int64
 (496650,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id4">
-<h3>Creating dataset, X and y<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>Creating dataset, X and y<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2278,15 +2184,15 @@ Labels = [0]
 Counts = [496650]
 </pre></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="Machine-Learning">
-<h2>Machine Learning<a class="headerlink" href="#Machine-Learning" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id5">
-<h3><strong>Preliminaries</strong><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id6">
-<h3><strong>Splitting the dataset into the Training set and Test set</strong><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="Machine-Learning">
+<h2>Machine Learning<a class="headerlink" href="#Machine-Learning" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h3><strong>Preliminaries</strong><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+</section>
+<section id="id6">
+<h3><strong>Splitting the dataset into the Training set and Test set</strong><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2318,9 +2224,9 @@ Counts = [496650]
 (24, 15050) (24,) (9, 15050) (9,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id7">
-<h3><strong>Time Series Classification</strong><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id7">
+<h3><strong>Time Series Classification</strong><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2382,15 +2288,15 @@ KNeighborsClassifier()
 1.0
 </pre></div></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="Decision-Trees---0.57">
-<h1>Decision Trees - 0.57<a class="headerlink" href="#Decision-Trees---0.57" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section id="Decision-Trees---0.57">
+<h1>Decision Trees - 0.57<a class="headerlink" href="#Decision-Trees---0.57" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</a></p>
-<div class="section" id="Feature:-Periodograms">
-<h2>Feature: Periodograms<a class="headerlink" href="#Feature:-Periodograms" title="Permalink to this headline">¶</a></h2>
+<section id="Feature:-Periodograms">
+<h2>Feature: Periodograms<a class="headerlink" href="#Feature:-Periodograms" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2947,8 +2853,8 @@ KNeighborsClassifier()
 </pre></div>
 </div>
 </div>
-<div class="section" id="Preprocessing">
-<h3>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this headline">¶</a></h3>
+<section id="Preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this headline"></a></h3>
 <p><strong>1. Normalization</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -3011,9 +2917,9 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="id8">
-<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id8">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3035,9 +2941,9 @@ The minimun value is: 49
 (98, 49) (98,) (33, 49) (33,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Train-model">
-<h3>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Train-model">
+<h3>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3063,8 +2969,8 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39
                        random_state=42, splitter=&#39;best&#39;)
 </pre></div></div>
 </div>
-<div class="section" id="Results">
-<h4>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h4>
+<section id="Results">
+<h4>Results<a class="headerlink" href="#Results" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3092,16 +2998,16 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39
 <img alt="_images/06_-_Machine_Learning_77_0.png" src="_images/06_-_Machine_Learning_77_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="XGBoost---0.585">
-<h1>XGBoost - 0.585<a class="headerlink" href="#XGBoost---0.585" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+</section>
+<section id="XGBoost---0.585">
+<h1>XGBoost - 0.585<a class="headerlink" href="#XGBoost---0.585" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <p><a class="reference external" href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
-<div class="section" id="id9">
-<h2>Feature: Periodograms<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h2>Feature: Periodograms<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3658,8 +3564,8 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39
 </pre></div>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>Preprocessing<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<section id="id10">
+<h3>Preprocessing<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <p><strong>1. Normalization</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -3722,9 +3628,9 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="id11">
-<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id11">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3746,9 +3652,9 @@ The minimun value is: 49
 (98, 49) (98,) (33, 49) (33,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id12">
-<h3>Train model<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id12">
+<h3>Train model<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3776,8 +3682,8 @@ XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, colsample_bylevel=1,
               silent=None, subsample=1, verbosity=0)
 </pre></div></div>
 </div>
-<div class="section" id="id13">
-<h4>Results<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<section id="id13">
+<h4>Results<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3805,16 +3711,16 @@ XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, colsample_bylevel=1,
 <img alt="_images/06_-_Machine_Learning_95_0.png" src="_images/06_-_Machine_Learning_95_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="Gaussian-Mixture-Models">
-<h1>Gaussian Mixture Models<a class="headerlink" href="#Gaussian-Mixture-Models" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+</section>
+<section id="Gaussian-Mixture-Models">
+<h1>Gaussian Mixture Models<a class="headerlink" href="#Gaussian-Mixture-Models" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html">https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html</a></p>
-<div class="section" id="id14">
-<h2>Feature: Periodograms<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<section id="id14">
+<h2>Feature: Periodograms<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -4371,8 +4277,8 @@ XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, colsample_bylevel=1,
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>Preprocessing<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<section id="id15">
+<h3>Preprocessing<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h3>
 <p><strong>1. Normalization</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -4435,9 +4341,9 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="id16">
-<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id16">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -4459,9 +4365,9 @@ The minimun value is: 49
 (98, 49) (98,) (33, 49) (33,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id17">
-<h3>Train model<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id17">
+<h3>Train model<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -4475,8 +4381,8 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h4>Results<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<section id="id18">
+<h4>Results<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -4497,16 +4403,16 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="Lazy-Predict">
-<h1>Lazy Predict<a class="headerlink" href="#Lazy-Predict" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+</section>
+<section id="Lazy-Predict">
+<h1>Lazy Predict<a class="headerlink" href="#Lazy-Predict" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <p><a class="reference external" href="https://lazypredict.readthedocs.io/en/latest/usage.html#classification">https://lazypredict.readthedocs.io/en/latest/usage.html#classification</a></p>
-<div class="section" id="id19">
-<h2>Feature: Periodograms<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<section id="id19">
+<h2>Feature: Periodograms<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -5064,8 +4970,8 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>Preprocessing<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<section id="id20">
+<h3>Preprocessing<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h3>
 <p><strong>1. Normalization</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -5128,9 +5034,9 @@ The minimun value is: 49
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="id21">
-<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id21">
+<h3>Splitting the dataset into the Training set and Test set<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
@@ -5152,9 +5058,9 @@ The minimun value is: 49
 (98, 49) (98,) (33, 49) (33,)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="id22">
-<h3>Train model<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id22">
+<h3>Train model<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -5185,8 +5091,8 @@ The minimun value is: 49
 100%|██████████| 29/29 [00:01&lt;00:00, 24.28it/s]
 </pre></div></div>
 </div>
-<div class="section" id="id23">
-<h4>Results<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<section id="id23">
+<h4>Results<a class="headerlink" href="#id23" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
@@ -5231,57 +5137,40 @@ LabelPropagation                0.33
 Name: Accuracy, dtype: float64
 </pre></div></div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="modules.html" class="btn btn-neutral float-right" title="Filtering Techniques" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="05%20-%20Feature%20Engineering.html" class="btn btn-neutral float-left" title="Reading the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Filtering Techniques" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Guilherme Samuel.
-
-    </p>
+    <p>&#169; Copyright 2021, Guilherme Samuel.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

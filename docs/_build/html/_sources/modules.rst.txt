@@ -1,7 +1,6 @@
-Filtering Techniques
-===================
+IMT-LightCurve Library
+=======================
 
-.. toctree::
-    :maxdepth: 4
+Check the **IMT-LightCurve-Library** at `GitHub`_.
 
-    utils
+.. _GitHub: https://github.com/Guilherme-SSB/IMT-LightCurve-Library
