@@ -8,13 +8,7 @@ Welcome to Study of Filtering Processes of Light Curves's documentation!
 
 |docs| |last commit| |most used lang|
 
-Resumo
-=======
-
-- Dados gerais sobre o projeto:
-   1. NSEE, FAPESP
-   2. Autoria
-   3. Projeto apresenta um pipeline de análise e processamento das curvas de luz
+http://rst.ninjs.org/
 
 As missões espaciais CoRoT e Kepler observaram juntas mais de 300.000 estrelas e, para cada estrela observada, foi gerada um gráfico que mensura a variabilidade do seu brilho em função do tempo. Esses dados gerados são conhecidos como Curvas de Luz e serão o objeto de estudo desse trabalho. Para cada curva de luz,   há três tipos de classificações possíveis, dependendo dos eclipses (detectados nesses sinais) gerados pela passagem de um corpo celeste entre a estrela observada e o observador. São elas: 
 
