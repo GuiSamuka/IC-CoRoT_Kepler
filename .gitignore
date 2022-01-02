@@ -294,3 +294,6 @@ tests/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,jupyternotebooks,intellij,virtualenv
 /.vscode/
+.idea/IC-CoRoT_Kepler.iml
+.idea/misc.xml
+.idea/modules.xml
